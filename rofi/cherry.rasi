@@ -1,0 +1,90 @@
+/******************************************************************************
+ * ROFI Color theme
+ * User: canciller
+ * Copyright: canciller
+ ******************************************************************************/
+* {
+    background-color: rgba(0, 0, 0, 0); 
+    text-color: rgba(255, 214, 228, 100%);
+
+    mainbox-padding: 20%;
+    global-font: "Noto Sans 13";
+    textbox-font: "Noto Sans 10";    
+ 
+    background: rgba(40, 42, 54, 80%);
+    foreground-selected: #282A36;
+    background-selected: #7B809D;
+
+    background-message: rgba(0, 0, 0, 0);
+    background-textbox: rgba(22, 23, 29, 80%);
+} 
+
+window {
+    fullscreen: true;
+    font: @global-font;
+}
+
+mainbox {
+   background-color: @background;
+   expand: true;
+   padding: @mainbox-padding;
+}
+
+inputbar {
+    border-color: @background-selected;
+    border: 0 0 1px 0;
+    margin: 0 0 0.2em 0;
+    children: [textbox-prompt-colon,entry,case-indicator];   
+}
+
+message {
+    background-color: @background-message;
+}
+
+textbox {
+    background-color: @background-textbox;
+    border-color: @background-selected;
+    font: @textbox-font;
+    padding: 0.5em;
+}
+
+listview {
+   scrollbar: true;
+   margin: 0.2em 0 1em 0;
+}
+
+sidebar {
+    border: 1px 0 0 0;
+    border-color: @background-selected;
+}
+
+button {
+    padding: 0.8em 0;
+}
+
+button.selected {
+    text-color: @foreground-selected;
+    background-color: @background-selected;
+}
+
+textbox-prompt-colon {
+    expand: false;
+    str: "";
+    margin: 0 0.3em 0 0;
+}
+
+element {
+    padding: 0.1em;
+    border-radius: 1px;
+}
+
+element.selected {
+    text-color: @foreground-selected;
+    background-color: @background-selected;
+}
+
+scrollbar {
+    margin: 0 0 0 0.2em;
+    handle-width: 15px;
+    handle-color: @background-selected;
+}
