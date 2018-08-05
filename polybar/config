@@ -35,6 +35,7 @@ module-margin-left = 1
 ;font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 ;font-2 = siji:pixelsize=10;1
 font-0 = SauceCodePro Nerd Font:pixelsize=10;1
+font-1 = Noto Sans:pixelsize=10;2
 
 modules-left = i3 
 modules-center = xwindow
@@ -87,7 +88,7 @@ font-0 = SauceCodePro Nerd Font:pixelsize=10;1
 
 modules-left = filesystem xbacklight temperature cpu memory
 modules-center =  
-modules-right = pulseaudio xkeyboard wlan eth battery date
+modules-right = xkeyboard wlan eth battery date pulseaudio
 
 tray-position = right
 tray-padding = 2
@@ -135,6 +136,7 @@ bar-empty-foreground = ${colors.foreground-alt}
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:50:...%
+label-font = 2
 
 [module/xkeyboard]
 type = internal/xkeyboard

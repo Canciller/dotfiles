@@ -29,6 +29,9 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'rdnetto/YCM-Generator', { 'branch': 'stable' }
 Plugin 'scrooloose/nerdtree'
 Plugin 'vimwiki/vimwiki'
+Plugin 'alvan/vim-closetag'
+Plugin 'pangloss/vim-javascript'
+Plugin 'bfrg/vim-cpp-modern'
 
 if $TERM != "linux"
     Plugin 'vim-airline/vim-airline'
@@ -87,3 +90,15 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " shift tab
 " for command mode
 nnoremap <S-Tab> <<
+
+" files with extension .hbs are processed as html
+autocmd BufReadPre,FileReadPre *.hbs set ft=html
+
+" vim-closetag
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.hbs'
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
+let g:closetag_filetypes = 'html,xhtml,phtml'
+let g:closetag_xhtml_filetypes = 'xhtml,jsx'
+let g:closetag_emptyTags_caseSensitive = 1
+let g:closetag_shortcut = '>'
+let g:closetag_close_shortcut = '<leader>>'

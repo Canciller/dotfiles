@@ -163,10 +163,11 @@ bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-exec --no-startup-id pulseaudio --start
+exec --no-startup-id /usr/bin/pulseaudio --start
 exec --no-startup-id setxkbmap latam
-exec --no-startup-id polybar --reload example &
-exec_always --no-startup-id compton -bfCG --config ~/.config/compton/config
+
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id compton -bfCG --config $HOME/.config/compton/config
 exec_always --no-startup-id hsetroot -solid "#282A36"
 
 # i3 gaps
