@@ -31,10 +31,13 @@ source $ZSH/oh-my-zsh.sh
 
 export EDITOR="nvim"
 
+# configuration files quick edit aliases
 alias zshconfig="$EDITOR $HOME/.zshrc"
 alias zshreload="source $HOME/.zshrc" 
 alias i3config="$EDITOR $HOME/.config/i3/config"
 alias nvimconfig="$EDITOR $HOME/.config/nvim/init.vim"
+
+# useful command aliases
 alias gdbtui="gdb -tui -q"
 
 neofetch
