@@ -119,7 +119,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec ~/.local/bin/rofi_session
+bindsym $mod+Shift+e exec ~/.config/rofi/rofi_session
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -164,10 +164,10 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 exec --no-startup-id /usr/bin/pulseaudio --start
-exec --no-startup-id setxkbmap latam
+#exec --no-startup-id setxkbmap latam
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec_always --no-startup-id compton -bfCG --config $HOME/.config/compton/config
+exec_always --no-startup-id compton -bfCG
 exec_always --no-startup-id hsetroot -solid "#282A36"
 
 # i3 gaps
