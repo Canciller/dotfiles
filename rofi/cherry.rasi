@@ -8,8 +8,8 @@
     text-color: rgba(255, 214, 228, 100%);
 
     mainbox-padding: 20%;
-    global-font: "Noto Sans 13";
-    textbox-font: "Noto Sans 10";    
+    global-font: "Noto Sans 20";
+    textbox-font: "SauceCodePro Nerd Font 18";    
  
     background: rgba(40, 42, 54, 80%);
     foreground-selected: #282A36;
@@ -44,7 +44,6 @@ message {
 textbox {
     background-color: @background-textbox;
     border-color: @background-selected;
-    font: @textbox-font;
     padding: 0.5em;
 }
 
@@ -69,6 +68,7 @@ button.selected {
 
 textbox-prompt-colon {
     expand: false;
+    font: @textbox-font;
     str: "";
     margin: 0 0.3em 0 0;
 }
