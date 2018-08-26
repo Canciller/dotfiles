@@ -27,17 +27,27 @@ plugins=(
   npm
 )
 
-source $ZSH/oh-my-zsh.sh
+[ -f $ZSH/oh-my-zsh.sh ] && source $ZSH/oh-my-zsh.sh
 
-export EDITOR="nvim"
+command_exits() {
+    return $(command -v "$1" &>/dev/null)
+}
 
-# configuration files quick edit aliases
+EDITOR="vi"
+
+if command_exits "nvim"; then
+    EDITOR="nvim"
+elif command_exits "vim"; then
+    EDITOR="vim"
+fi
+
+export EDITOR;
+
+# quick edit aliases
 alias zshconfig="$EDITOR $HOME/.zshrc"
-alias zshreload="source $HOME/.zshrc" 
 alias i3config="$EDITOR $HOME/.config/i3/config"
 alias nvimconfig="$EDITOR $HOME/.config/nvim/init.vim"
 
 # useful command aliases
+alias zshreload="source $HOME/.zshrc" 
 alias gdbtui="gdb -tui -q"
-
-neofetch
