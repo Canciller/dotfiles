@@ -11,8 +11,10 @@ call vundle#begin()
     Plugin 'Valloric/YouCompleteMe' "A code-completion engine for Vim
     Plugin 'rdnetto/YCM-Generator', { 'branch': 'stable' }
     Plugin 'Valloric/ListToggle' "A simple vim plugin for toggling the display of the quickfix list and the location-list
+    Plugin 'tmux-plugins/vim-tmux-focus-events'
     Plugin 'vimwiki/vimwiki' "Personal Wiki For Vim
     Plugin 'bfrg/vim-cpp-modern' "Enhanced C and C++ syntax highlighting
+    Plugin 'calviken/vim-gdscript3' "GDScript syntax highlighting
     Plugin 'pangloss/vim-javascript' "JavaScript bundle for vim, this bundle provides syntax highlighting and improved indentation
     Plugin 'digitaltoad/vim-pug' "Vim syntax highlighting for Pug templates
     Plugin 'alvan/vim-closetag' "Autocloses html tags
@@ -26,6 +28,9 @@ call vundle#end()
 """"""""""""""""""""""""
 "  nvim configuration  "
 """"""""""""""""""""""""
+
+au FocusGained,BufEnter * :checktime
+set autoread
 
 set encoding=UTF-8
 
@@ -44,18 +49,15 @@ set nohlsearch
 set ignorecase
 
 set autoindent
+
 set tabstop=4
 set shiftwidth=4
-set shiftround
-set expandtab
-set smarttab
-set nowrap
+set softtabstop=0 expandtab
 
 set splitbelow
 set splitright
 
 syntax on
-
 
 """"""""""""""""""""""""
 "       keymaps        "
@@ -64,15 +66,25 @@ syntax on
 " write with W
 cnoreabbrev W w
 
-" shift tab
-nnoremap <S-Tab> <<
-inoremap <S-Tab> <C-d>          
+" faster tabbing 
+nnoremap < <<
+nnoremap > >>
 
-" move easily
+" keep selection tabbing
+vnoremap < <gv
+vnoremap > >gv
+
+" move easily splits
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
+
+" disable arrow keys
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
 
 " nerdtree toggle keymap
 map <silent> <C-n> :NERDTreeToggle<CR>
@@ -87,8 +99,10 @@ let g:ycm_server_use_vim_stdout = 0
 let g:ycm_server_keep_logfiles = 0
 let g:ycm_server_log_level = 'debug'
 let g:ycm_always_populate_location_list = 1
-let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_show_diagnostics_ui = 1
+let g:ycm_autoclose_preview_window_after_completion = 0
 let g:ycm_autoclose_preview_window_after_insertion = 0
+let g:ycm_disable_for_files_larger_than_kb = 0
 
 " ListToggle
 let g:lt_location_list_toggle_map = '<leader>l'
