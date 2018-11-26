@@ -28,10 +28,10 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec --no-startup-id rofi -show run -matching regex
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -40,10 +40,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -52,7 +52,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+b split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -129,10 +129,10 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym l resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym j resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -147,6 +147,9 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+
+# shorcuts
+bindsym Print exec flameshot gui
 
 # pulse audio controls
 set $sink-number 1
@@ -167,6 +170,8 @@ bindsym XF86AudioPrev exec playerctl previous
 set $keyboard-layout us
 exec --no-startup-id setxkbmap $keyboard-layout
 exec --no-startup-id /usr/bin/pulseaudio --start
+exec --no-startup-id flameshot
+exec --no-startup-id xfce4-power-manager
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id compton -bfCG
@@ -183,29 +188,30 @@ smart_borders on
 # class     border  background  foreground  indicator  child_border
 
 set $focused_border #4C5067
+set $focused_indicator #363949
 set $focused_bg     #4C5067
 set $focused_fg     #F8F8F2
-client.focused $focused_border $focused_bg $focused_fg $focused_border $focused_border 
+client.focused $focused_border $focused_bg $focused_fg $focused_indicator $focused_border 
 
 set $focused_inactive_border #363949
 set $focused_inactive_bg     #363949
 set $focused_inactive_fg     #F8F8F2
 client.focused_inactive $focused_inactive_border $focused_inactive_bg $focused_inactive_fg $focused_inactive_border $focused_inactive_border 
 
-set $unfocused_border #21222C
+set $unfocused_border #4C5067
 set $unfocused_bg     #21222C
 set $unfocused_fg     #F8F8F2
-client.unfocused $unfocused_border $unfocused_bg $unfocused_fg $unfocused_border $unfocused_border 
+#client.unfocused $unfocused_border $unfocused_bg $unfocused_fg $unfocused_border $unfocused_border 
 
 set $urgent_border #000000
 set $urgent_bg     #000000  
 set $urgent_fg     #000000 
 #client.urgent $urgent_border $urgent_bg $urgent_fg $urgent_border $urgent_border
 
-set $placeholder_border #000000
-set $placeholder_bg     #000000  
-set $placeholder_fg     #000000 
-#client.placeholder $placeholder_border $placeholder_bg $placeholder_fg $placeholder_border $placeholder_border
+set $placeholder_border #21222C
+set $placeholder_bg     #4C5067  
+set $placeholder_fg     #F8F8F2 
+client.placeholder $placeholder_border $placeholder_bg $placeholder_fg $placeholder_border $placeholder_border
 
 set $client_bg #282A36
 client.background $client_bg
