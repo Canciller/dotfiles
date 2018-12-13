@@ -1,170 +1,213 @@
+" Vundle Plugins {{{
 set nocompatible
-filetype plugin indent off
+filetype off
 
-" pathogen
-execute pathogen#infect()
-
-"  vundle  
-set rtp+=~/.config/nvim/bundle/Vundle.vim 
-call vundle#begin()
-    Plugin 'VundleVim/Vundle.vim'
-    Plugin 'Valloric/YouCompleteMe' "A code-completion engine for Vim
-    Plugin 'rdnetto/YCM-Generator', { 'branch': 'stable' }
-    Plugin 'Valloric/ListToggle' "A simple vim plugin for toggling the display of the quickfix list and the location-list
-    Plugin 'tmux-plugins/vim-tmux-focus-events'
-    Plugin 'vimwiki/vimwiki' "Personal Wiki For Vim
-    Plugin 'bfrg/vim-cpp-modern' "Enhanced C and C++ syntax highlighting
-    Plugin 'calviken/vim-gdscript3' "GDScript syntax highlighting
-    Plugin 'pangloss/vim-javascript' "JavaScript bundle for vim, this bundle provides syntax highlighting and improved indentation
-    Plugin 'digitaltoad/vim-pug' "Vim syntax highlighting for Pug templates
-    Plugin 'alvan/vim-closetag' "Autocloses html tags
-    Plugin 'vim-airline/vim-airline' "Lean & mean status/tabline for vim that's light as air
-    Plugin 'vim-airline/vim-airline-themes'
-    Plugin 'ryanoasis/vim-devicons' "Adds file type glyphs/icons to popular Vim plugins
-    Plugin 'tiagofumo/vim-nerdtree-syntax-highlight' "This adds syntax for nerdtree on most common file extensions
-    Plugin 'dracula/vim' "A dark theme for Vim
+set rtp+=~/.config/nvim/bundle/Vundle.vim
+call vundle#begin('~/.config/nvim/bundle')
+	Plugin 'VundleVim/Vundle.vim'
+	Plugin 'tpope/vim-vinegar'
 call vundle#end()
+" }}}
 
-""""""""""""""""""""""""
-"  nvim configuration  "
-""""""""""""""""""""""""
+" Vim Options {{{
+filetype plugin indent on
+syntax on
 
-au FocusGained,BufEnter * :checktime
-set autoread
+let mapleader = ","
+let maplocalleader = "\\"
 
-set encoding=UTF-8
+colorscheme purple
 
 set noshowmode
-set termguicolors
-
-try
-    colorscheme dracula
-catch /^Vim\%((\a\+)\)\=:E185/
-    colorscheme murphy
-endtry
-
-set number
-
-set nohlsearch
-set ignorecase
-
-set autoindent
-
-set tabstop=4
-set shiftwidth=4
-set softtabstop=0 expandtab
 
 set splitbelow
 set splitright
 
-syntax on
+set encoding=utf-8
 
-""""""""""""""""""""""""
-"       keymaps        "
-""""""""""""""""""""""""
+set termguicolors
+set cursorline
 
-" write with W
-cnoreabbrev W w
+set number
+set norelativenumber
+set numberwidth=5
 
-" faster tabbing 
-nnoremap < <<
+set wrap
+set showmatch
+set matchtime=2
+
+set background=dark
+
+set list
+set showbreak=↪\ 
+set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
+
+set tabstop=4
+set shiftwidth=4
+set softtabstop=0 noexpandtab
+
+set showtabline=2
+
+let g:netrw_liststyle = 3
+let g:netrw_banner = 0
+let g:netrw_browse_split = 1
+let g:netrw_altv = 1
+let g:netrw_winsize = 20
+" }}}
+
+" Autocmds {{{
+augroup filetype_vim
+	autocmd!
+	autocmd FileType vim nnoremap <buffer> <localleader>c I"<esc>
+	autocmd FileType vim setlocal foldmethod=marker
+augroup END
+
+augroup filetype_conf
+	autocmd!
+	autocmd FileType conf setlocal foldmethod=marker
+augroup END
+
+augroup filetype_all
+	autocmd!
+	autocmd BufNewFile,BufRead * onoremap ah :<c-u>execute "normal! ?^[=-][=-]\\+\r:nohlsearch\rg_vk0"<cr>
+	autocmd BufNewFile,BufRead * onoremap ih :<c-u>execute "normal! ?^[=-][=-]\\+\r:nohlsearch\rg_kvg_"<cr>
+	autocmd BufNewFile,BufRead * onoremap in@ :<c-u>execute "normal! /@\r:nohlsearch\r1hvB"<cr>
+augroup END
+" }}}
+
+" Mappings {{{
+
+command! WQ wq
+command! Wq wq
+command! W w
+command! Q q
+
+noremap <leader>o o<esc>1k
+noremap <leader>O O<esc>1j
+
+"move current line up
+noremap <leader>_ ddp
+
+"move current line down
+noremap <leader>- dd1kP
+
+"open vimrc in split
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+
+"source vimrc
+nnoremap <leader>sv :source $MYVIMRC<cr>
+
+"write
+nnoremap <leader>w :w<cr>
+
+"disable keys
+noremap <up> <nop>
+noremap <down> <nop>
+noremap <left> <nop>
+noremap <right> <nop>
+inoremap <esc> <nop>
+
+"enter normal mode
+inoremap jk <esc>1l
+
+"delete current line
+inoremap <c-d> <esc>ddi
+
+"copy current line
+inoremap <c-y> <esc>yy1li
+
+"paste after cursor
+inoremap <c-v> <esc>pi
+
+"surround word with "
+nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
+
+"surround word with '
+nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
+
+"surround selected with "
+vnoremap <leader>" <esc>`<i"<esc>`>1la"<esc>
+
 nnoremap > >>
+nnoremap < <<
 
-" keep selection tabbing
-vnoremap < <gv
-vnoremap > >gv
+"move to end/start of line
+nnoremap L $
+nnoremap H 0
 
-" move easily splits
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
+"split movement
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
 
-" disable arrow keys
-noremap <Up> <Nop>
-noremap <Down> <Nop>
-noremap <Left> <Nop>
-noremap <Right> <Nop>
+"split resize
+nnoremap <silent> <up> :res -5<cr>
+nnoremap <silent> <down> :res +5<cr>
+nnoremap <silent> <left> :vertical res -5<cr>
+nnoremap <silent> <right> :vertical res +5<cr>
 
-" nerdtree toggle keymap
-map <silent> <C-n> :NERDTreeToggle<CR>
+"tab movement
+nnoremap <silent> <c-left> :tabn<cr>
+nnoremap <silent> <c-right> :tabp<cr>
+nnoremap <silent> <c-up> :tabl<cr>
+nnoremap <silent> <c-down> :tabr<cr>
 
-""""""""""""""""""""""""
-" plugin configuration "
-""""""""""""""""""""""""
+"fold close/open
+nnoremap <space> za
 
-" YouCompleteMe
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_server_use_vim_stdout = 0
-let g:ycm_server_keep_logfiles = 0
-let g:ycm_server_log_level = 'debug'
-let g:ycm_always_populate_location_list = 1
-let g:ycm_show_diagnostics_ui = 1
-let g:ycm_autoclose_preview_window_after_completion = 0
-let g:ycm_autoclose_preview_window_after_insertion = 0
-let g:ycm_disable_for_files_larger_than_kb = 0
+" }}}
 
-" ListToggle
-let g:lt_location_list_toggle_map = '<leader>l'
-let g:lt_quickfix_list_toggle_map = '<leader>q'
-let g:lt_height = 10
+" Status Line {{{
 
-" vim-closetag
-"
-" filenames like *.xml, *.html, *.xhtml, ...
-" These are the file extensions where this plugin is enabled.
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.ejs'
-"
-" filenames like *.xml, *.xhtml, ...
-" This will make the list of non-closing tags self-closing in the specified files.
-let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
-"
-" filetypes like xml, html, xhtml, ...
-" These are the file types where this plugin is enabled.
-let g:closetag_filetypes = 'html,xhtml,phtml'
-"
-" filetypes like xml, xhtml, ...
-" This will make the list of non-closing tags self-closing in the specified files.
-let g:closetag_xhtml_filetypes = 'xhtml,jsx'
-"
-" integer value [0|1]
-" This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
-let g:closetag_emptyTags_caseSensitive = 1
-"
-let g:closetag_shortcut = '>'
-let g:closetag_close_shortcut = '<leader>>'
+" pretty mode display - converts the one letter status notifiers to words
+function! Mode()
+    let l:mode = mode()
 
-" vim-airline
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#syntastic#stl_format_err = 1
-let g:airline#extensions#syntastic#stl_format_warn = 1
+    if     mode ==# "n"  | return "NORMAL"
+    elseif mode ==# "i"  | return "INSERT"
+    elseif mode ==# "R"  | return "REPLACE"
+    elseif mode ==# "v"  | return "VISUAL"
+    elseif mode ==# "V"  | return "V-LINE"
+    elseif mode ==# "" | return "V-BLOCK"
+	elseif mode ==# "c"  | return "COMMAND"
+	elseif mode ==# "t"  | return "TERMINAL"
+    else                 | return l:mode
+    endif
+endfunc 
 
-" vim-devicons
-let g:webdevicons_enable = 1
-let g:webdevicons_enable_nerdtree = 1
-let g:webdevicons_enable_airline_statusline = 1
-let g:webdevicons_enable_airline_tabline = 1
-let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+function! Modified()
+	let l:current_buff = winbufnr(winnr())
+	let l:modified = ""
+	if getbufvar(current_buff, "&mod")
+		let l:modified = "+ "
+	endif
+	return l:modified
+endfunc
 
-" vim-nerdtree-syntax-highlight
-let g:NERDTreeFileExtensionHighlightFullName = 1
-let g:NERDTreeExactMatchHighlightFullName = 1
-let g:NERDTreePatternMatchHighlightFullName = 1
+"left side
+set statusline=
+"set statusline+=%#StatusLineMode#
+set statusline+=\ %{Mode()}\ 
+"set statusline+=%#StatusLine#
+set statusline+=\ %f\ 
+set statusline+=%{Modified()}
 
-" nerdtree
-"
-let NERDTreeShowHidden = 1
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
-"
-" nerdtree no file
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-"
-" nerdtree directory
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-"
-" nerdtree autoclose
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+augroup status_line
+	autocmd!
+
+augroup END
+
+"right side
+set statusline+=%=
+set statusline+=\ \ %l/%L\ 
+set statusline+=\ %{&filetype}\ 
+set statusline+=\ %{&fileformat}\ 
+set statusline+=\ %{&fileencoding}\ 
+
+" }}}
+
+" Vimscript {{{
+"help expr4 for conditional operators
+"help internal-variables for variable scopes
+" }}}

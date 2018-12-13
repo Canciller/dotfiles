@@ -1,84 +1,7 @@
+# {{{ Variables
+
 set $mod Mod4
 
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-font pango:Noto Sans 11
-
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
-
-# Before i3 v4.8, we used to recommend this one as the default:
-# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-# The font above is very space-efficient, that is, it looks good, sharp and
-# clear in small sizes. However, its unicode glyph coverage is limited, the old
-# X core fonts rendering does not support right-to-left and this being a bitmap
-# font, it doesn’t scale on retina/hidpi displays.
-
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
-
-# start a terminal
-bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
-
-# kill focused window
-bindsym $mod+Shift+q kill
-
-# start rofi (a program launcher)
-bindsym $mod+d exec --no-startup-id rofi -show run -matching regex
-
-# change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
-
-# move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
-
-# split in horizontal orientation
-bindsym $mod+b split h
-
-# split in vertical orientation
-bindsym $mod+v split v
-
-# enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
-
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
-
-# toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
-
-# change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
-
-# focus the parent container
-bindsym $mod+a focus parent
-
-# focus the child container
-#bindsym $mod+d focus child
-
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -89,6 +12,83 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
+
+set $path-scripts $HOME/.config/i3/scripts
+
+set $font SauceCodePro Nerd Font 9
+set $keyboard-layout us
+set $pulseaudio-sink-number 1
+
+set $wallpaper-background-color "#21222c"
+
+set $backgroud-color #1a1b23
+set $border-color #4c5067
+set $font-color #f8f8f2
+set $unfocused-border-color #282a36
+set $indicator-color #282a36
+set $urgent-color #4c5067
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# }}}
+
+# {{{ i3 Key Bindings
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# start a terminal
+bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# {{{ Window Key Bindings
+
+# {{{ Move Window
+
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# }}}
+
+# {{{ Change Focus
+
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# }}}
+
+# }}}
+
+# {{{ Workspace Key Bindings
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -114,48 +114,47 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
+# }}}
+
+# {{{ Layout Key Bindings
+
+# split in horizontal orientation
+bindsym $mod+b split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# }}}
+
+# }}}
+
+# {{{ Application Key Bindings
+
+# rofi session menu
 bindsym $mod+Shift+e exec ~/.config/rofi/rofi_session
 
-# resize window (you can also use the mouse for that)
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+# start rofi (a program launcher)
+bindsym $mod+d exec --no-startup-id rofi -show run -matching regex
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym l resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym j resize grow width 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-
-        # back to normal: Enter or Escape or $mod+r
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
-}
-
-bindsym $mod+r mode "resize"
-
-# shorcuts
+# start flameshot (screenshot programa)
 bindsym Print exec flameshot gui
+bindsym $mod+Shift+s exec flameshot gui
 
-# pulse audio controls
-set $sink-number 1
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $sink-number +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $sink-number -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $sink-number toggle # mute sound
+# pulseaudio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $pulseaudio-sink-number +5% # increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $pulseaudio-sink-number -5% # decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $pulseaudio-sink-number toggle # mute sound
 
 # screen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
@@ -167,51 +166,121 @@ bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-set $keyboard-layout us
+# }}}
+
+# {{{ Execute
+
 exec --no-startup-id setxkbmap $keyboard-layout
-exec --no-startup-id /usr/bin/pulseaudio --start
 exec --no-startup-id flameshot
 exec --no-startup-id xfce4-power-manager
 
+exec_always --no-startup-id $path-scripts/pulseaudio_start.sh $pulseaudio-sink-number
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec_always --no-startup-id compton -bfCG
-exec_always --no-startup-id hsetroot -solid "#282A36"
+exec_always --no-startup-id compton --config $HOME/.config/compton/compton.conf -b
+exec_always --no-startup-id hsetroot -solid $wallpaper-background-color
+
+# }}}
+
+# {{{ Modes
+
+# {{{ Resize Mode
+
+# resize window (you can also use the mouse for that)
+mode "Resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+		bindsym q mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# }}}
+
+# {{{ Media Mode
+
+mode "Media" {
+	bindsym k exec --no-startup-id pactl set-sink-volume $pulseaudio-sink-number +8% # increase sound volume
+	bindsym j exec --no-startup-id pactl set-sink-volume $pulseaudio-sink-number -8% # decrease sound volume
+	bindsym m exec --no-startup-id pactl set-sink-mute $pulseaudio-sink-number toggle # mute sound
+
+	bindsym l exec --no-startup-id playerctl next
+	bindsym h exec --no-startup-id playerctl previous
+	bindsym p exec --no-startup-id playerctl play-pause
+
+	# back to normal: Enter or Escape or $mod+m
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+	bindsym $mod+m mode "default"
+	bindsym q mode "default"
+}
+
+bindsym $mod+m mode "Media"
+
+# }}}
+
+#{{{ Style Mode
+
+mode "Gaps" {
+	bindsym k exec --no-startup-id i3-msg gaps inner current minus 2
+	bindsym j exec --no-startup-id i3-msg gaps inner current plus 2
+
+	# back to normal: Enter or Escape or $mod+z
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+	bindsym $mod+g mode "default"
+	bindsym q mode "default"
+}
+
+bindsym $mod+g mode "Gaps"
+
+# }}}
+
+# }}}
+
+# {{{ Style
+
+font pango:$font
 
 # i3 gaps
-gaps inner 5
-smart_gaps on
+gaps inner 8
+#smart_gaps on
 
 # borders
 default_border pixel 2
-smart_borders on
+#smart_borders on
 
-# class     border  background  foreground  indicator  child_border
+# class                   border                  background              foreground  indicator               child_border
 
-set $focused_border #4C5067
-set $focused_indicator #363949
-set $focused_bg     #4C5067
-set $focused_fg     #F8F8F2
-client.focused $focused_border $focused_bg $focused_fg $focused_indicator $focused_border 
+client.focused            $border-color           $border-color           $font-color $indicator-color        $border-color
 
-set $focused_inactive_border #363949
-set $focused_inactive_bg     #363949
-set $focused_inactive_fg     #F8F8F2
-client.focused_inactive $focused_inactive_border $focused_inactive_bg $focused_inactive_fg $focused_inactive_border $focused_inactive_border 
+client.focused_inactive   $unfocused-border-color $unfocused-border-color $font-color $unfocused-border-color $unfocused-border-color
 
-set $unfocused_border #4C5067
-set $unfocused_bg     #21222C
-set $unfocused_fg     #F8F8F2
-#client.unfocused $unfocused_border $unfocused_bg $unfocused_fg $unfocused_border $unfocused_border 
+#client.unfocused_inactive $unfocused-border-color $unfocused-border-color $font-color $unfocused-border-color $unfocused-border-color
 
-set $urgent_border #000000
-set $urgent_bg     #000000  
-set $urgent_fg     #000000 
-#client.urgent $urgent_border $urgent_bg $urgent_fg $urgent_border $urgent_border
+#client.unfocused_inactive $unfocused-border-color $font-color
 
-set $placeholder_border #21222C
-set $placeholder_bg     #4C5067  
-set $placeholder_fg     #F8F8F2 
-client.placeholder $placeholder_border $placeholder_bg $placeholder_fg $placeholder_border $placeholder_border
+client.urgent             $urgent-color           $urgent-color           $font-color $urgent-color            $urgent-color
 
-set $client_bg #282A36
-client.background $client_bg
+client.placeholder        $unfocused-border-color $unfocused-border-color $font-color $unfocused-border-color $unfocused-border-color
+
+client.background         $background-color
+
+# }}}

@@ -8,8 +8,9 @@
     text-color: rgba(255, 214, 228, 100%);
 
     mainbox-padding: 20%;
-    global-font: "Noto Sans 20";
-    textbox-font: "SauceCodePro Nerd Font 18";    
+    //global-font: "Noto Sans 20";
+    global-font: "SauceCodePro Nerd Font 20";
+    textbox-font: "SauceCodePro Nerd Font 18";
  
     background: rgba(40, 42, 54, 80%);
     foreground-selected: #282A36;
@@ -34,7 +35,7 @@ inputbar {
     border-color: @background-selected;
     border: 0 0 1px 0;
     margin: 0 0 0.2em 0;
-    children: [textbox-prompt-colon,entry,case-indicator];   
+    children: [textbox-prompt-colon,entry,case-indicator];
 }
 
 message {
