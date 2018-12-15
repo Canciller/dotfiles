@@ -16,7 +16,7 @@ syntax on
 let mapleader = ","
 let maplocalleader = "\\"
 
-colorscheme purple
+colorscheme blackberry
 
 set noshowmode
 
