@@ -5,7 +5,7 @@ endif
 
 set background=dark
 
-let g:colors_name = 'purple'
+let g:colors_name = 'blackberry'
 
 function!  GuiFor(group, ...)
   let histring = 'hi ' . a:group . ' '
@@ -25,7 +25,6 @@ function!  GuiFor(group, ...)
   execute histring
 endfunction
 
-let s:bg_lighter = ""
 let s:bg_light = "#282a36"
 let s:bg_normal = "#21222c"
 let s:bg_dark = "#1a1b23"
