@@ -21,12 +21,12 @@ set $pulseaudio-sink-number 1
 
 set $wallpaper-background-color "#21222c"
 
-set $backgroud-color #1a1b23
-set $border-color #4c5067
-set $font-color #f8f8f2
-set $unfocused-border-color #282a36
-set $indicator-color #282a36
-set $urgent-color #4c5067
+set $backgroud-color "#1a1b23"
+set $border-color "#4c5067"
+set $font-color "#f8f8f2"
+set $unfocused-border-color "#282a36"
+set $indicator-color "#282a36"
+set $urgent-color "#4c5067"
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -273,9 +273,7 @@ client.focused            $border-color           $border-color           $font-
 
 client.focused_inactive   $unfocused-border-color $unfocused-border-color $font-color $unfocused-border-color $unfocused-border-color
 
-#client.unfocused_inactive $unfocused-border-color $unfocused-border-color $font-color $unfocused-border-color $unfocused-border-color
-
-#client.unfocused_inactive $unfocused-border-color $font-color
+client.unfocused $unfocused-border-color $unfocused-border-color $font-color $unfocused-border-color $unfocused-border-color
 
 client.urgent             $urgent-color           $urgent-color           $font-color $urgent-color            $urgent-color
 
