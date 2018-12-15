@@ -145,11 +145,11 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+Shift+e exec ~/.config/rofi/rofi_session
 
 # start rofi (a program launcher)
-bindsym $mod+d exec --no-startup-id rofi -show run -matching regex
+bindsym $mod+d exec --no-startup-id rofi -show drun -matching regex
 
 # start flameshot (screenshot programa)
-bindsym Print exec flameshot gui
-bindsym $mod+Shift+s exec flameshot gui
+bindsym Print exec --no-startup-id flameshot gui
+bindsym $mod+Shift+s exec --no-startup-id flameshot gui
 
 # pulseaudio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $pulseaudio-sink-number +5% # increase sound volume
@@ -280,5 +280,15 @@ client.urgent             $urgent-color           $urgent-color           $font-
 client.placeholder        $unfocused-border-color $unfocused-border-color $font-color $unfocused-border-color $unfocused-border-color
 
 client.background         $background-color
+
+# }}}
+
+# {{{ Application Settings
+
+assign [class="Google-chrome"] $ws2
+assign [class="Firefox"] $ws2
+assign [class="discord"] $ws9
+
+for_window [class="(Gpick|Lxappearance|keepassxc|qBittorrent|Nvidia-settings)"] floating enable border normal
 
 # }}}
