@@ -7,9 +7,9 @@ foreground = #fff
 primary = #10121a
 secondary = #fff
 
-underline = #fff
+underline = #4c5067
 
-alert = #F23131
+alert = #f23131
 
 [fonts]
 font-0 = SauceCodePro Nerd Font:pixelsize=16;1
@@ -29,7 +29,7 @@ height = 50
 
 fixed-center = true
 
-line-size = 3
+line-size = 4
 line-color = ${colors.underline}
 
 scroll-up = i3wm-wsnext
