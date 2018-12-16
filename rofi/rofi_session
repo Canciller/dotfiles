@@ -12,5 +12,5 @@ case $OPTION in
 2) systemctl reboot;;
 3) systemctl suspend;;
 4) systemctl hibernate;;
-5) i3-msg exit;;
+5) i3lock;;
 esac
