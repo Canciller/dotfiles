@@ -8,7 +8,6 @@
     text-color: rgba(255, 214, 228, 100%);
 
     mainbox-padding: 20%;
-    //global-font: "Noto Sans 20";
     global-font: "SauceCodePro Nerd Font 20";
     textbox-font: "SauceCodePro Nerd Font 18";
  
