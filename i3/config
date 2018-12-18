@@ -17,7 +17,6 @@ set $path-scripts $HOME/.config/i3/scripts
 
 set $font SauceCodePro Nerd Font 9
 set $keyboard-layout us
-set $pulseaudio-sink-number 1
 
 set $wallpaper-background-color "#21222c"
 
@@ -152,9 +151,9 @@ bindsym Print exec --no-startup-id flameshot gui
 bindsym $mod+Shift+s exec --no-startup-id flameshot gui
 
 # pulseaudio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $pulseaudio-sink-number +5% # increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $pulseaudio-sink-number -5% # decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $pulseaudio-sink-number toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id $path-scripts/pulseaudio-control.sh --volume-up # increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id  $path-scripts/pulseaudio-control.sh --volume-down # decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id $path-scripts/pulseaudio-control.sh --volume-toggle # mute sound
 
 # screen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
@@ -173,9 +172,9 @@ bindsym XF86AudioPrev exec playerctl previous
 exec --no-startup-id setxkbmap $keyboard-layout
 exec --no-startup-id flameshot
 exec --no-startup-id xfce4-power-manager
+exec --no-startup-id $path-scripts/pulseaudio-start.sh
+exec --no-startup-id $HOME/.config/polybar/launch.sh
 
-exec_always --no-startup-id $path-scripts/pulseaudio_start.sh $pulseaudio-sink-number
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id compton --config $HOME/.config/compton/compton.conf -b
 exec_always --no-startup-id hsetroot -solid $wallpaper-background-color
 
