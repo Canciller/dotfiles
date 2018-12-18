@@ -1,0 +1,7 @@
+#!/bin/bash
+
+FILENAME="$1"
+
+[ -z "$FILENAME" -o -e "$FILENAME" ] && exit 1
+touch "$FILENAME" || exit 1
+chmod +x "$FILENAME" || exit 1
