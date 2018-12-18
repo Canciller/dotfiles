@@ -22,7 +22,7 @@ font-1 = SauceCodePro Nerd Font:pixelsize=20;2
 [bar/top]
 modules-left = i3 xwindow
 modules-center =
-modules-right = mpd pulseaudio date session-menu
+modules-right = pulseaudio date rofi-session
 
 width = 100%
 height = 50
@@ -154,11 +154,11 @@ label-padding = 2
 label-background = ${colors.primary}
 label-foreground = ${colors.secondary}
 
-[module/session-menu]
+[module/rofi-session]
 type = custom/script
 exec = echo ⏻
 label-padding = 2
-click-left = $HOME/.config/rofi/rofi_session
+click-left = $HOME/.config/rofi/scripts/rofi-session.sh
 
 # }}}
 
