@@ -67,11 +67,18 @@ augroup filetype_conf
 	autocmd FileType conf setlocal foldmethod=marker
 augroup END
 
+augroup filetype_cpp
+	autocmd!
+	autocmd FileType cpp setlocal expandtab
+	autocmd FileType cpp setlocal listchars=tab:→\ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨
+augroup END
+
 augroup filetype_all
 	autocmd!
 	autocmd BufNewFile,BufRead * onoremap ah :<c-u>execute "normal! ?^[=-][=-]\\+\r:nohlsearch\rg_vk0"<cr>
 	autocmd BufNewFile,BufRead * onoremap ih :<c-u>execute "normal! ?^[=-][=-]\\+\r:nohlsearch\rg_kvg_"<cr>
 	autocmd BufNewFile,BufRead * onoremap in@ :<c-u>execute "normal! /@\r:nohlsearch\r1hvB"<cr>
+	autocmd BufWritePost init.vim source %
 augroup END
 " }}}
 
