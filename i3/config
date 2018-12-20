@@ -141,7 +141,7 @@ bindsym $mod+Shift+space floating toggle
 # {{{ Application Key Bindings
 
 # rofi session menu
-bindsym $mod+Shift+e exec ~/.config/rofi/rofi_session
+bindsym $mod+Shift+e exec ~/.config/rofi/scripts/rofi-session.sh
 
 # start rofi (a program launcher)
 bindsym $mod+d exec --no-startup-id rofi -show drun -matching regex
@@ -172,11 +172,10 @@ bindsym XF86AudioPrev exec playerctl previous
 exec --no-startup-id setxkbmap $keyboard-layout
 exec --no-startup-id flameshot
 exec --no-startup-id xfce4-power-manager
-exec --no-startup-id $path-scripts/pulseaudio-start.sh
-exec --no-startup-id $HOME/.config/polybar/launch.sh
 
 exec_always --no-startup-id compton --config $HOME/.config/compton/compton.conf -b
 exec_always --no-startup-id hsetroot -solid $wallpaper-background-color
+exec_always --no-startup-id $path-scripts/pulseaudio-start.sh; $HOME/.config/polybar/launch.sh
 
 # }}}
 
@@ -259,7 +258,7 @@ bindsym $mod+g mode "Gaps"
 font pango:$font
 
 # i3 gaps
-gaps inner 8
+gaps inner 5
 #smart_gaps on
 
 # borders
