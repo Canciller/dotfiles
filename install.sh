@@ -1,7 +1,7 @@
 #!/bin/bash
 
 dotfiles_dir="$PWD"
-default_install_dir="$CONFIG"
+default_install_dir="$HOME/.config"
 
 backup_dirname=backup
 
@@ -13,6 +13,7 @@ install_list=(
 	rofi
 	xfce4
 	"zsh/zshrc:$HOME/.zshrc"
+	"scripts":$HOME/.local/bin"
 )
 
 function print {
