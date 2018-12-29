@@ -33,14 +33,14 @@ function link() {
 	[ -z "$file" -o -z "$destination" ] && return 1
 
 	if ! [ -d "$destination_dir" ]; then
+		mkdir -p "$destination_dir" || return 1
 		info "mkdir -p $destination_dir"
-		#mkdir -p "$destination_dir" || return 1
 	fi
 
 	local file_final="$(readlink -f $file)"
 
+	ln -s "$file_final" "$destination" || return 1
 	info "ln -s "$file_final" "$destination""
-	#ln -s "$file_final" "$destination"
 }
 
 function link_recursive() {
