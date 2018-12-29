@@ -20,7 +20,7 @@ set $keyboard-layout us
 
 set $wallpaper-background-color "#21222c"
 
-set $backgroud-color "#1a1b23"
+set $background-color "#1a1b23"
 set $border-color "#4c5067"
 set $font-color "#f8f8f2"
 set $unfocused-border-color "#282a36"
@@ -149,6 +149,9 @@ bindsym $mod+d exec --no-startup-id rofi -show drun -matching regex
 # start flameshot (screenshot programa)
 bindsym Print exec --no-startup-id flameshot gui
 bindsym $mod+Shift+s exec --no-startup-id flameshot gui
+
+# polybar show/hide bars
+bindsym $mod+p exec --no-startup-id polybar-msg cmd toggle
 
 # pulseaudio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id $path-scripts/pulseaudio-control.sh --volume-up # increase sound volume
