@@ -1,11 +1,10 @@
 #!/bin/bash
 
-dotfiles_dir="$PWD"
-default_install_dir="$HOME/.config"
+dotfiles_dir="$(pwd)"
+backup_dir="$HOME/.dotfiles.backup"
+config_dir="$HOME/.config"
 
-backup_dirname=backup
-
-install_list=(
+dotfiles_list=(
 	i3
 	nvim
 	polybar
@@ -13,144 +12,86 @@ install_list=(
 	rofi
 	xfce4
 	"zsh/zshrc:$HOME/.zshrc"
-	"scripts":$HOME/.local/bin"
+	"bin:$HOME/.local/bin"
 )
 
-function print {
-	local message="$1"
-	local fg_color="$2"
-	[ -z "$fg_color" ] && fg_color=0
-	echo -e "\e[${fg_color}m$message\e[0m"
+function usage() {
+	echo "usage:$(basename $0) [-option]">&2
+	echo "">&2
+	echo "options:">&2
+	echo "    -h, --help Print this message">&2
+	echo "    -i     Install all dotfiles">&2
+	echo "    -r     Restore old dotfiles">&2
 }
 
-function error {
-	print "[ERROR] $1" 31
-	exit 1
+function link() {
+	local file="$1"
+
+	local destination="$2"
+	local destination_dir="$(dirname "$destination")"
+
+	[ -z "$file" -o -z "$destination" ] && return 1
+
+	if ! [ -d "$destination_dir" ]; then
+		info "mkdir -p $destination_dir"
+		#mkdir -p "$destination_dir" || return 1
+	fi
+
+	local file_final="$(readlink -f $file)"
+
+	info "ln -s "$file_final" "$destination""
+	#ln -s "$file_final" "$destination"
 }
 
-function warning {
-	print "[WARNING] $1" 33
+function link_recursive() {
+	local file="$1"
+	[ -z "$file" ] && return 1
+	
+	local destination="$2"
+	[ -z "$destination" ] && return 1
+
+	if [ -d "$file" ]; then
+		cd "$file" || return 1
+		for F in $(ls -A .); do 
+			link_recursive "$F" "$destination/$F"
+		done
+		cd .. || return 1
+	else
+		link "$file" "$destination" && return 1
+	fi
 }
 
-function success {
-	print "[OK] $1" 32
+function install() {
+	for d in "${dotfiles_list[@]}"; do
+		IFS=":" read -ra D <<< "$d"
+
+		local dotfile="${D[0]}"
+		local destination="${D[1]}"
+
+		[ -e "$dotfile" ] || continue
+		[ -z "$destination" ] && destination="$config_dir/$dotfile"
+
+		link_recursive "$(expand_path "$dotfile")" "$(expand_path "$destination")"
+	done
 }
 
-function info {
-	print "[INFO] $1" 34
+function uninstall() {
+	return 0
 }
 
-function debug {
-	print "[DEBUG] $1" 35
-}
-
-function variable {
-	[ -z "$1" ] && echo -n && return
-	eval "echo \"$1=\\\"\$$1\\\"\""
-}
-
-function absolute_path {
-	[ -z "$1" ] && return 1
+function main() {
 	case "$1" in
-		/*) return 0;;
-		*) return 1;;
+		-i) install;;
+		-r) uninstall;;
+		-h|--help) usage;;
+		*) usage && return 1
 	esac
 }
 
-function get_absolute_path {
-	[ -z "$1" ] && return 1
-	path="$(readlink -f "$1")"
-	[ -n "$path" ] && echo "$path" || echo "$1"
-}
+scripts_dir="$dotfiles_dir/scripts"
 
-function make_link {
-	local dotfile="$1"
-	local install_path="$2"
-	local backup_dir="$3"
+. "$scripts_dir/echos.sh"
+. "$scripts_dir/helpers.sh"
 
-	if [ -d "$dotfile" ]; then
-		if [ -e "$install_path" ]; then
-			! [ -e "$install_path" ] && return 1
-		else
-			mkdir -p "$install_path"
-		fi
-
-		cd "$dotfile"
-		for f in $(ls -A .); do
-			make_link "$f" "$install_path/$f" "$backup_dir/$dotfile"
-		done
-		cd ..
-	else
-		local dotfile_path="$(readlink -f "$dotfile")"
-
-		if [ -e "$install_path" ]; then
-			if [ -h "$install_path" ]; then
-				if [ "$(readlink -f "$install_path")" = "$dotfile_path" ]; then
-					success "skipping '$dotfile_path' -> '$install_path'"
-					return 0
-				fi
-			fi
-
-			! [ -d "$backup_dir" ] && mkdir -p "$backup_dir"
-
-			warning "moving '$install_path' -> '$backup_dir/$dotfile'"
-			mv "$install_path" "$backup_dir/$dotfile"
-			success "moving '$install_path' -> '$backup_dir/$dotfile'"
-
-			ln -s $dotfile_path $install_path
-			success "linking '$dotfile_path' -> '$install_path'"
-		else
-			[ "$(basename "$install_path")" != "$install_path" ] && mkdir -p "$(dirname "$install_path")"
-			ln -s $dotfile_path $install_path
-			success "linking '$dotfile_path' -> '$install_path'"
-		fi
-	fi
-
-	return 0
-}
-
-function main {	
-	[ -z "$dotfiles_dir" ] && error "dotfiles_dir was not specified."
-	absolute_path "$dotfiles_dir" || error "$(variable dotfiles_dir) must be an absolute path."
-
-	[ -z "$default_install_dir" ] && error "default_install_dir was not specified."
-	default_install_dir="$(get_absolute_path "$default_install_dir")"
-	absolute_path "$default_install_dir" || error "$(variable default_install_dir) must be an absolute path or relative to the current directory."
-	
-	info "$(variable dotfiles_dir)."
-	info "$(variable default_install_dir)."
-
-	[ -d "$dotfiles_dir" ] || error "'$dotfiles_dir' doest not exists."
-	cd "$dotfiles_dir" || error "cd '$dotfiles_dir' failed."
-
-	debug "$(variable PWD)."
-
-	for i in "${install_list[@]}"; do
-		IFS=":" read -ra f <<< "$i"
-
-		local dotfile="${f[0]}"	
-		local install_path="${f[1]}"
-	
-		echo
-
-		[ -z "$dotfile" ] && warning "dotfile name was not specified." && continue
-		[ -z "$install_path" ] && install_path="$default_install_dir/$dotfile"
-
-		if ! absolute_path "$install_path"; then
-			warning "$dotfile $(variable install_path) must be an absolute path."
-			continue
-		fi
-
-		info "$(variable dotfile)."
-		info "$(variable install_path)."
-
-		! [ -e "$dotfile" ] && warning "$dotfiles_dir/$dotfile does not exists." && continue
-
-		make_link "$dotfile" "$install_path" "$dotfiles_dir/$backup_dirname/$(date +%Y-%m-%d-%H%M%S)"
-	done
-
-	return 0
-}
-
-main "$@"
+main $@
 exit $?
