@@ -34,7 +34,7 @@ function link() {
 
 	if ! [ -d "$destination_dir" ]; then
 		! mkdir -p "$destination_dir" && error "Failed creating directory: '$destination_dir'" && return 1
-		info "Created directory: $destination_dir"
+		succ "Created directory: $destination_dir"
 	fi
 
 	local file_final="$(readlink -f $file)"
@@ -47,7 +47,7 @@ function link() {
 		warn "Backed up $destination"
 	else
 		! ln -s "$file_final" "$destination"&>/dev/null && error "Failed creating symbolic link: '$(basename "$file_final")' -> '$destination'" && return 1
-		info "Created symbolic link: '$(basename "$file_final")' -> '$destination'"
+		succ "Created symbolic link: '$(basename "$file_final")' -> '$destination'"
 	fi
 }
 
