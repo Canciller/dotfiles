@@ -33,14 +33,22 @@ function link() {
 	[ -z "$file" -o -z "$destination" ] && return 1
 
 	if ! [ -d "$destination_dir" ]; then
-		mkdir -p "$destination_dir" || return 1
-		info "mkdir -p $destination_dir"
+		! mkdir -p "$destination_dir" && error "Failed creating directory: '$destination_dir'" && return 1
+		info "Created directory: $destination_dir"
 	fi
 
 	local file_final="$(readlink -f $file)"
 
-	ln -s "$file_final" "$destination" || return 1
-	info "ln -s "$file_final" "$destination""
+	if [ -e "$destination" ]; then
+		if [ -h "$destination" -a "$(readlink -f "$destination")" = "$file_final" ]; then
+			info "Already installed $(basename "$file_final")"
+			return 0
+		fi
+		warn "Backed up $destination"
+	else
+		! ln -s "$file_final" "$destination"&>/dev/null && error "Failed creating symbolic link: '$(basename "$file_final")' -> '$destination'" && return 1
+		info "Created symbolic link: '$(basename "$file_final")' -> '$destination'"
+	fi
 }
 
 function link_recursive() {
