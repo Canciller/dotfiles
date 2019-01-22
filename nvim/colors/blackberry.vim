@@ -43,7 +43,6 @@ let s:orange_color = "#ff7538"
 
 call GuiFor("StatusLineReverse", s:fg_normal, s:bg_normal, "bold")
 call GuiFor("StatusLineMode", s:purple_color, s:bg_dark, "bold")
-
 call GuiFor("EndOfBuffer", "none", s:fg_inactive, "bold")
 call GuiFor("NonText", "none", s:fg_inactive)
 call GuiFor("ErrorMsg", "none", s:red_color, "")
@@ -56,6 +55,10 @@ call GuiFor("VertSplit", s:bg_normal, s:bg_normal, "none")
 call GuiFor("Title", "none", s:purple_color)
 call GuiFor("Visual", s:bg_light, "none", "none")
 call GuiFor("Folded", s:bg_light, s:fg_normal, "italic")
+call GuiFor("Pmenu", s:bg_normal, s:fg_normal, "none")
+call GuiFor("PmenuSel", s:fg_normal, s:bg_normal, "none")
+call GuiFor("PmenuSbar", s:bg_normal, "none", "none")
+call GuiFor("PmenuThumb", s:bg_light, "none" ,"none")
 call GuiFor("TabLine", s:bg_normal, s:fg_normal, "none")
 call GuiFor("TabLineSel", s:fg_normal, s:bg_dark, "bold")
 call GuiFor("TabLineFill", s:bg_normal, s:fg_normal, "none")
