@@ -145,6 +145,7 @@ bindsym $mod+Shift+e exec ~/.config/rofi/scripts/rofi-session.sh
 
 # start rofi (a program launcher)
 bindsym $mod+d exec --no-startup-id rofi -show drun -matching regex
+bindsym $mod+Shift+d exec --no-startup-id rofi -show run -matching regex
 
 # start flameshot (screenshot programa)
 bindsym Print exec --no-startup-id flameshot gui
