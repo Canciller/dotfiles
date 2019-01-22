@@ -5,8 +5,9 @@ filetype off
 set rtp+=~/.config/nvim/bundle/Vundle.vim
 call vundle#begin('~/.config/nvim/bundle')
 	Plugin 'VundleVim/Vundle.vim'
-	Plugin 'tpope/vim-vinegar'
-call vundle#end()
+" }}}
+
+" Plugin Options {{{
 " }}}
 
 " Vim Options {{{
@@ -71,6 +72,7 @@ augroup filetype_cpp
 	autocmd!
 	autocmd FileType cpp setlocal expandtab
 	autocmd FileType cpp setlocal listchars=tab:→\ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨
+	autocmd FileType cpp setlocal showbreak=
 augroup END
 
 augroup filetype_all
@@ -155,8 +157,8 @@ nnoremap <silent> <left> :vertical res -5<cr>
 nnoremap <silent> <right> :vertical res +5<cr>
 
 "tab movement
-nnoremap <silent> <c-left> :tabn<cr>
-nnoremap <silent> <c-right> :tabp<cr>
+nnoremap <silent> <c-right> :tabn<cr>
+nnoremap <silent> <c-left> :tabp<cr>
 nnoremap <silent> <c-up> :tabl<cr>
 nnoremap <silent> <c-down> :tabr<cr>
 
