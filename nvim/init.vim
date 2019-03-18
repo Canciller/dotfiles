@@ -2,6 +2,8 @@
 set nocompatible
 filetype off
 
+if exists("vundle#begin")
+
 set rtp+=~/.config/nvim/bundle/Vundle.vim
 call vundle#begin('~/.config/nvim/bundle')
 	Plugin 'VundleVim/Vundle.vim'
@@ -17,6 +19,8 @@ call vundle#begin('~/.config/nvim/bundle')
 	Plugin 'pangloss/vim-javascript'
 	Plugin 'mxw/vim-jsx'
 call vundle#end()
+
+endif
 " }}}
 
 " Plugin Options {{{
@@ -94,8 +98,14 @@ set matchtime=2
 set background=dark
 
 set list
-set showbreak=↪\ 
-set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
+
+if &term=~'linux'
+	set showbreak=↪\ 
+	set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
+else
+	set showbreak=↪\ 
+	set listchars=tab:>\ ,trail:.
+endif
 
 set tabstop=4
 set shiftwidth=4
