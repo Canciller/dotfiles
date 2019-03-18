@@ -5,9 +5,63 @@ filetype off
 set rtp+=~/.config/nvim/bundle/Vundle.vim
 call vundle#begin('~/.config/nvim/bundle')
 	Plugin 'VundleVim/Vundle.vim'
+
+	Plugin 'tpope/vim-vinegar'
+
+	Plugin 'jiangmiao/auto-pairs'
+	Plugin 'alvan/vim-closetag'
+
+	Plugin 'gko/vim-coloresque'
+	Plugin 'hail2u/vim-css3-syntax'
+
+	Plugin 'pangloss/vim-javascript'
+	Plugin 'mxw/vim-jsx'
+call vundle#end()
 " }}}
 
 " Plugin Options {{{
+" Plugin 'alvan/vim-closetag' {{{
+" filenames like *.xml, *.html, *.xhtml, ...
+" These are the file extensions where this plugin is enabled.
+"
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
+
+" filenames like *.xml, *.xhtml, ...
+" This will make the list of non-closing tags self-closing in the specified files.
+"
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
+
+" filetypes like xml, html, xhtml, ...
+" These are the file types where this plugin is enabled.
+"
+let g:closetag_filetypes = 'html,xhtml,phtml'
+
+" filetypes like xml, xhtml, ...
+" This will make the list of non-closing tags self-closing in the specified files.
+"
+let g:closetag_xhtml_filetypes = 'xhtml,jsx'
+
+" integer value [0|1]
+" This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
+"
+let g:closetag_emptyTags_caseSensitive = 1
+
+" dict
+" Disables auto-close if not in a "valid" region (based on filetype)
+"
+let g:closetag_regions = {
+    \ 'typescript.tsx': 'jsxRegion,tsxRegion',
+    \ 'javascript.jsx': 'jsxRegion',
+    \ }
+
+" Shortcut for closing tags, default is '>'
+"
+let g:closetag_shortcut = '>'
+
+" Add > at current position without closing the current tag, default is ''
+"
+let g:closetag_close_shortcut = '<leader>>'
+" }}}
 " }}}
 
 " Vim Options {{{
@@ -51,7 +105,7 @@ set showtabline=2
 
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
-let g:netrw_browse_split = 1
+let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_winsize = 20
 " }}}
@@ -75,13 +129,20 @@ augroup filetype_cpp
 	autocmd FileType cpp setlocal showbreak=
 augroup END
 
+augroup filetype_js
+    autocmd!
+    autocmd FileType javascript setlocal foldmethod=syntax
+augroup END
+
 augroup filetype_all
 	autocmd!
 	autocmd BufNewFile,BufRead * onoremap ah :<c-u>execute "normal! ?^[=-][=-]\\+\r:nohlsearch\rg_vk0"<cr>
 	autocmd BufNewFile,BufRead * onoremap ih :<c-u>execute "normal! ?^[=-][=-]\\+\r:nohlsearch\rg_kvg_"<cr>
 	autocmd BufNewFile,BufRead * onoremap in@ :<c-u>execute "normal! /@\r:nohlsearch\r1hvB"<cr>
 	autocmd BufWritePost init.vim source %
+	autocmd FileType netrw setlocal bufhidden=delete
 augroup END
+
 " }}}
 
 " Mappings {{{
@@ -105,6 +166,9 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 
 "source vimrc
 nnoremap <leader>sv :source $MYVIMRC<cr>
+
+"open netrw
+nnoremap <leader>x :Lexplore<cr>
 
 "write
 nnoremap <leader>w :w<cr>
@@ -136,6 +200,10 @@ nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
 
 "surround selected with "
 vnoremap <leader>" <esc>`<i"<esc>`>1la"<esc>
+
+"keep previous selection
+vnoremap > >gv
+vnoremap < <gv
 
 nnoremap > >>
 nnoremap < <<
