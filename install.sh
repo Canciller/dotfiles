@@ -4,6 +4,8 @@ dotfiles_dir="$(pwd)"
 backup_dir="$HOME/.dotfiles.backup"
 config_dir="$HOME/.config"
 
+ignore_suffix=".ignore"
+
 dotfiles_list=(
 	i3
 	nvim
@@ -11,8 +13,9 @@ dotfiles_list=(
 	compton
 	rofi
 	xfce4
-	"zsh/zshrc:$HOME/.zshrc"
-	"bin:$HOME/.local/bin"
+	zsh/zshrc:"$HOME/.zshrc"
+	bin:"$HOME/.local/bin"
+	fonts:"$HOME/.local/share/fonts"
 )
 
 function usage() {
@@ -41,13 +44,13 @@ function link() {
 
 	if [ -e "$destination" ]; then
 		if [ -h "$destination" -a "$(readlink -f "$destination")" = "$file_final" ]; then
-			info "Already installed $(basename "$file_final")"
+			info "Already installed $file_final"
 			return 0
 		fi
-		warn "Backed up $destination"
+		warn "Backed up: '$destination'"
 	else
-		! ln -s "$file_final" "$destination"&>/dev/null && error "Failed creating symbolic link: '$(basename "$file_final")' -> '$destination'" && return 1
-		succ "Created symbolic link: '$(basename "$file_final")' -> '$destination'"
+		! ln -s "$file_final" "$destination"&>/dev/null && error "Failed creating symbolic link: $file_final)' -> '$destination'" && return 1
+		succ "Created symbolic link: '$file_final' -> '$destination'"
 	fi
 }
 
@@ -57,6 +60,11 @@ function link_recursive() {
 	
 	local destination="$2"
 	[ -z "$destination" ] && return 1
+
+	case "$file" in
+		*$ignore_suffix) warn "Ignored: '$(readlink -f "$file")'" && return;;
+		*)
+	esac
 
 	if [ -d "$file" ]; then
 		cd "$file" || return 1
