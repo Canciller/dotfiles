@@ -99,12 +99,11 @@ set background=dark
 
 set list
 
-if &term=~'linux'
-	set showbreak=↪\ 
-	set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
+if $TERM=~'linux'
+	set listchars=tab:>\ ,trail:.
 else
 	set showbreak=↪\ 
-	set listchars=tab:>\ ,trail:.
+	set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
 endif
 
 set tabstop=4
