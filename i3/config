@@ -15,7 +15,7 @@ set $ws10 "10"
 
 set $path-scripts $HOME/.config/i3/scripts
 
-set $font SauceCodePro Nerd Font 9
+set $font Open Sans 10
 set $keyboard-layout us
 
 set $wallpaper-background-color "#21222c"
@@ -173,7 +173,7 @@ bindsym XF86AudioPrev exec playerctl previous
 
 # {{{ Execute
 
-exec --no-startup-id setxkbmap $keyboard-layout
+#exec --no-startup-id setxkbmap $keyboard-layout
 exec --no-startup-id flameshot
 exec --no-startup-id xfce4-power-manager
 
@@ -289,8 +289,10 @@ client.background         $background-color
 
 assign [class="Google-chrome"] $ws2
 assign [class="Firefox"] $ws2
+assign [class="Steam"] $ws3
 assign [class="discord"] $ws9
 
 for_window [class="(Gpick|Lxappearance|keepassxc|qBittorrent|Nvidia-settings)"] floating enable border normal
+for_window [title="Friends List"] floating enable border normal
 
 # }}}
