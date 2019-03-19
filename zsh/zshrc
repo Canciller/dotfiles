@@ -48,6 +48,8 @@ swap() {
     mv $TMPFILE "$2"
 }
 
+# variables
+
 EDITOR="vi"
 
 if command_exists "nvim"; then
@@ -72,3 +74,11 @@ alias polybarconfig="$EDITOR $CONFIG/polybar/config"
 alias zshsource="source $HOME/.zshrc" 
 alias gdbtui="gdb -tui -q"
 alias session-menu="$HOME/.config/rofi/rofi_session"
+
+# run ssh-agent and export variables
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    ssh-agent > ~/.ssh-agent-thing
+fi
+if [[ ! "$SSH_AUTH_SOCK" ]]; then
+    eval "$(cat ~/.ssh-agent-thing)"
+fi
