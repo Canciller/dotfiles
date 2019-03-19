@@ -4,7 +4,8 @@ export ZSH="$HOME/.oh-my-zsh"
 
 if [ $TERM = "linux" ];then
     ZSH_THEME="candy"
-else ZSH_THEME="bira"
+else
+	ZSH_THEME="bira"
 fi
 
 # sensitive completion must be off. _ and - will be interchangeable.
@@ -15,6 +16,7 @@ HYPHEN_INSENSITIVE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  vi-mode
   git 
   archlinux
   history
