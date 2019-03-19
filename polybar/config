@@ -23,7 +23,7 @@ font-2 = Open Sans Light:pixelsize=12;3
 [bar/top]
 modules-left = i3 xwindow
 modules-center =
-modules-right = pulseaudio date battery rofi-session
+modules-right = pulseaudio battery date rofi-session
 
 width = 100%
 height = 35
@@ -63,6 +63,7 @@ cursor-scroll = ns-resize;
 
 font-0 = ${fonts.font-0}
 font-1 = ${fonts.font-1}
+font-2 = ${fonts.font-2}
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -120,7 +121,6 @@ label-urgent-padding = 2
 
 [module/xwindow]
 type = internal/xwindow
-label-font = 3
 
 label = %title:0:50:...%
 label-padding = 2
@@ -148,7 +148,7 @@ adapter = AC
 
 poll-interval = 1
 
-format-charging = <label-charging> <animation-charging> 
+format-charging = <label-charging> <animation-charging>
 format-discharging = <label-discharging> <ramp-capacity>
 
 format-charging-padding = 2
@@ -171,7 +171,7 @@ ramp-capacity-2 = 
 ramp-capacity-3 = 
 ramp-capacity-4 = 
 
-label-full = %percentage%% 
+label-full = %percentage%%
 
 label-full-padding = 2
 
@@ -211,8 +211,7 @@ date-alt = %A %B %d %Y
 time = %I:%M %p
 time-alt = %I:%M:%S %p
 
-label = %date%, %time%
-label-font = 3
+label =  %date%, %time%
 label-padding = 2
 
 label-background = ${colors.primary}
