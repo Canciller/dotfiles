@@ -12,7 +12,7 @@ dotfiles_list=(
 	polybar
 	compton
 	rofi
-	xfce4
+#	xfce4
 	zsh/zshrc:"$HOME/.zshrc"
 	bin:"$HOME/.local/bin"
 	fonts:"$HOME/.local/share/fonts"
