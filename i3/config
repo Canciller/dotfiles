@@ -1,4 +1,6 @@
 # {{{ Variables
+set $primary-monitor DP-0
+set $left-monitor HDMI-0
 
 set $mod Mod4
 
@@ -13,10 +15,20 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
+workspace $ws1 output $primary-monitor
+workspace $ws2 output $primary-monitor
+workspace $ws3 output $primary-monitor
+workspace $ws4 output $primary-monitor
+workspace $ws5 output $primary-monitor
+workspace $ws6 output $right-monitor
+workspace $ws7 output $right-monitor
+workspace $ws8 output $right-monitor
+workspace $ws9 output $right-monitor
+workspace $ws10 output $right-monitor
+
 set $path-scripts $HOME/.config/i3/scripts
 
 set $font Open Sans 10
-set $keyboard-layout us
 
 set $wallpaper-background-color "#21222c"
 
@@ -144,8 +156,8 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+Shift+e exec ~/.config/rofi/scripts/rofi-session.sh
 
 # start rofi (a program launcher)
-bindsym $mod+d exec --no-startup-id rofi -show drun -matching regex
-bindsym $mod+Shift+d exec --no-startup-id rofi -show run -matching regex
+bindsym $mod+d exec --no-startup-id ~/.config/rofi/scripts/rofi-launch.sh
+bindsym $mod+Shift+d exec --no-startup-id ~/.config/rofi/scripts/rofi-launch.sh run
 
 # start flameshot (screenshot programa)
 bindsym Print exec --no-startup-id flameshot gui
@@ -173,7 +185,6 @@ bindsym XF86AudioPrev exec playerctl previous
 
 # {{{ Execute
 
-#exec --no-startup-id setxkbmap $keyboard-layout
 exec --no-startup-id flameshot
 exec --no-startup-id xfce4-power-manager
 
@@ -287,12 +298,13 @@ client.background         $background-color
 
 # {{{ Application Settings
 
-assign [class="Google-chrome"] $ws2
-assign [class="Firefox"] $ws2
+assign [class="(Google-chrome|Firefox)"] $ws2
 assign [class="Steam"] $ws3
-assign [class="discord"] $ws9
+assign [class="discord"] $ws10
 
-for_window [class="(Gpick|Lxappearance|keepassxc|qBittorrent|Nvidia-settings)"] floating enable border normal
-for_window [title="Friends List"] floating enable border normal
+for_window [class="(Gpick|Lxappearance|keepassxc|qBittorrent|Nvidia-settings|Arandr)"] floating enable border normal
+
+# Steam Friends List
+for_window [title="(Friends List|Steam - News*)"] floating enable border normal
 
 # }}}
