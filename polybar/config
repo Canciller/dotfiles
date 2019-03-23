@@ -16,17 +16,25 @@ font-0 = SauceCodePro Nerd Font:pixelsize=12;1
 font-1 = SauceCodePro Nerd Font:pixelsize=16;2
 font-2 = Open Sans Light:pixelsize=12;3
 
+[display]
+height = ${env:HEIGHT:}
+dpi = ${env:DPI:}
+monitor = ${env:MONITOR:}
+
 # }}}
 
 # {{{ Bars
 
 [bar/top]
+monitor=${display.monitor}
+dpi=${display.dpi}
+
 modules-left = i3 xwindow
 modules-center =
-modules-right = pulseaudio battery date rofi-session
+modules-right = pulseaudio battery date rofi-keyboard-layout rofi-session
 
 width = 100%
-height = 35
+height = ${display.height}
 
 fixed-center = true
 
@@ -45,59 +53,32 @@ font-2 = ${fonts.font-2}
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-[bar/bottom]
-enable-ipc = true
-
-modules-left =
-modules-center =
-modules-right = rofi-keyboard-layout
-
-width = 100%
-height = 35
-
-line-size = 2
-line-color = ${colors.underline}
-
-cursor-click = pointer
-cursor-scroll = ns-resize;
-
-font-0 = ${fonts.font-0}
-font-1 = ${fonts.font-1}
-font-2 = ${fonts.font-2}
-
-background = ${colors.background}
-foreground = ${colors.foreground}
-
-bottom = true
-
 # }}}
 
 # {{{ Modules
 
+# {{{ Module i3
 [module/i3]
 type = internal/i3
 format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = false
-fuzzy-match = true
+pin-workspaces = true
+#fuzzy-match = true
 
 ws-icon-0 = 1;
 ws-icon-1 = 2;
 ws-icon-2 = 3;
-ws-icon-3 = 4;4 拓
-ws-icon-4 = 5;5 拓
-ws-icon-5 = 6;6 拓
-ws-icon-6 = 7;7 拓
-ws-icon-7 = 8;8 拓
-ws-icon-8 = 9;ﭮ
-ws-icon-9 = 0;阮
+ws-icon-3 = 4;阮
+ws-icon-4 = 10;ﭮ
+ws-icon-default = 拓 
 
 label-mode-foreground = ${colors.primary}
 label-mode-background = ${colors.secondary}
 label-mode-padding = 2
 
 label-focused-font = 2
-label-focused = %icon%
+label-focused = %name% %icon%
 label-focused-background = ${colors.primary}
 label-focused-foreground = ${colors.secondary}
 label-focused-underline = ${colors.underline}
@@ -118,13 +99,17 @@ label-urgent = ${self.label-focused}
 label-urgent-background = ${colors.alert}
 label-urgent-foreground = ${colors.foreground}
 label-urgent-padding = 2
+# }}}
 
+# {{{ Module xwindow
 [module/xwindow]
 type = internal/xwindow
 
 label = %title:0:50:...%
 label-padding = 2
+# }}}
 
+# {{{ Module mpd
 [module/mpd]
 type = internal/mpd
 format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
@@ -137,7 +122,9 @@ icon-next = 
 
 label-song-maxlen = 25
 label-song-ellipsis = true
+# }}}
 
+# {{{ Module battery
 [module/battery]
 type = internal/battery
 
@@ -171,10 +158,12 @@ ramp-capacity-2 = 
 ramp-capacity-3 = 
 ramp-capacity-4 = 
 
-label-full = %percentage%%
+label-full = %percentage%% 
 
 label-full-padding = 2
+# }}}
 
+# {{{ Module pulseaudio
 [module/pulseaudio]
 type = internal/pulseaudio
 
@@ -200,7 +189,9 @@ bar-volume-indicator = |
 bar-volume-indicator-foreground = #ff
 bar-volume-fill = ─
 bar-volume-empty = ─
+# }}}
 
+# {{{ Module date
 [module/date]
 type = internal/date
 interval = 0
@@ -216,13 +207,17 @@ label-padding = 2
 
 label-background = ${colors.primary}
 label-foreground = ${colors.secondary}
+# }}}
 
+# {{{ module rofi-session
 [module/rofi-session]
 type = custom/script
 exec = echo ⏻
 label-padding = 2
 click-left = $HOME/.config/rofi/scripts/rofi-session.sh
+# }}}
 
+# {{{ Module rofi-keyboard-layout
 [module/rofi-keyboard-layout]
 type = custom/script
 exec = echo  "$($HOME/.config/rofi/scripts/rofi-keyboard-layout.sh)"
@@ -231,7 +226,8 @@ label-padding = 2
 interval = 0
 
 format-spacing = 1
-format-underline = ${colors.underline}
+#format-underline = ${colors.underline}
+# }}}
 
 # }}}
 
