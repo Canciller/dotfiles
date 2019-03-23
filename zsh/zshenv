@@ -1,0 +1,12 @@
+function path {
+	case ":$PATH:" in
+	  *":$1:"*) :;; # already there
+	  *) PATH="$1:$PATH";; # or PATH="$PATH:$new_entry"
+	esac
+}
+
+path $HOME/.local/bin
+path $HOME/.bin
+path /usr/local/bin
+
+export PATH
