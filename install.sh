@@ -14,6 +14,7 @@ dotfiles_list=(
 	rofi
 #	xfce4
 	zsh/zshrc:"$HOME/.zshrc"
+	zsh/zshenv:"$HOME/.zshenv"
 	bin:"$HOME/.local/bin"
 	fonts:"$HOME/.local/share/fonts"
 )
