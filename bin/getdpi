@@ -3,7 +3,7 @@
 DPI=94
 HIDPI=160
 
-. getmonitor
+. getmonitor &> /dev/null
 
 function getdpi_f {
 	MONITOR=$1
