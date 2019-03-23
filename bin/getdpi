@@ -1,0 +1,19 @@
+#!/bin/bash
+
+DPI=94
+HIDPI=160
+
+. getmonitor
+
+function getdpi_f {
+	MONITOR=$1
+	[ -z "$MONITOR" ] && MONITOR=$(getmonitor_f)
+
+	case $MONITOR in
+		*DP*)DPI=$HIDPI;; # DisplayPort
+	esac
+
+	echo $DPI
+}
+
+getdpi_f $1
