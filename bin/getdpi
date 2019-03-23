@@ -10,6 +10,7 @@ function getdpi_f {
 	[ -z "$MONITOR" ] && MONITOR=$(getmonitor_f)
 
 	case $MONITOR in
+		*eDP*);;
 		*DP*)DPI=$HIDPI;; # DisplayPort
 	esac
 
