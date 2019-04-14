@@ -2,25 +2,24 @@
 set nocompatible
 filetype off
 
-if exists("vundle#begin")
-
 set rtp+=~/.config/nvim/bundle/Vundle.vim
 call vundle#begin('~/.config/nvim/bundle')
 	Plugin 'VundleVim/Vundle.vim'
 
 	Plugin 'tpope/vim-vinegar'
+    Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plugin 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 
 	Plugin 'jiangmiao/auto-pairs'
 	Plugin 'alvan/vim-closetag'
 
-	Plugin 'gko/vim-coloresque'
 	Plugin 'hail2u/vim-css3-syntax'
 
 	Plugin 'pangloss/vim-javascript'
 	Plugin 'mxw/vim-jsx'
-call vundle#end()
 
-endif
+	Plugin 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+call vundle#end()
 " }}}
 
 " Plugin Options {{{
@@ -43,7 +42,7 @@ let g:closetag_filetypes = 'html,xhtml,phtml'
 " filetypes like xml, xhtml, ...
 " This will make the list of non-closing tags self-closing in the specified files.
 "
-let g:closetag_xhtml_filetypes = 'xhtml,jsx'
+let g:closetag_xhtml_filetypes = 'xhtml,jsx,js'
 
 " integer value [0|1]
 " This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
@@ -66,6 +65,20 @@ let g:closetag_shortcut = '>'
 "
 let g:closetag_close_shortcut = '<leader>>'
 " }}}
+
+let g:deoplete#enable_at_startup = 1
+
+let g:deoplete#sources#ternjs#types = 1
+let g:deoplete#sources#ternjs#include_keywords = 1
+
+inoremap <silent><expr> <TAB>
+\ pumvisible() ? "\<C-n>" :
+\ <SID>check_back_space() ? "\<TAB>" :
+\ deoplete#mappings#manual_complete()
+function! s:check_back_space() abort "{{{
+let col = col('.') - 1
+return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
 " }}}
 
 " Vim Options {{{
@@ -108,7 +121,7 @@ endif
 
 set tabstop=4
 set shiftwidth=4
-set softtabstop=0 noexpandtab
+set softtabstop=0 expandtab
 
 set showtabline=2
 
@@ -140,7 +153,6 @@ augroup END
 
 augroup filetype_js
     autocmd!
-    autocmd FileType javascript setlocal foldmethod=syntax
 augroup END
 
 augroup filetype_all
@@ -241,6 +253,9 @@ nnoremap <silent> <c-down> :tabr<cr>
 
 "fold close/open
 nnoremap <space> za
+
+nnoremap <c-v> "*p
+vnoremap <c-c> "*y
 
 " }}}
 
