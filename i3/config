@@ -20,11 +20,11 @@ workspace $ws2 output $primary-monitor
 workspace $ws3 output $primary-monitor
 workspace $ws4 output $primary-monitor
 workspace $ws5 output $primary-monitor
-workspace $ws6 output $right-monitor
-workspace $ws7 output $right-monitor
-workspace $ws8 output $right-monitor
-workspace $ws9 output $right-monitor
-workspace $ws10 output $right-monitor
+workspace $ws6 output $primary-monitor
+workspace $ws7 output $primary-monitor
+workspace $ws8 output $primary-monitor
+workspace $ws9 output $primary-monitor
+workspace $ws10 output $primary-monitor
 
 set $path-scripts $HOME/.config/i3/scripts
 
@@ -298,7 +298,7 @@ client.background         $background-color
 
 # {{{ Application Settings
 
-assign [class="(Google-chrome|Firefox)"] $ws2
+#assign [class="(Google-chrome|Firefox)"] $ws2
 assign [class="Steam"] $ws3
 assign [class="discord"] $ws10
 
