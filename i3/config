@@ -223,7 +223,7 @@ mode "Resize" {
 		bindsym q mode "default"
 }
 
-bindsym $mod+r mode "resize"
+bindsym $mod+r mode "Resize"
 
 # }}}
 
@@ -277,7 +277,7 @@ gaps inner 5
 #smart_gaps on
 
 # borders
-default_border pixel 2
+default_border pixel 3
 #smart_borders on
 
 # class                   border                  background              foreground  indicator               child_border
