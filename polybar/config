@@ -78,7 +78,8 @@ label-mode-background = ${colors.secondary}
 label-mode-padding = 2
 
 label-focused-font = 2
-label-focused = %name% %icon%
+#label-focused = %name% %icon%
+label-focused = %icon%
 label-focused-background = ${colors.primary}
 label-focused-foreground = ${colors.secondary}
 label-focused-underline = ${colors.underline}

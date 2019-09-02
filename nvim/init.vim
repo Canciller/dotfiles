@@ -13,12 +13,14 @@ call vundle#begin('~/.config/nvim/bundle')
 	Plugin 'jiangmiao/auto-pairs'
 	Plugin 'alvan/vim-closetag'
 
-	Plugin 'hail2u/vim-css3-syntax'
+"	Plugin 'hail2u/vim-css3-syntax'
 
 	Plugin 'pangloss/vim-javascript'
 	Plugin 'mxw/vim-jsx'
 
 	Plugin 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+
+    Plugin 'octol/vim-cpp-enhanced-highlight'
 call vundle#end()
 " }}}
 
@@ -27,17 +29,17 @@ call vundle#end()
 " filenames like *.xml, *.html, *.xhtml, ...
 " These are the file extensions where this plugin is enabled.
 "
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js'
 
 " filenames like *.xml, *.xhtml, ...
 " This will make the list of non-closing tags self-closing in the specified files.
 "
-let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.js'
 
 " filetypes like xml, html, xhtml, ...
 " These are the file types where this plugin is enabled.
 "
-let g:closetag_filetypes = 'html,xhtml,phtml'
+let g:closetag_filetypes = 'html,xhtml,phtml,js'
 
 " filetypes like xml, xhtml, ...
 " This will make the list of non-closing tags self-closing in the specified files.
@@ -79,6 +81,10 @@ function! s:check_back_space() abort "{{{
 let col = col('.') - 1
 return !col || getline('.')[col - 1]  =~ '\s'
 endfunction"}}}
+
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
 " }}}
 
 " Vim Options {{{
@@ -176,6 +182,12 @@ command! Q q
 noremap <leader>o o<esc>1k
 noremap <leader>O O<esc>1j
 
+"replace all '' with ""
+noremap <silent> <leader>sq :%s/"/'/g<cr>:nohlsearch<cr>
+
+"replace all "" with ''
+noremap <silent> <leader>q :%s/'/"/g<cr>:nohlsearch<cr>
+
 "move current line up
 noremap <leader>_ ddp
 
@@ -200,6 +212,9 @@ noremap <down> <nop>
 noremap <left> <nop>
 noremap <right> <nop>
 inoremap <esc> <nop>
+
+"disable hlsearch
+noremap <esc><esc> :nohlsearch<cr>
 
 "enter normal mode
 inoremap jk <esc>1l
