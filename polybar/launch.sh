@@ -12,7 +12,9 @@ if type xrandr; then
 		esac
 
 		HEIGHT=$height DPI=$(getdpi $m) MONITOR=$m polybar --reload top &
+		HEIGHT=$height DPI=$(getdpi $m) MONITOR=$m polybar --reload bottom &
 	done
 else	
 	polybar --reload top &
+    polybar --reload bottom &
 fi

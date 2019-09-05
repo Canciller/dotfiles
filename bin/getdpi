@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DPI=94
+DPI=96
 HIDPI=160
 
 . getmonitor &> /dev/null

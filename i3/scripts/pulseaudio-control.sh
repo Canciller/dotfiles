@@ -5,7 +5,11 @@ function get_default_sink {
 }
 
 sink="$(get_default_sink)"
-[ -z "$sink" ] && exit 1
+if [ -z "$sink" ]; then
+    sink=0
+fi
+
+#[ -z "$sink" ] && exit 1
 
 case "$1" in
 	--volume-up) pactl set-sink-volume "$sink" +5%;;
