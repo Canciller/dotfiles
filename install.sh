@@ -13,6 +13,7 @@ dotfiles_list=(
 	compton
 	rofi
 #	xfce4
+    qutebrowser
 	zsh/zshrc:"$HOME/.zshrc"
 	zsh/zshenv:"$HOME/.zshenv"
 	bin:"$HOME/.local/bin"
