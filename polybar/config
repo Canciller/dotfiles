@@ -231,7 +231,7 @@ bar-volume-empty = ─
 # {{{ Module date
 [module/date]
 type = internal/date
-interval = 0
+interval = 1
 
 date = %a %b %d
 date-alt = %A %B %d %Y
