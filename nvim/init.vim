@@ -85,6 +85,10 @@ endfunction"}}}
 let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
 let g:cpp_class_decl_highlight = 1
+
+function! SemshiHighlights()
+    sign define semshiError text=\  texthl=semshiErrorSign
+endfunction
 " }}}
 
 " Vim Options {{{
@@ -161,6 +165,11 @@ augroup filetype_js
     autocmd!
 augroup END
 
+augroup filetype_py
+    autocmd!
+    autocmd FileType python call SemshiHighlights()
+augroup END
+
 augroup filetype_all
 	autocmd!
 	autocmd BufNewFile,BufRead * onoremap ah :<c-u>execute "normal! ?^[=-][=-]\\+\r:nohlsearch\rg_vk0"<cr>
@@ -195,10 +204,10 @@ noremap <leader>_ ddp
 noremap <leader>- dd1kP
 
 "open vimrc in split
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <silent> <leader>ev :vsplit $MYVIMRC<cr>
 
 "source vimrc
-nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <silent> <leader>sv :source $MYVIMRC<cr>
 
 "open netrw
 nnoremap <leader>x :Lexplore<cr>
