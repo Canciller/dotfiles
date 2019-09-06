@@ -66,7 +66,7 @@ bottom = true
 
 modules-left = wireless-network wired-network cpu
 modules-center =
-modules-right = rofi-keyboard-layout battery backlight pulseaudio
+modules-right = rofi-keyboard-layout battery pulseaudio backlight
 
 width = 100%
 height = ${display.height}
@@ -216,7 +216,7 @@ label-muted-padding = 2
 
 ramp-volume-0 = 墳
 
-bar-volume-width = 12
+bar-volume-width = 10
 bar-volume-foreground-0 = #5af78e
 bar-volume-foreground-1 = #5af78e
 bar-volume-foreground-2 = #5af78e
@@ -236,25 +236,26 @@ bar-volume-empty = ━
 type = internal/xbacklight
 
 format = <ramp> <bar>
+format-padding = 2
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-3 = 
-ramp-4 = 
-ramp-5 = 
-ramp-6 = 
-ramp-7 = 
-ramp-8 = 
-ramp-9 = 
-ramp-10 = 
-ramp-11 = 
-ramp-12 = 
-ramp-13 = 
-ramp-14 = 
-ramp-15 = 
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-3 = 
+ramp-4 = 
+ramp-5 = 
+ramp-6 = 
+ramp-7 = 
+ramp-8 = 
+ramp-9 = 
+ramp-10 = 
+ramp-11 = 
+ramp-12 = 
+ramp-13 = 
+ramp-14 = 
+ramp-15 = 
 
-bar-width = 12
+bar-width = 10
 bar-indicator = |
 bar-fill = ━
 bar-empty = ━
@@ -318,7 +319,9 @@ label-connected =  %upspeed:6%  %downspeed:6%  %local_ip%
 [module/cpu]
 type = internal/cpu
 interval = 0.5
-format = cpu <bar-load>
+format = <label>
+
+label = CPU %percentage:2%%
 
 bar-load-width = 12
 bar-load-fill = ━
@@ -354,6 +357,7 @@ interval = 0
 
 format-spacing = 1
 #format-underline = ${colors.underline}
+format-background = ${colors.primary}
 # }}}
 
 # }}}
