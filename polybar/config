@@ -318,7 +318,7 @@ label-connected =  %upspeed:6%  %downspeed:6%  %local_ip%
 [module/cpu]
 type = internal/cpu
 interval = 0.5
-format =  ﬙ <bar-load>
+format = cpu <bar-load>
 
 bar-load-width = 12
 bar-load-fill = ━
