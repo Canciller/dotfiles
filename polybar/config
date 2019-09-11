@@ -66,7 +66,7 @@ bottom = true
 
 modules-left = wireless-network wired-network cpu
 modules-center =
-modules-right = rofi-keyboard-layout battery pulseaudio backlight
+modules-right = keyboard rofi-keyboard-layout battery pulseaudio backlight
 
 width = 100%
 height = ${display.height}
@@ -147,6 +147,27 @@ type = internal/xwindow
 
 label = %title:0:60:...%
 label-padding = 2
+# }}}
+
+# {{{ Module keyboard
+[module/keyboard]
+type = internal/xkeyboard
+format = <label-indicator>
+format-spacing = 1
+
+label-layout = %icon%
+
+indicator-icon-default =
+indicator-icon-0 = caps lock;; cl
+
+indicator-icon-1 = scroll lock;; sl
+
+indicator-icon-2 = num lock;;濫 nl
+
+label-indicator-on = %icon%
+label-indicator-on-padding = 1
+label-indicator-on-background = ${colors.secondary}
+label-indicator-on-foreground = ${colors.primary}
 # }}}
 
 # {{{ Module mpd
