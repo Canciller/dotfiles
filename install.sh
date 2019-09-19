@@ -7,17 +7,17 @@ config_dir="$HOME/.config"
 ignore_suffix=".ignore"
 
 dotfiles_list=(
+	xfce4/terminal/terminalrc::copy
+	fonts:"$HOME/.local/share/fonts"
+    qutebrowser
+	compton
+	bin:"$HOME/.local/bin"
+	rofi
+	polybar
 	i3
 	nvim
-	polybar
-	compton
-	rofi
-#	xfce4
-    qutebrowser
 	zsh/zshrc:"$HOME/.zshrc"
 	zsh/zshenv:"$HOME/.zshenv"
-	bin:"$HOME/.local/bin"
-	fonts:"$HOME/.local/share/fonts"
 )
 
 function usage() {
@@ -29,53 +29,58 @@ function usage() {
 	echo "    -r     Restore old dotfiles">&2
 }
 
-function link() {
+function install_file() {
 	local file="$1"
 
 	local destination="$2"
 	local destination_dir="$(dirname "$destination")"
 
-	[ -z "$file" -o -z "$destination" ] && return 1
+    local install_method="$3"
+
+	[ -z "$file" -o -z "$destination" -o -z "$install_method" ] && return 1
 
 	if ! [ -d "$destination_dir" ]; then
-		! mkdir -p "$destination_dir" && error "Failed creating directory: '$destination_dir'" && return 1
-		succ "Created directory: $destination_dir"
+		! mkdir -p "$destination_dir" && error "[error] mkdir -p $destination_dir" && return 1
+		succ "[ok] mkdir -p $destination_dir"
 	fi
 
 	local file_final="$(readlink -f $file)"
 
 	if [ -e "$destination" ]; then
 		if [ -h "$destination" -a "$(readlink -f "$destination")" = "$file_final" ]; then
-			info "Already installed $file_final"
+			info "[info] ${file_final#"$dotfiles_dir/"} skipping, already installed"
 			return 0
 		fi
-		warn "Backed up: '$destination'"
+        # backup
+        warn "[warn] removing $destination"
 	else
-		! ln -s "$file_final" "$destination"&>/dev/null && error "Failed creating symbolic link: $file_final)' -> '$destination'" && return 1
-		succ "Created symbolic link: '$file_final' -> '$destination'"
+		! eval "$install_method \"$file_final\" \"$destination\" &>/dev/null" && error "[error] $install_method $file_final $destination" && return 1
+		succ "[ok] $install_method $file_final $destination"
 	fi
 }
 
-function link_recursive() {
+function install_recursive() {
 	local file="$1"
 	[ -z "$file" ] && return 1
 	
 	local destination="$2"
 	[ -z "$destination" ] && return 1
 
+    local install_method="$3"
+
 	case "$file" in
-		*$ignore_suffix) warn "Ignored: '$(readlink -f "$file")'" && return;;
+		*$ignore_suffix) warn "[warn] ignoring $(readlink -f "$file")" && return;;
 		*)
 	esac
 
 	if [ -d "$file" ]; then
 		cd "$file" || return 1
 		for F in $(ls -A .); do 
-			link_recursive "$F" "$destination/$F"
+			install_recursive "$F" "$destination/$F" "$install_method"
 		done
 		cd .. || return 1
 	else
-		link "$file" "$destination" && return 1
+		install_file "$file" "$destination" "$install_method" && return 1
 	fi
 }
 
@@ -85,11 +90,17 @@ function install() {
 
 		local dotfile="${D[0]}"
 		local destination="${D[1]}"
+        local install_method="${D[2]}"
 
 		[ -e "$dotfile" ] || continue
 		[ -z "$destination" ] && destination="$config_dir/$dotfile"
 
-		link_recursive "$(expand_path "$dotfile")" "$(expand_path "$destination")"
+        case "$install_method" in
+            copy) install_method=cp;;
+            *) install_method="ln -s"
+        esac
+
+		install_recursive "$(expand_path "$dotfile")" "$(expand_path "$destination")" "$install_method"
 	done
 }
 
