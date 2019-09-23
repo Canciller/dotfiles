@@ -13,7 +13,7 @@ launch_bar() {
     [ -z "$name" ] && return 1
     [ -z "$height" ] && height=$default_height
 
-    HEIGHT="$height" DPI=$(getdpi "$monitor") MONITOR="$monitor" polybar --reload "$name" &
+    HEIGHT="$height" DPI=$(get-dpi "$monitor") MONITOR="$monitor" polybar --reload "$name" &
 }
 
 if type xrandr; then
