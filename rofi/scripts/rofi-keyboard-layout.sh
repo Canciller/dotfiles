@@ -1,6 +1,7 @@
 #!/bin/bash
 
 layout_info_dir="/usr/share/X11/xkb/symbols"
+layout_selected_output="$HOME/.xkeyboard_layout"
 
 function current_layout {
 	local layout="$(setxkbmap -query | grep layout)" || return 1
@@ -49,10 +50,12 @@ function list_layouts {
 function select_layout {
     selected="$(list_layouts | rofi-dmenu)" || return 1
 
-	selected="$(echo "$selected" | grep -oP '^\w+')"
+	selected="$(echo "$selected" | grep -oP '^\*?\ ?\w+')"
+    selected="${selected#"* "}"
 
 	if [ -n "$selected" ]; then
 		setxkbmap "$selected" || return 1
+        echo "$selected" > "$layout_selected_output"
 	fi
 
 	return 0
