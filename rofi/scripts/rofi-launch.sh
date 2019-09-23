@@ -1,6 +1,6 @@
 show=$1
 [ -z $show ] && show=drun
 
-. getdpi
+source helpers
 
-rofi -dpi $(getdpi_f) -show $show -matching regex
+rofi -dpi $(get_dpi) -show $show -matching regex

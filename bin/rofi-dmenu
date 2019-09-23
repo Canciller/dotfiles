@@ -1,0 +1,6 @@
+#!/bin/bash
+
+source helpers
+
+dpi=$(get_dpi) || exit 1
+rofi -dpi $dpi -i -dmenu

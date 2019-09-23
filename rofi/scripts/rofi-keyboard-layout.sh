@@ -47,9 +47,7 @@ function list_layouts {
 }
 
 function select_layout {
-	. getdpi
-
-	selected="$(list_layouts | rofi -dpi $(getdpi_f) -i -dmenu)" || return 1
+    selected="$(list_layouts | rofi-dmenu)" || return 1
 
 	selected="$(echo "$selected" | grep -oP '^\w+')"
 

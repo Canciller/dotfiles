@@ -1,13 +1,11 @@
 #!/bin/bash
 
-. getdpi
-
 OPTION=$(echo -e \
 "1. Poweroff
 2. Reboot 
 3. Suspend
 4. Hibernate
-5. Logout" | rofi -dpi $(getdpi_f) -dmenu | cut -c1)
+5. Logout" | rofi-dmenu | cut -c1)
 
 case $OPTION in
 1) systemctl poweroff;;
