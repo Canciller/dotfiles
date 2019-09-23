@@ -3,18 +3,31 @@
 killall -q polybar
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
+default_height=35
+
+launch_bar() {
+    name="$1"
+    height="$2"
+    monitor="$3"
+
+    [ -z "$name" ] && return 1
+    [ -z "$height" ] && height=$default_height
+
+    HEIGHT="$height" DPI=$(getdpi "$monitor") MONITOR="$monitor" polybar --reload "$name" &
+}
+
 if type xrandr; then
 	for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
-		height=35
+		h=$default_height
 		case $m in
 			*eDP*);;
-			*DP*) height=60;;
+			*DP*) h=60;;
 		esac
 
-		HEIGHT=$height DPI=$(getdpi $m) MONITOR=$m polybar --reload top &
-		HEIGHT=$height DPI=$(getdpi $m) MONITOR=$m polybar --reload bottom &
+        launch_bar top $h $m
+        launch_bar bottom $h $m
 	done
 else	
-	polybar --reload top &
-    polybar --reload bottom &
+    launch_bar top
+    launch_bar bottom
 fi
