@@ -30,6 +30,10 @@ plugins=(
 
 zstyle ':completion:*' rehash true
 
+if [ $UID = 0 ]; then
+    [ -f "$HOME/.zshenv" ] && source "$HOME/.zshenv"
+fi
+
 # Variables
 
 EDITOR="vi"
