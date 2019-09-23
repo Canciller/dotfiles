@@ -1,0 +1,20 @@
+#!/bin/bash
+
+function get_monitor {
+	i3-msg -t get_workspaces | jq '.[] | select(.focused == true)' | jq '.output' -r
+}
+
+function get_dpi {
+    DPI=96
+    HIDPI=160
+
+	MONITOR=$1
+	[ -z "$MONITOR" ] && MONITOR=$(get_monitor)
+
+	case $MONITOR in
+		*eDP*);;
+		*DP*)DPI=$HIDPI;; # DisplayPort
+	esac
+
+	echo $DPI
+}
