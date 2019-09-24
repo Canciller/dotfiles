@@ -61,5 +61,3 @@ alias polybar-config="$EDITOR $CONFIG/polybar/config"
 
 alias zsh-source="source $HOME/.zshrc" 
 alias gdb-tui="gdb -tui -q"
-
-#alias session-menu="$HOME/.config/rofi/rofi_session"
