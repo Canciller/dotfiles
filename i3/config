@@ -159,7 +159,7 @@ bindsym $mod+Shift+e exec ~/.config/rofi/scripts/rofi-session.sh
 bindsym $mod+d exec --no-startup-id ~/.config/rofi/scripts/rofi-launch.sh
 bindsym $mod+Shift+d exec --no-startup-id ~/.config/rofi/scripts/rofi-launch.sh run
 
-# start flameshot (screenshot programa)
+# start flameshot (screenshot program)
 bindsym Print exec --no-startup-id flameshot gui
 bindsym $mod+Shift+s exec --no-startup-id flameshot gui
 
