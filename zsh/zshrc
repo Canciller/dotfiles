@@ -56,6 +56,7 @@ alias zsh-config="$EDITOR $HOME/.zshrc"
 alias i3-config="$EDITOR $CONFIG/i3/config"
 alias nvim-config="$EDITOR $CONFIG/nvim/init.vim"
 alias polybar-config="$EDITOR $CONFIG/polybar/config"
+alias qutebrowser-config="$EDITOR $CONFIG/qutebrowser/config.py"
 
 # Useful command aliases
 
