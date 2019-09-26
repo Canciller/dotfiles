@@ -152,6 +152,9 @@ bindsym $mod+Shift+space floating toggle
 
 # {{{ Application Key Bindings
 
+# rofi pulseaudio select sink
+bindsym $mod+Shift+p exec ~/.config/rofi/scripts/rofi-pulseaudio-select-sink.sh
+
 # rofi session menu
 bindsym $mod+Shift+e exec ~/.config/rofi/scripts/rofi-session.sh
 
