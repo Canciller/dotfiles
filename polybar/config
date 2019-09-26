@@ -66,7 +66,7 @@ bottom = true
 
 modules-left = wireless-network wired-network cpu
 modules-center =
-modules-right = keyboard rofi-keyboard-layout battery pulseaudio backlight
+modules-right = keyboard rofi-xkeyboard-layout battery pulseaudio backlight
 
 width = 100%
 height = ${display.height}
@@ -149,7 +149,7 @@ label = %title:0:60:...%
 label-padding = 2
 # }}}
 
-# {{{ Module keyboard
+# {{{ Module xkeyboard
 [module/keyboard]
 type = internal/xkeyboard
 format = <label-indicator>
@@ -368,11 +368,11 @@ label-padding = 2
 click-left = $HOME/.config/rofi/scripts/rofi-session.sh
 # }}}
 
-# {{{ Module rofi-keyboard-layout
-[module/rofi-keyboard-layout]
+# {{{ Module rofi-xkeyboard-layout
+[module/rofi-xkeyboard-layout]
 type = custom/script
-exec = echo  "$($HOME/.config/rofi/scripts/rofi-keyboard-layout.sh)"
-click-left = $HOME/.config/rofi/scripts/rofi-keyboard-layout.sh select
+exec = echo  "$($HOME/.config/rofi/scripts/rofi-xkeyboard-layout.sh)"
+click-left = $HOME/.config/rofi/scripts/rofi-xkeyboard-layout.sh select
 label-padding = 2
 interval = 0
 
