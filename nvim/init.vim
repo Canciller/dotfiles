@@ -1,30 +1,25 @@
-" Vundle Plugins {{{
+" Plugins: {{{
 set nocompatible
 filetype off
 
-set rtp+=~/.config/nvim/bundle/Vundle.vim
-call vundle#begin('~/.config/nvim/bundle')
-	Plugin 'VundleVim/Vundle.vim'
+call plug#begin(stdpath('data') . '/plugged')
+    Plug 'canciller/dracula.vim'
 
-	Plugin 'tpope/vim-vinegar'
-    Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plugin 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+	Plug 'tpope/vim-vinegar'
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 
-	Plugin 'jiangmiao/auto-pairs'
-	Plugin 'alvan/vim-closetag'
+	Plug 'jiangmiao/auto-pairs'
+	Plug 'alvan/vim-closetag'
 
-"	Plugin 'hail2u/vim-css3-syntax'
+	Plug 'pangloss/vim-javascript'
+	Plug 'mxw/vim-jsx'
 
-	Plugin 'pangloss/vim-javascript'
-	Plugin 'mxw/vim-jsx'
-
-	Plugin 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
-
-    Plugin 'octol/vim-cpp-enhanced-highlight'
-call vundle#end()
+	Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+call plug#end()
 " }}}
 
-" Plugin Options {{{
+" Plugin Options: {{{
 " Plugin 'alvan/vim-closetag' {{{
 " filenames like *.xml, *.html, *.xhtml, ...
 " These are the file extensions where this plugin is enabled.
@@ -91,14 +86,14 @@ function! SemshiHighlights()
 endfunction
 " }}}
 
-" Vim Options {{{
+" Vim Options: {{{
 filetype plugin indent on
 syntax on
 
 let mapleader = ","
 let maplocalleader = "\\"
 
-colorscheme blackberry
+colorscheme dracula
 
 set noshowmode
 
@@ -142,7 +137,7 @@ let g:netrw_altv = 1
 let g:netrw_winsize = 20
 " }}}
 
-" Autocmds {{{
+" Autocmds: {{{
 augroup filetype_vim
 	autocmd!
 	autocmd FileType vim nnoremap <buffer> <localleader>c I"<esc>
@@ -181,8 +176,7 @@ augroup END
 
 " }}}
 
-" Mappings {{{
-
+" Mappings: {{{
 command! WQ wq
 command! Wq wq
 command! W w
@@ -203,8 +197,8 @@ noremap <leader>_ ddp
 "move current line down
 noremap <leader>- dd1kP
 
-"open vimrc in split
-nnoremap <silent> <leader>ev :vsplit $MYVIMRC<cr>
+"open vimrc in new tab
+nnoremap <silent> <leader>ev :tabedit $MYVIMRC<cr>
 
 "source vimrc
 nnoremap <silent> <leader>sv :source $MYVIMRC<cr>
@@ -233,9 +227,6 @@ inoremap <c-d> <esc>ddi
 
 "copy current line
 inoremap <c-y> <esc>yy1li
-
-"paste after cursor
-inoremap <c-v> <esc>pi
 
 "surround word with "
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
@@ -278,13 +269,15 @@ nnoremap <silent> <c-down> :tabr<cr>
 "fold close/open
 nnoremap <space> za
 
-nnoremap <c-v> "*p
+" paste from clipboard
+nnoremap <c-p> "*p
+
+" copy to clipboard
 vnoremap <c-c> "*y
 
 " }}}
 
-" Status Line {{{
-
+" Status Line: {{{
 " pretty mode display - converts the one letter status notifiers to words
 function! Mode()
     let l:mode = mode()
@@ -332,7 +325,5 @@ set statusline+=\ %{&fileencoding}\
 
 " }}}
 
-" Vimscript {{{
-"help expr4 for conditional operators
-"help internal-variables for variable scopes
+" Functions: {{{
 " }}}
