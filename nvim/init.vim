@@ -1,70 +1,59 @@
 " Plugins: {{{
 set nocompatible
-filetype off
+filetype plugin on
 
 call plug#begin(stdpath('data') . '/plugged')
-    Plug 'canciller/dracula.vim'
+    Plug 'canciller/vim-dracula' "A dark theme for Vim.
 
-    Plug 'itchyny/lightline.vim'
+    Plug 'itchyny/lightline.vim' "A light and configurable statusline/tabline plugin for Vim.
 
 	Plug 'tpope/vim-vinegar'
+    Plug 'junegunn/fzf' "A command-line fuzzy finder.
 
-    Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'tpope/vim-fugitive' "A Git wrapper so awesome, it should be illegal.
+
+    Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } "Dark powered asynchronous completion framework.
     Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install --user tern' }
 
-	Plug 'jiangmiao/auto-pairs'
+	Plug 'jiangmiao/auto-pairs' "Insert or delete brackets, parens, quotes in pair.
+
 	Plug 'alvan/vim-closetag'
 
-	Plug 'pangloss/vim-javascript'
-	Plug 'mxw/vim-jsx'
+	Plug 'pangloss/vim-javascript' "JavaScript bundle for vim, this bundle provides syntax highlighting and improved indentation.
+	Plug 'maxmellon/vim-jsx-pretty' "The React syntax highlighting and indenting plugin for vim.
 
-	Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+	Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} "Semshi provides semantic highlighting for Python in Neovim.
 call plug#end()
 " }}}
 
 " Plugin Options: {{{
 
 " alvan/vim-closetag {{{
-
-" filenames like *.xml, *.html, *.xhtml, ...
 " These are the file extensions where this plugin is enabled.
-"
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js'
 
-" filenames like *.xml, *.xhtml, ...
 " This will make the list of non-closing tags self-closing in the specified files.
-"
-let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.js'
+let g:closetag_xhtml_filenames = '*.xhtml,*.js,*.jsx'
 
-" filetypes like xml, html, xhtml, ...
 " These are the file types where this plugin is enabled.
-"
-let g:closetag_filetypes = 'html,xhtml,phtml,js'
+let g:closetag_filetypes = 'html,xhtml,phtml,js,jsx'
 
-" filetypes like xml, xhtml, ...
 " This will make the list of non-closing tags self-closing in the specified files.
-"
-let g:closetag_xhtml_filetypes = 'xhtml,jsx,js'
+let g:closetag_xhtml_filetypes = 'xhtml,js,jsx'
 
-" integer value [0|1]
 " This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
-"
 let g:closetag_emptyTags_caseSensitive = 1
 
-" dict
 " Disables auto-close if not in a "valid" region (based on filetype)
-"
 let g:closetag_regions = {
 \ 'typescript.tsx': 'jsxRegion,tsxRegion',
 \ 'javascript.jsx': 'jsxRegion',
 \ }
 
-" Shortcut for closing tags, default is '>'
-"
+" Shortcut for closing tags
 let g:closetag_shortcut = '>'
 
-" Add > at current position without closing the current tag, default is ''
-"
+" Add > at current position without closing the current tag
 let g:closetag_close_shortcut = '<leader>>'
 " }}}
 
@@ -92,16 +81,34 @@ endfunction
 
 " itchyny/lightline.vim {{{
 let g:lightline = {
-            \ 'colorscheme': 'dracula'
+            \ 'colorscheme': 'dracula',
+            \'active': {
+            \   'left': [ ['mode', 'paster'], [ 'absolutepath', 'readonly', 'modified' ] ]
+            \},
+            \'component_function': {
+            \   'readonly': 'LightlineReadonly'
+            \}
             \}
 
 let g:lightline.tabline = {
             \'left': [ [ 'tabs' ] ],
-            \'right': []
+            \'right': [],
             \}
+
+function! LightlineReadonly()
+    return &readonly && &filetype !=# 'help' ? 'RO' : ''
+endfunction
 " }}}
 
+" jiangmiao/auto-pairs {{{
+let g:AutoPairsMultilineClose = 0
 " }}}
+
+" mxw/vim-jsx-pretty {{{
+let g:vim_jsx_pretty_colorful_config = 1
+" }}}
+
+"}}}
 
 " Vim Options: {{{
 filetype plugin indent on
@@ -145,7 +152,7 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=0 expandtab
 
-set showtabline=1
+set showtabline=2
 
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
@@ -252,10 +259,10 @@ nnoremap L $
 nnoremap H 0
 
 "replace all ocurrences of word under cursor
-nnoremap <c-r> :%s/\<<c-r><c-w>\>//g<left><left>
+nnoremap <leader>r :%s/\<<c-r><c-w>\>//g<left><left>
 
 "find all ocurrences of word under cursor
-nnoremap <c-s> /\<<c-r><c-w>\><cr>
+nnoremap <leader>f /\<<c-r><c-w>\><cr>
 
 "disable hlsearch
 nnoremap <silent> <esc><esc> :nohlsearch<cr>
