@@ -299,22 +299,20 @@ endfunc
 augroup status_line
 	autocmd!
 
-    if !exists('g:lightline')
-        "left side
-        set statusline=
-        "set statusline+=%#StatusLineMode#
-        set statusline+=\ %{Mode()}\ 
-        "set statusline+=%#StatusLine#
-        set statusline+=\ %f\ 
-        set statusline+=%{Modified()}
+    "left side
+    set statusline=
+    "set statusline+=%#StatusLineMode#
+    set statusline+=\ %{Mode()}\ 
+    "set statusline+=%#StatusLine#
+    set statusline+=\ %f\ 
+    set statusline+=%{Modified()}
 
-        "right side
-        set statusline+=%=
-        set statusline+=\ %l/%L\ 
-        set statusline+=\ %{&filetype}\ 
-        set statusline+=\ %{&fileformat}\ 
-        set statusline+=\ %{&fileencoding}\ 
-    endif
+    "right side
+    set statusline+=%=
+    set statusline+=\ %{&filetype}\ 
+    set statusline+=\ %{&fileformat}\ 
+    set statusline+=\ %{&fileencoding}\ 
+    set statusline+=\ %l:%L\ 
 augroup END
 " }}}
 
