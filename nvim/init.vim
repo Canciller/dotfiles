@@ -5,9 +5,12 @@ filetype off
 call plug#begin(stdpath('data') . '/plugged')
     Plug 'canciller/dracula.vim'
 
+    Plug 'itchyny/lightline.vim'
+
 	Plug 'tpope/vim-vinegar'
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+
+    Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install --user tern' }
 
 	Plug 'jiangmiao/auto-pairs'
 	Plug 'alvan/vim-closetag'
@@ -20,7 +23,9 @@ call plug#end()
 " }}}
 
 " Plugin Options: {{{
-" Plugin 'alvan/vim-closetag' {{{
+
+" alvan/vim-closetag {{{
+
 " filenames like *.xml, *.html, *.xhtml, ...
 " These are the file extensions where this plugin is enabled.
 "
@@ -50,9 +55,9 @@ let g:closetag_emptyTags_caseSensitive = 1
 " Disables auto-close if not in a "valid" region (based on filetype)
 "
 let g:closetag_regions = {
-    \ 'typescript.tsx': 'jsxRegion,tsxRegion',
-    \ 'javascript.jsx': 'jsxRegion',
-    \ }
+\ 'typescript.tsx': 'jsxRegion,tsxRegion',
+\ 'javascript.jsx': 'jsxRegion',
+\ }
 
 " Shortcut for closing tags, default is '>'
 "
@@ -63,6 +68,7 @@ let g:closetag_shortcut = '>'
 let g:closetag_close_shortcut = '<leader>>'
 " }}}
 
+"  shougu/deoplete {{{
 let g:deoplete#enable_at_startup = 1
 
 let g:deoplete#sources#ternjs#types = 1
@@ -76,14 +82,25 @@ function! s:check_back_space() abort "{{{
 let col = col('.') - 1
 return !col || getline('.')[col - 1]  =~ '\s'
 endfunction"}}}
+"  }}}
 
-let g:cpp_class_scope_highlight = 1
-let g:cpp_member_variable_highlight = 1
-let g:cpp_class_decl_highlight = 1
-
+" numirias/semshi {{{
 function! SemshiHighlights()
     sign define semshiError text=\  texthl=semshiErrorSign
 endfunction
+" }}}
+
+" itchyny/lightline.vim {{{
+let g:lightline = {
+            \ 'colorscheme': 'dracula'
+            \}
+
+let g:lightline.tabline = {
+            \'left': [ [ 'tabs' ] ],
+            \'right': []
+            \}
+" }}}
+
 " }}}
 
 " Vim Options: {{{
@@ -128,7 +145,7 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=0 expandtab
 
-set showtabline=2
+set showtabline=1
 
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
@@ -182,20 +199,17 @@ command! Wq wq
 command! W w
 command! Q q
 
-noremap <leader>o o<esc>1k
-noremap <leader>O O<esc>1j
+"disable arrow keys
+noremap <up> <nop>
+noremap <down> <nop>
+noremap <left> <nop>
+noremap <right> <nop>
 
-"replace all '' with ""
-noremap <silent> <leader>sq :%s/"/'/g<cr>:nohlsearch<cr>
+"disable esc in insert mode
+inoremap <esc> <nop>
 
-"replace all "" with ''
-noremap <silent> <leader>q :%s/'/"/g<cr>:nohlsearch<cr>
-
-"move current line up
-noremap <leader>_ ddp
-
-"move current line down
-noremap <leader>- dd1kP
+"enter normal mode in insert mode
+inoremap jk <esc>1l
 
 "open vimrc in new tab
 nnoremap <silent> <leader>ev :tabedit $MYVIMRC<cr>
@@ -203,50 +217,11 @@ nnoremap <silent> <leader>ev :tabedit $MYVIMRC<cr>
 "source vimrc
 nnoremap <silent> <leader>sv :source $MYVIMRC<cr>
 
-"open netrw
-nnoremap <leader>x :Lexplore<cr>
+vnoremap <tab> >gv
+vnoremap <s-tab> <gv
 
-"write
-nnoremap <leader>w :w<cr>
-
-"disable keys
-noremap <up> <nop>
-noremap <down> <nop>
-noremap <left> <nop>
-noremap <right> <nop>
-inoremap <esc> <nop>
-
-"disable hlsearch
-noremap <esc><esc> :nohlsearch<cr>
-
-"enter normal mode
-inoremap jk <esc>1l
-
-"delete current line
-inoremap <c-d> <esc>ddi
-
-"copy current line
-inoremap <c-y> <esc>yy1li
-
-"surround word with "
-nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
-
-"surround word with '
-nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
-
-"surround selected with "
-vnoremap <leader>" <esc>`<i"<esc>`>1la"<esc>
-
-"keep previous selection
-vnoremap > >gv
-vnoremap < <gv
-
-nnoremap > >>
-nnoremap < <<
-
-"move to end/start of line
-nnoremap L $
-nnoremap H 0
+nnoremap <tab> >>
+nnoremap <s-tab> <<
 
 "split movement
 nnoremap <c-h> <c-w>h
@@ -266,15 +241,33 @@ nnoremap <silent> <c-left> :tabp<cr>
 nnoremap <silent> <c-up> :tabl<cr>
 nnoremap <silent> <c-down> :tabr<cr>
 
+"paste from clipboard
+nnoremap <c-p> "+p
+
+"copy to clipboard
+vnoremap <c-c> "+y
+
+"move to end/start of line
+nnoremap L $
+nnoremap H 0
+
+"replace all ocurrences of word under cursor
+nnoremap <c-r> :%s/\<<c-r><c-w>\>//g<left><left>
+
+"find all ocurrences of word under cursor
+nnoremap <c-s> /\<<c-r><c-w>\><cr>
+
+"disable hlsearch
+nnoremap <silent> <esc><esc> :nohlsearch<cr>
+
 "fold close/open
 nnoremap <space> za
 
-" paste from clipboard
-nnoremap <c-p> "*p
+"replace all '' with ""
+nnoremap <silent> <leader>" :%s/"/'/g<cr>:nohlsearch<cr>
 
-" copy to clipboard
-vnoremap <c-c> "*y
-
+"replace all "" with ''
+nnoremap <silent> <leader>' :%s/'/"/g<cr>:nohlsearch<cr>
 " }}}
 
 " Status Line: {{{
@@ -303,26 +296,26 @@ function! Modified()
 	return l:modified
 endfunc
 
-"left side
-set statusline=
-"set statusline+=%#StatusLineMode#
-set statusline+=\ %{Mode()}\ 
-"set statusline+=%#StatusLine#
-set statusline+=\ %f\ 
-set statusline+=%{Modified()}
-
 augroup status_line
 	autocmd!
 
+    if !exists('g:lightline')
+        "left side
+        set statusline=
+        "set statusline+=%#StatusLineMode#
+        set statusline+=\ %{Mode()}\ 
+        "set statusline+=%#StatusLine#
+        set statusline+=\ %f\ 
+        set statusline+=%{Modified()}
+
+        "right side
+        set statusline+=%=
+        set statusline+=\ %l/%L\ 
+        set statusline+=\ %{&filetype}\ 
+        set statusline+=\ %{&fileformat}\ 
+        set statusline+=\ %{&fileencoding}\ 
+    endif
 augroup END
-
-"right side
-set statusline+=%=
-set statusline+=\ \ %l/%L\ 
-set statusline+=\ %{&filetype}\ 
-set statusline+=\ %{&fileformat}\ 
-set statusline+=\ %{&fileencoding}\ 
-
 " }}}
 
 " Functions: {{{
