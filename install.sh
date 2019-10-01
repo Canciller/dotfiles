@@ -11,6 +11,7 @@ dotfiles_list=(
     fonts:"$HOME/.local/share/fonts"
     qutebrowser
     compton
+    xorg/xprofile:"$HOME/.xprofile"
     bin:"$HOME/.local/bin"
     rofi
     polybar
