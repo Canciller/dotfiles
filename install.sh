@@ -11,6 +11,7 @@ dotfiles_list=(
     fonts:"$HOME/.local/share/fonts"
     qutebrowser
     compton
+    git/gitconfig:"$HOME/.gitconfig"
     xorg/xprofile:"$HOME/.xprofile"
     bin:"$HOME/.local/bin"
     rofi
