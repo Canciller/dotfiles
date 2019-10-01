@@ -1,0 +1,10 @@
+#! /bin/sh
+[ -f "$HOME/.zshenv" ] && source "$HOME/.zshenv"
+
+# Set Yeti Stereo Microphone, Mic volume to 0%
+yeti_card_no=$(get-sound-card-number Yeti Stereo Microphone)
+if [ -n "$yeti_card_no" ]; then
+    amixer -c"$yeti_card_no" set Mic 0%
+fi
+
+eval "$(ssh-agent)"
