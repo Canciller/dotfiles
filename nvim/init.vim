@@ -7,7 +7,8 @@ call plug#begin(stdpath('data') . '/plugged')
 
     Plug 'itchyny/lightline.vim' "A light and configurable statusline/tabline plugin for Vim.
 
-	Plug 'tpope/vim-vinegar'
+    Plug 'tpope/vim-vinegar'
+
     Plug 'junegunn/fzf' "A command-line fuzzy finder.
     Plug 'junegunn/fzf.vim' "A command-line fuzzy finder.
 
@@ -16,14 +17,14 @@ call plug#begin(stdpath('data') . '/plugged')
     Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } "Dark powered asynchronous completion framework.
     Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install --user tern' }
 
-	Plug 'jiangmiao/auto-pairs' "Insert or delete brackets, parens, quotes in pair.
+    Plug 'jiangmiao/auto-pairs' "Insert or delete brackets, parens, quotes in pair.
 
-	Plug 'alvan/vim-closetag'
+    Plug 'alvan/vim-closetag'
 
-	Plug 'pangloss/vim-javascript' "JavaScript bundle for vim, this bundle provides syntax highlighting and improved indentation.
-	Plug 'maxmellon/vim-jsx-pretty' "The React syntax highlighting and indenting plugin for vim.
+    Plug 'pangloss/vim-javascript' "JavaScript bundle for vim, this bundle provides syntax highlighting and improved indentation.
+    Plug 'maxmellon/vim-jsx-pretty' "The React syntax highlighting and indenting plugin for vim.
 
-	Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} "Semshi provides semantic highlighting for Python in Neovim.
+    Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} "Semshi provides semantic highlighting for Python in Neovim.
 call plug#end()
 " }}}
 
@@ -47,9 +48,9 @@ let g:closetag_emptyTags_caseSensitive = 1
 
 " Disables auto-close if not in a "valid" region (based on filetype)
 let g:closetag_regions = {
-\ 'typescript.tsx': 'jsxRegion,tsxRegion',
-\ 'javascript.jsx': 'jsxRegion',
-\ }
+            \ 'typescript.tsx': 'jsxRegion,tsxRegion',
+            \ 'javascript.jsx': 'jsxRegion',
+            \ }
 
 " Shortcut for closing tags
 let g:closetag_shortcut = '>'
@@ -65,12 +66,12 @@ let g:deoplete#sources#ternjs#types = 1
 let g:deoplete#sources#ternjs#include_keywords = 1
 
 inoremap <silent><expr> <TAB>
-\ pumvisible() ? "\<C-n>" :
-\ <SID>check_back_space() ? "\<TAB>" :
-\ deoplete#mappings#manual_complete()
+            \ pumvisible() ? "\<C-n>" :
+            \ <SID>check_back_space() ? "\<TAB>" :
+            \ deoplete#mappings#manual_complete()
 function! s:check_back_space() abort "{{{
-let col = col('.') - 1
-return !col || getline('.')[col - 1]  =~ '\s'
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
 endfunction"}}}
 "  }}}
 
@@ -122,24 +123,26 @@ let g:vim_jsx_pretty_colorful_config = 1
 " junegunn/fzf {{{
 let g:fzf_layout = { 'window': '-tabnew' }
 let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'Function'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Normal'],
-  \ 'pointer': ['bg', 'CursorLine'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+            \ { 'fg':      ['fg', 'Normal'],
+            \ 'bg':      ['bg', 'Normal'],
+            \ 'hl':      ['fg', 'Comment'],
+            \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+            \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+            \ 'hl+':     ['fg', 'Statement'],
+            \ 'info':    ['fg', 'Function'],
+            \ 'border':  ['fg', 'Ignore'],
+            \ 'prompt':  ['fg', 'Normal'],
+            \ 'pointer': ['bg', 'CursorLine'],
+            \ 'marker':  ['fg', 'Keyword'],
+            \ 'spinner': ['fg', 'Label'],
+            \ 'header':  ['fg', 'Comment'] }
 
 " hide statusline
-autocmd! FileType fzf
-autocmd  FileType fzf set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+augroup filetype_fzf
+    autocmd!
+    autocmd  FileType fzf set laststatus=0 noshowmode noruler
+                \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+augroup END
 " }}}
 
 "}}}
@@ -176,10 +179,10 @@ set background=dark
 set list
 
 if $TERM=~'linux'
-	set listchars=tab:>\ ,trail:.
+    set listchars=tab:>\ ,trail:.
 else
-	set showbreak=↪\ 
-	set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
+    set showbreak=↪\ 
+    set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
 endif
 
 set tabstop=4
@@ -197,21 +200,21 @@ let g:netrw_winsize = 20
 
 " Autocmds: {{{
 augroup filetype_vim
-	autocmd!
-	autocmd FileType vim nnoremap <buffer> <localleader>c I"<esc>
-	autocmd FileType vim setlocal foldmethod=marker
+    autocmd!
+    autocmd FileType vim nnoremap <buffer> <localleader>c I"<esc>
+    autocmd FileType vim setlocal foldmethod=marker
 augroup END
 
 augroup filetype_conf
-	autocmd!
-	autocmd FileType conf setlocal foldmethod=marker
+    autocmd!
+    autocmd FileType conf setlocal foldmethod=marker
 augroup END
 
 augroup filetype_cpp
-	autocmd!
-	autocmd FileType cpp setlocal expandtab
-	autocmd FileType cpp setlocal listchars=tab:→\ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨
-	autocmd FileType cpp setlocal showbreak=
+    autocmd!
+    autocmd FileType cpp setlocal expandtab
+    autocmd FileType cpp setlocal listchars=tab:→\ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨
+    autocmd FileType cpp setlocal showbreak=
 augroup END
 
 augroup filetype_js
@@ -224,12 +227,12 @@ augroup filetype_py
 augroup END
 
 augroup filetype_all
-	autocmd!
-	autocmd BufNewFile,BufRead * onoremap ah :<c-u>execute "normal! ?^[=-][=-]\\+\r:nohlsearch\rg_vk0"<cr>
-	autocmd BufNewFile,BufRead * onoremap ih :<c-u>execute "normal! ?^[=-][=-]\\+\r:nohlsearch\rg_kvg_"<cr>
-	autocmd BufNewFile,BufRead * onoremap in@ :<c-u>execute "normal! /@\r:nohlsearch\r1hvB"<cr>
-	autocmd BufWritePost init.vim source %
-	autocmd FileType netrw setlocal bufhidden=delete
+    autocmd!
+    autocmd BufNewFile,BufRead * onoremap ah :<c-u>execute "normal! ?^[=-][=-]\\+\r:nohlsearch\rg_vk0"<cr>
+    autocmd BufNewFile,BufRead * onoremap ih :<c-u>execute "normal! ?^[=-][=-]\\+\r:nohlsearch\rg_kvg_"<cr>
+    autocmd BufNewFile,BufRead * onoremap in@ :<c-u>execute "normal! /@\r:nohlsearch\r1hvB"<cr>
+    autocmd BufWritePost init.vim source %
+    autocmd FileType netrw setlocal bufhidden=delete
 augroup END
 
 " }}}
@@ -322,23 +325,23 @@ function! Mode()
     elseif mode ==# "v"  | return "VISUAL"
     elseif mode ==# "V"  | return "V-LINE"
     elseif mode ==# "" | return "V-BLOCK"
-	elseif mode ==# "c"  | return "COMMAND"
-	elseif mode ==# "t"  | return "TERMINAL"
+    elseif mode ==# "c"  | return "COMMAND"
+    elseif mode ==# "t"  | return "TERMINAL"
     else                 | return l:mode
     endif
 endfunc 
 
 function! Modified()
-	let l:current_buff = winbufnr(winnr())
-	let l:modified = ""
-	if getbufvar(current_buff, "&mod")
-		let l:modified = "+ "
-	endif
-	return l:modified
+    let l:current_buff = winbufnr(winnr())
+    let l:modified = ""
+    if getbufvar(current_buff, "&mod")
+        let l:modified = "+ "
+    endif
+    return l:modified
 endfunc
 
 augroup status_line
-	autocmd!
+    autocmd!
 
     "left side
     set statusline=
