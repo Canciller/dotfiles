@@ -9,6 +9,7 @@ call plug#begin(stdpath('data') . '/plugged')
 
 	Plug 'tpope/vim-vinegar'
     Plug 'junegunn/fzf' "A command-line fuzzy finder.
+    Plug 'junegunn/fzf.vim' "A command-line fuzzy finder.
 
     Plug 'tpope/vim-fugitive' "A Git wrapper so awesome, it should be illegal.
 
@@ -116,6 +117,29 @@ let g:AutoPairsMultilineClose = 0
 
 " mxw/vim-jsx-pretty {{{
 let g:vim_jsx_pretty_colorful_config = 1
+" }}}
+
+" junegunn/fzf {{{
+let g:fzf_layout = { 'window': '-tabnew' }
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'Function'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Normal'],
+  \ 'pointer': ['bg', 'CursorLine'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+" hide statusline
+autocmd! FileType fzf
+autocmd  FileType fzf set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 " }}}
 
 "}}}
