@@ -83,10 +83,11 @@ endfunction
 let g:lightline = {
             \ 'colorscheme': 'dracula',
             \'active': {
-            \   'left': [ ['mode', 'paster'], [ 'absolutepath', 'readonly', 'modified' ] ]
+            \   'left': [ ['mode', 'paster'], [ 'gitbranch', 'absolutepath', 'readonly', 'modified' ] ]
             \},
             \'component_function': {
-            \   'readonly': 'LightlineReadonly'
+            \   'readonly': 'LightlineReadonly',
+            \   'gitbranch': 'LightlineGitPrompt'
             \}
             \}
 
@@ -97,6 +98,15 @@ let g:lightline.tabline = {
 
 function! LightlineReadonly()
     return &readonly && &filetype !=# 'help' ? 'RO' : ''
+endfunction
+
+function! LightlineGitDirtyWorkingDirectory()
+    execute 'silent ![ -z "$(git status -s)" ]'
+    return v:shell_error ? ' *' : ''
+endfunction
+
+function! LightlineGitPrompt()
+    return fugitive#head() . LightlineGitDirtyWorkingDirectory()
 endfunction
 " }}}
 
