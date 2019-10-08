@@ -42,22 +42,22 @@ function install_file() {
     [ -z "$file" -o -z "$destination" -o -z "$install_method" ] && return 1
 
     if ! [ -d "$destination_dir" ]; then
-        ! mkdir -p "$destination_dir" && error "[error] mkdir -p $destination_dir" && return 1
-        succ "[ok] mkdir -p $destination_dir"
+        ! mkdir -p "$destination_dir" && error "mkdir -p $destination_dir" && return 1
+        succ "mkdir -p $destination_dir"
     fi
 
     local file_final="$(readlink -f $file)"
 
     if [ -e "$destination" ]; then
         if [ -h "$destination" -a "$(readlink -f "$destination")" = "$file_final" ]; then
-            info "[info] ${file_final#"$dotfiles_dir/"} skipping, already installed"
+            info "${file_final#"$dotfiles_dir/"} skipping, already installed"
             return 0
         fi
         # backup
-        warn "[warn] removing $destination"
+        warn "removing $destination"
     else
-        ! eval "$install_method \"$file_final\" \"$destination\" &>/dev/null" && error "[error] $install_method $file_final $destination" && return 1
-        succ "[ok] $install_method $file_final $destination"
+        ! eval "$install_method \"$file_final\" \"$destination\" &>/dev/null" && error "$install_method $file_final $destination" && return 1
+        succ "$install_method $file_final $destination"
     fi
 }
 
@@ -71,7 +71,7 @@ function install_recursive() {
     local install_method="$3"
 
     case "$file" in
-        *$ignore_suffix) warn "[warn] ignoring $(readlink -f "$file")" && return;;
+        *$ignore_suffix) warn "ignoring $(readlink -f "$file")" && return;;
         *)
     esac
 
@@ -112,17 +112,16 @@ function uninstall() {
 
 function main() {
     case "$1" in
-        -i) install;;
-        -r) uninstall;;
         -h|--help) usage;;
-        *) usage && return 1
+        -u) uninstall;;
+        *) install
     esac
 }
 
 scripts_dir="$dotfiles_dir/scripts"
 
-. "$scripts_dir/echos.sh"
-. "$scripts_dir/helpers.sh"
+source "$scripts_dir/echos.sh"
+source "$scripts_dir/helpers.sh"
 
 main $@
 exit $?
