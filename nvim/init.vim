@@ -3,28 +3,28 @@ set nocompatible
 filetype plugin on
 
 call plug#begin(stdpath('data') . '/plugged')
-    Plug 'canciller/vim-dracula' "A dark theme for Vim.
+Plug 'canciller/vim-dracula' "A dark theme for Vim.
 
-    Plug 'itchyny/lightline.vim' "A light and configurable statusline/tabline plugin for Vim.
+Plug 'itchyny/lightline.vim' "A light and configurable statusline/tabline plugin for Vim.
 
-    Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-vinegar'
 
-    Plug 'junegunn/fzf' "A command-line fuzzy finder.
-    Plug 'junegunn/fzf.vim' "A command-line fuzzy finder.
+Plug 'junegunn/fzf' "A command-line fuzzy finder.
+Plug 'junegunn/fzf.vim' "A command-line fuzzy finder.
 
-    Plug 'tpope/vim-fugitive' "A Git wrapper so awesome, it should be illegal.
+Plug 'tpope/vim-fugitive' "A Git wrapper so awesome, it should be illegal.
 
-    Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } "Dark powered asynchronous completion framework.
-    Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install --user tern' }
+Plug 'jiangmiao/auto-pairs' "Insert or delete brackets, parens, quotes in pair.
 
-    Plug 'jiangmiao/auto-pairs' "Insert or delete brackets, parens, quotes in pair.
+Plug 'alvan/vim-closetag'
 
-    Plug 'alvan/vim-closetag'
+Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } "Dark powered asynchronous completion framework.
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install --user tern' }
 
-    Plug 'pangloss/vim-javascript' "JavaScript bundle for vim, this bundle provides syntax highlighting and improved indentation.
-    Plug 'maxmellon/vim-jsx-pretty' "The React syntax highlighting and indenting plugin for vim.
+Plug 'pangloss/vim-javascript' "JavaScript bundle for vim, this bundle provides syntax highlighting and improved indentation.
+Plug 'maxmellon/vim-jsx-pretty' "The React syntax highlighting and indenting plugin for vim.
 
-    Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} "Semshi provides semantic highlighting for Python in Neovim.
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} "Semshi provides semantic highlighting for Python in Neovim.
 call plug#end()
 " }}}
 
@@ -61,6 +61,7 @@ let g:closetag_close_shortcut = '<leader>>'
 
 "  shougu/deoplete {{{
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#auto_complete_delay = 50
 
 let g:deoplete#sources#ternjs#types = 1
 let g:deoplete#sources#ternjs#include_keywords = 1
@@ -89,26 +90,23 @@ let g:lightline = {
             \},
             \'component_function': {
             \   'readonly': 'LightlineReadonly',
-            \   'gitbranch': 'LightlineGitPrompt'
+            \   'gitbranch': 'fugitive#head'
             \}
             \}
+
+let g:lightline.subseparator = { 'left': '', 'right': '' }
 
 let g:lightline.tabline = {
             \'left': [ [ 'tabs' ] ],
             \'right': [],
             \}
 
+let g:lightline.tabline.subseparator = { 'left': '', 'right': '' }
+
+
+
 function! LightlineReadonly()
     return &readonly && &filetype !=# 'help' ? 'RO' : ''
-endfunction
-
-function! LightlineGitDirtyWorkingDirectory()
-    execute 'silent ![ -z "$(git status -s)" ]'
-    return v:shell_error ? ' *' : ''
-endfunction
-
-function! LightlineGitPrompt()
-    return fugitive#head() . LightlineGitDirtyWorkingDirectory()
 endfunction
 " }}}
 
@@ -295,14 +293,16 @@ vnoremap <c-c> "+y
 nnoremap L $
 nnoremap H 0
 
+"disable hlsearch
+nnoremap <silent> <esc><esc> :nohlsearch<cr>
+
+nnoremap <leader>= mmggVG=`m
+
 "replace all ocurrences of word under cursor
 nnoremap <leader>r :%s/\<<c-r><c-w>\>//g<left><left>
 
 "find all ocurrences of word under cursor
 nnoremap <leader>f /\<<c-r><c-w>\><cr>
-
-"disable hlsearch
-nnoremap <silent> <esc><esc> :nohlsearch<cr>
 
 "fold close/open
 nnoremap <space> za
