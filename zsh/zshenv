@@ -5,8 +5,10 @@ function path {
 	esac
 }
 
+path opt/cuda/bin
+path /usr/local/bin
+
 path $HOME/.local/bin
 path $HOME/.bin
-path /usr/local/bin
 
 export PATH
