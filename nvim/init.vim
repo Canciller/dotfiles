@@ -16,13 +16,18 @@ Plug 'tpope/vim-fugitive' "A Git wrapper so awesome, it should be illegal.
 
 Plug 'jiangmiao/auto-pairs' "Insert or delete brackets, parens, quotes in pair.
 
+Plug 'neomake/neomake' "Neomake is a plugin for Vim/Neovim to asynchronously run programs.
+
 Plug 'alvan/vim-closetag'
 
 Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } "Dark powered asynchronous completion framework.
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install --user tern' }
+Plug 'carlitux/deoplete-ternjs'
+Plug 'deoplete-plugins/deoplete-jedi' "deoplete.nvim source for Python.
 
 Plug 'pangloss/vim-javascript' "JavaScript bundle for vim, this bundle provides syntax highlighting and improved indentation.
 Plug 'maxmellon/vim-jsx-pretty' "The React syntax highlighting and indenting plugin for vim.
+
+Plug 'posva/vim-vue' "Vim syntax highlighting for Vue components.
 
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} "Semshi provides semantic highlighting for Python in Neovim.
 call plug#end()
@@ -65,6 +70,8 @@ let g:deoplete#auto_complete_delay = 50
 
 let g:deoplete#sources#ternjs#types = 1
 let g:deoplete#sources#ternjs#include_keywords = 1
+
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | silent! pclose | endif
 
 inoremap <silent><expr> <TAB>
             \ pumvisible() ? "\<C-n>" :
@@ -141,6 +148,10 @@ augroup filetype_fzf
     autocmd  FileType fzf set laststatus=0 noshowmode noruler
                 \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 augroup END
+" }}}
+
+" neomake/neomake {{{
+let g:neomake_javascript_enabled_makers = ['eslint']
 " }}}
 
 "}}}
