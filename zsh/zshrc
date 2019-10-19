@@ -62,3 +62,4 @@ alias qutebrowser-config="$EDITOR $CONFIG/qutebrowser/config.py"
 
 alias zsh-source="source $HOME/.zshrc" 
 alias gdb-tui="gdb -tui -q"
+alias nvidia-gpu-utilization="watch -n 5 nvidia-smi -a --display=utilization"
