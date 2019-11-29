@@ -23,6 +23,7 @@ Plug 'alvan/vim-closetag'
 Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } "Dark powered asynchronous completion framework.
 Plug 'carlitux/deoplete-ternjs'
 Plug 'deoplete-plugins/deoplete-jedi' "deoplete.nvim source for Python.
+Plug 'deoplete-plugins/deoplete-clang' "deoplete.nvim source for C/C++/Obj-C/Obj-C++ with clang-python3.
 
 Plug 'pangloss/vim-javascript' "JavaScript bundle for vim, this bundle provides syntax highlighting and improved indentation.
 Plug 'maxmellon/vim-jsx-pretty' "The React syntax highlighting and indenting plugin for vim.
@@ -34,7 +35,6 @@ call plug#end()
 " }}}
 
 " Plugin Options: {{{
-
 " alvan/vim-closetag {{{
 " These are the file extensions where this plugin is enabled.
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js'
@@ -154,6 +154,23 @@ augroup END
 let g:neomake_javascript_enabled_makers = ['eslint']
 " }}}
 
+" arakashic/chromatica.nvim {{{
+let g:chromatica#enable_at_startup = 1
+let g:chromatica#responsive_mode = 1
+let g:chromatica#enable_log = 1
+"}}}
+
+" deoplete-plugins/deoplete-clang {{{
+let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
+let g:deoplete#sources#clang#clang_header = '/usr/lib/clang/9.0.0'
+"}}}
+
+" octol/vim-cpp-enhanced-highlight {{{
+let g:cpp_class_decl_highlight = 1
+let g:cpp_experimental_simple_template_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_scope_highlight = 1
+"}}}
 "}}}
 
 " Vim Options: {{{
@@ -164,6 +181,8 @@ let mapleader = ","
 let maplocalleader = "\\"
 
 colorscheme dracula
+
+set backupcopy=yes
 
 set noshowmode
 
@@ -323,6 +342,9 @@ nnoremap <silent> <leader>" :%s/"/'/g<cr>:nohlsearch<cr>
 
 "replace all "" with ''
 nnoremap <silent> <leader>' :%s/'/"/g<cr>:nohlsearch<cr>
+
+"get syntax highlight group of character under the cursor (Functions)
+nnoremap <silent> <leader>h :call SynGroup()<cr>
 " }}}
 
 " Status Line: {{{
@@ -372,4 +394,9 @@ augroup END
 " }}}
 
 " Functions: {{{
+"get syntax highlight group of character under the cursor
+function! SynGroup()
+    let l:s = synID(line('.'), col('.'), 1)
+    echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
+endfunction
 " }}}
