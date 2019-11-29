@@ -37,16 +37,16 @@ call plug#end()
 " Plugin Options: {{{
 " alvan/vim-closetag {{{
 " These are the file extensions where this plugin is enabled.
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js'
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js,*.jsx,*.vue'
 
 " This will make the list of non-closing tags self-closing in the specified files.
-let g:closetag_xhtml_filenames = '*.xhtml,*.js,*.jsx'
+let g:closetag_xhtml_filenames = '*.xhtml,*.js,*.jsx,*.vue'
 
 " These are the file types where this plugin is enabled.
-let g:closetag_filetypes = 'html,xhtml,phtml,js,jsx'
+let g:closetag_filetypes = 'html,xhtml,phtml,js,jsx,vue'
 
 " This will make the list of non-closing tags self-closing in the specified files.
-let g:closetag_xhtml_filetypes = 'xhtml,js,jsx'
+let g:closetag_xhtml_filetypes = 'xhtml,js,jsx,vue'
 
 " This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
 let g:closetag_emptyTags_caseSensitive = 1
@@ -245,8 +245,10 @@ augroup filetype_cpp
     autocmd FileType cpp setlocal showbreak=
 augroup END
 
-augroup filetype_js
+augroup filetype_vue
     autocmd!
+    autocmd FileType vue setlocal tabstop=2
+    autocmd FileType vue setlocal shiftwidth=2
 augroup END
 
 augroup filetype_py
