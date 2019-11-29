@@ -164,13 +164,6 @@ let g:chromatica#enable_log = 1
 let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
 let g:deoplete#sources#clang#clang_header = '/usr/lib/clang/9.0.0'
 "}}}
-
-" octol/vim-cpp-enhanced-highlight {{{
-let g:cpp_class_decl_highlight = 1
-let g:cpp_experimental_simple_template_highlight = 1
-let g:cpp_member_variable_highlight = 1
-let g:cpp_class_scope_highlight = 1
-"}}}
 "}}}
 
 " Vim Options: {{{
