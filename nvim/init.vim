@@ -24,6 +24,7 @@ Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } "Dark powered asyn
 Plug 'carlitux/deoplete-ternjs'
 Plug 'deoplete-plugins/deoplete-jedi' "deoplete.nvim source for Python.
 Plug 'deoplete-plugins/deoplete-clang' "deoplete.nvim source for C/C++/Obj-C/Obj-C++ with clang-python3.
+Plug 'Shougo/neoinclude.vim'
 
 Plug 'pangloss/vim-javascript' "JavaScript bundle for vim, this bundle provides syntax highlighting and improved indentation.
 Plug 'maxmellon/vim-jsx-pretty' "The React syntax highlighting and indenting plugin for vim.
@@ -110,11 +111,34 @@ let g:lightline.tabline = {
 
 let g:lightline.tabline.subseparator = { 'left': '', 'right': '' }
 
-
-
 function! LightlineReadonly()
     return &readonly && &filetype !=# 'help' ? 'RO' : ''
 endfunction
+
+function! LightlineTabFilename(n) "{{{
+  let n = tabpagenr()
+  let buflist = tabpagebuflist(n)
+  let winnr = tabpagewinnr(n)
+  let bufnum = buflist[winnr - 1]
+  let bufname = expand('#'.bufnum.':t')
+  let buffullname = expand('#'.bufnum.':p')
+  let buffullnames = []
+  let bufnames = []
+  for i in range(1, tabpagenr('$'))
+    if i != n
+      let num = tabpagebuflist(i)[tabpagewinnr(i) - 1]
+      call add(buffullnames, expand('#' . num . ':p'))
+      call add(bufnames, expand('#' . num . ':t'))
+    endif
+  endfor
+  let i = index(bufnames, bufname)
+  if strlen(bufname) && i >= 0 && buffullnames[i] != buffullname
+    return substitute(buffullname, '.*/\([^/]\+/\)', '\1', '')
+  else
+    return strlen(bufname) ? bufname : '[No Name]'
+  endif
+endfunction
+"}}}
 " }}}
 
 " jiangmiao/auto-pairs {{{
@@ -157,7 +181,7 @@ let g:neomake_javascript_enabled_makers = ['eslint']
 " arakashic/chromatica.nvim {{{
 let g:chromatica#enable_at_startup = 1
 let g:chromatica#responsive_mode = 1
-let g:chromatica#enable_log = 1
+let g:chromatica#enable_log = 0
 "}}}
 
 " deoplete-plugins/deoplete-clang {{{
@@ -216,7 +240,7 @@ let g:netrw_liststyle = 3
 let g:netrw_banner = 0
 let g:netrw_browse_split = 4
 let g:netrw_altv = 1
-let g:netrw_winsize = 20
+let g:netrw_winsize = 16
 " }}}
 
 " Autocmds: {{{
@@ -249,13 +273,17 @@ augroup filetype_py
     autocmd FileType python call SemshiHighlights()
 augroup END
 
+augroup filetype_netrw
+    autocmd!
+    autocmd FileType netrw setlocal bufhidden=delete
+augroup END
+
 augroup filetype_all
     autocmd!
     autocmd BufNewFile,BufRead * onoremap ah :<c-u>execute "normal! ?^[=-][=-]\\+\r:nohlsearch\rg_vk0"<cr>
     autocmd BufNewFile,BufRead * onoremap ih :<c-u>execute "normal! ?^[=-][=-]\\+\r:nohlsearch\rg_kvg_"<cr>
     autocmd BufNewFile,BufRead * onoremap in@ :<c-u>execute "normal! /@\r:nohlsearch\r1hvB"<cr>
     autocmd BufWritePost init.vim source %
-    autocmd FileType netrw setlocal bufhidden=delete
 augroup END
 
 " }}}
@@ -340,6 +368,9 @@ nnoremap <silent> <leader>' :%s/'/"/g<cr>:nohlsearch<cr>
 
 "get syntax highlight group of character under the cursor (Functions)
 nnoremap <silent> <leader>h :call SynGroup()<cr>
+
+"open netrw in a vertical split
+nnoremap <silent> <leader>x :Vexplore<cr>
 " }}}
 
 " Status Line: {{{
