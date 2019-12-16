@@ -13,7 +13,12 @@ launch_bar() {
     [ -z "$name" ] && return 1
     [ -z "$height" ] && height=$default_height
 
-    HEIGHT="$height" DPI=$(get-dpi "$monitor") MONITOR="$monitor" polybar --reload "$name" &
+    HEIGHT="$height"\
+    DPI=$(get-dpi "$monitor")\
+    MONITOR="$monitor"\
+    BATTERY=BAT0 BATTERY_ADAPTER=AC\
+    WIRELESS_INTERFACE=wlp6s0\
+    polybar --reload "$name" &
 }
 
 if type xrandr; then

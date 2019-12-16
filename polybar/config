@@ -21,6 +21,12 @@ height = ${env:HEIGHT:}
 dpi = ${env:DPI:}
 monitor = ${env:MONITOR:}
 
+[general]
+wired_interface = ${env:WIRED_INTERFACE}
+wireless_interface = ${env:WIRELESS_INTERFACE:}
+battery = ${env:BATTERY:}
+battery_adapter = ${env:BATTERY_ADAPTER:}
+
 # }}}
 
 # {{{ Bars
@@ -191,8 +197,8 @@ type = internal/battery
 
 full-at = 99
 
-battery = BAT1
-adapter = AC
+battery = ${general.battery}
+adapter = ${general.battery_adapter}
 
 poll-interval = 1
 
@@ -303,7 +309,7 @@ label-foreground = ${colors.secondary}
 # {{{ Module wireless-network
 [module/wireless-network]
 type = internal/network
-interface = wlp2s0
+interface = ${general.wireless_interface}
 interval = 3
 
 format-connected = <label-connected>
@@ -322,7 +328,7 @@ label-connected =  %upspeed:6%  %downspeed:6% 泌 %local_ip% 直 %essid%
 # {{{ Module wired-network
 [module/wired-network]
 type = internal/network
-interface = enp11s0
+interface = ${general.wired_interface}
 interval = 3
 
 format-connected = <label-connected>
