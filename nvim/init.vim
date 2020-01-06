@@ -5,7 +5,7 @@ filetype plugin on
 call plug#begin(stdpath('data') . '/plugged')
 Plug 'canciller/vim-dracula' "A dark theme for Vim.
 
-Plug 'itchyny/lightline.vim' "A light and configurable statusline/tabline plugin for Vim.
+"Plug 'itchyny/lightline.vim' "A light and configurable statusline/tabline plugin for Vim.
 
 Plug 'tpope/vim-vinegar'
 
@@ -103,6 +103,10 @@ let g:lightline = {
             \}
 
 let g:lightline.subseparator = { 'left': '', 'right': '' }
+
+let g:lightline.tab = {
+    \ 'active': [ 'tabnum', 'filename', 'modified' ],
+    \ 'inactive': [ 'tabnum', 'filename', 'modified' ] }
 
 let g:lightline.tabline = {
             \'left': [ [ 'tabs' ] ],
@@ -388,7 +392,7 @@ function! Mode()
     elseif mode ==# "t"  | return "TERMINAL"
     else                 | return l:mode
     endif
-endfunc 
+endfunc
 
 function! Modified()
     let l:current_buff = winbufnr(winnr())
@@ -417,6 +421,72 @@ augroup status_line
     set statusline+=\ %{&fileencoding}\ 
     set statusline+=\ %l:%L\ 
 augroup END
+" }}}
+
+" Tab Line: {{{
+function TabLine()
+    let s = ''
+    for i in range(tabpagenr('$'))
+        " select the highlighting
+        if i + 1 == tabpagenr()
+            let s .= '%#TabLineSel#'
+        else
+            let s .= '%#TabLine#'
+        endif
+
+        " set the tab page number (for mouse clicks)
+        let s .= '%' . (i + 1) . 'T'
+
+        " the label is made by TabLabel()
+        let s .= ' %{TabLabel(' . (i + 1) . ')} '
+    endfor
+
+    " after the last tab fill with TabLineFill and reset tab page nr
+    let s .= '%#TabLineFill#%T'
+
+    return s
+endfunction
+
+function TabLabel(n)
+    let buflist = tabpagebuflist(a:n)
+    let winnr = tabpagewinnr(a:n)
+    let name = bufname(buflist[winnr - 1])
+    let mod = getbufvar(buflist[winnr - 1], '&mod')
+
+    if name == ''
+        let name = '[No Name]'
+    else
+        let m = matchstrpos(name, $HOME)
+        if m[1] == 0
+            let name = '~' . name[m[2]:]
+        endif
+
+        let path = split(name, '/')
+        let newPath = []
+
+        let size = len(path)
+        if size > 1
+            for i in range(size - 1)
+                let c = path[i][0]
+                if c == '.'
+                    let c = path[i][0:1]
+                endif
+                call add(newPath, c)
+            endfor
+
+            let name = join(newPath, '/')
+            let name .= '/' . path[size - 1]
+        endif
+    endif
+
+    let name = a:n . ' ' . name
+    if mod
+        let name .= ' +'
+    endif
+    return name
+endfunction
+
+set tabline=%!TabLine()
 " }}}
 
 " Functions: {{{
