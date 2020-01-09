@@ -5,7 +5,7 @@ filetype plugin on
 call plug#begin(stdpath('data') . '/plugged')
 Plug 'canciller/vim-dracula' "A dark theme for Vim.
 
-"Plug 'itchyny/lightline.vim' "A light and configurable statusline/tabline plugin for Vim.
+Plug 'itchyny/lightline.vim' "A light and configurable statusline/tabline plugin for Vim.
 
 Plug 'tpope/vim-vinegar'
 
