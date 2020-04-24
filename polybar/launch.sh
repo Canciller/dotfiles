@@ -3,6 +3,8 @@
 killall -q polybar
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
+source "$HOME/.polybar_env"
+
 default_height=35
 
 launch_bar() {
@@ -16,8 +18,8 @@ launch_bar() {
     HEIGHT="$height"\
     DPI=$(get-dpi "$monitor")\
     MONITOR="$monitor"\
-    BATTERY=BAT0 BATTERY_ADAPTER=AC\
-    WIRELESS_INTERFACE=wlp6s0\
+    BATTERY=$BATTERY BATTERY_ADAPTER=$BATTERY_ADAPTER\
+    WIRED_INTERFACE=$WIRED_INTERFACE\
     polybar --reload "$name" &
 }
 
