@@ -1,7 +1,8 @@
 #!/bin/bash
 
 function get_monitor {
-	i3-msg -t get_workspaces | jq '.[] | select(.focused == true)' | jq '.output' -r
+	#i3-msg -t get_workspaces | jq '.[] | select(.focused == true)' | jq '.output' -r
+    xrandr | grep -w connected | awk '{print $1;}'
 }
 
 function get_dpi {
