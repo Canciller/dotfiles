@@ -1,0 +1,10 @@
+@import "shared/option-menu.rasi"
+
+window {
+    padding: @option-5-window-padding;
+}
+
+listview {
+    spacing: @option-5-listview-spacing;
+    lines: 5;
+}

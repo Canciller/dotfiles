@@ -26,7 +26,7 @@ window {
 
 mainbox {
    background-color: @background;
-   expand: true;
+   //expand: true;
    padding: @mainbox-padding;
 }
 
