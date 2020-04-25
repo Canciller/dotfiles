@@ -1,0 +1,3 @@
+#!/bin/bash
+
+rofi-launch -theme themes/launchers/launchpad.rasi -show drun

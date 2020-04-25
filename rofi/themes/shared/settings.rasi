@@ -1,6 +1,0 @@
-@import "colorschemes/dark-purple.rasi"
-@import "resolutions/3840x2160.rasi"
-
-window {
-    fullscreen: true;
-}

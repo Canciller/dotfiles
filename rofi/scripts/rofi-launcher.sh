@@ -1,0 +1,1 @@
+./rofi-launch.sh -theme themes/launchers/launchpad.rasi -show drun

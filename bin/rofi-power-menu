@@ -1,0 +1,3 @@
+#!/bin/bash
+
+~/.config/rofi/scripts/rofi-power-menu.sh

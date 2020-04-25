@@ -1,0 +1,16 @@
+configuration {
+    show-icons: false;
+}
+
+@import "./colors.rasi"
+
+* {
+    icon-font: "Feather 40";
+
+    listview-spacing: 10px;
+
+    window-width: 7%;
+    window-padding: 10px;
+
+    element-padding: 74px 0px 59px 75px;
+}
