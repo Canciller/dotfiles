@@ -1,9 +1,6 @@
 #! /bin/sh
 [ -f "$HOME/.zshenv" ] && source "$HOME/.zshenv"
 
-export GDK_SCALE=1
-export QT_AUTO_SCREEN_SCALE_FACTOR=1
-
 # Set Yeti Stereo Microphone, Mic volume to 0%
 yeti_card_no=$(get-sound-card-number Yeti Stereo Microphone)
 if [ -n "$yeti_card_no" ]; then
