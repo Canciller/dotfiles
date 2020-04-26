@@ -3,8 +3,6 @@
 killall -q polybar
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
-source "$HOME/.polybar_env"
-
 default_height=35
 
 launch_bar() {
@@ -15,12 +13,14 @@ launch_bar() {
     [ -z "$name" ] && return 1
     [ -z "$height" ] && height=$default_height
 
-    HEIGHT="$height"\
-    DPI=$(get-dpi "$monitor")\
-    MONITOR="$monitor"\
-    BATTERY=$BATTERY BATTERY_ADAPTER=$BATTERY_ADAPTER\
-    WIRED_INTERFACE=$WIRED_INTERFACE\
-    polybar --reload "$name" &
+    set -a
+        source "$HOME/.polybar.conf"
+    set +a
+
+    height="$height"\
+    dpi=$(get-dpi "$monitor")\
+    monitor="$monitor"\
+    polybar --reload "$name" --config="$HOME/.config/polybar/config.ini"&
 }
 
 if type xrandr; then

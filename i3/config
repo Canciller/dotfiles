@@ -28,7 +28,7 @@ workspace $ws10 output $primary-monitor
 
 set $path-scripts $HOME/.config/i3/scripts
 
-set $font Open Sans 10
+set $font SF Pro Display 13
 
 set $wallpaper-background-color "#21222c"
 
@@ -194,8 +194,9 @@ bindsym XF86AudioPrev exec playerctl previous
 exec --no-startup-id flameshot
 exec --no-startup-id xfce4-power-manager
 
-exec_always --no-startup-id compton --config $HOME/.config/compton/compton.conf -b
+exec_always picom -b --config ~/.picom.conf
 exec_always --no-startup-id hsetroot -solid $wallpaper-background-color
+#exec_always --no-startup-id feh --bg-scale ~/Downloads/wallpaper4.jpg
 exec_always --no-startup-id $path-scripts/pulseaudio-start.sh; $HOME/.config/polybar/launch.sh
 
 # }}}
@@ -279,11 +280,11 @@ bindsym $mod+g mode "Gaps"
 font pango:$font
 
 # i3 gaps
-gaps inner 5
+gaps inner 12
 #smart_gaps on
 
 # borders
-default_border pixel 3
+default_border pixel 5
 #smart_borders on
 
 # class                   border                  background              foreground  indicator               child_border
@@ -305,10 +306,9 @@ client.background         $background-color
 # {{{ Application Settings
 
 #assign [class="(Google-chrome|Firefox)"] $ws2
-#assign [class="Steam"] $ws3
-assign [class="discord"] $ws3
+assign [class="discord"] $ws4
 
-for_window [class="(Gpick|Lxappearance|keepassxc|qBittorrent|Nvidia-settings|Arandr)"] floating enable border normal
+for_window [class="(Pavucontrol|Gpick|Lxappearance|keepassxc|qBittorrent|Nvidia-settings|Arandr)"] floating enable border normal 5
 
 # Steam Friends List
 for_window [title="(Friends List|Steam - News*)"] floating enable border normal

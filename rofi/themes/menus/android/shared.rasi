@@ -7,7 +7,7 @@
 }
 
 window {
-    //background-color: @background;
+    background-color: @background;
     width: @window-width;
     padding: @window-padding;
     anchor: east;

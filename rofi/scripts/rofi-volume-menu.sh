@@ -1,18 +1,13 @@
 #!/bin/bash
 
-sink="$(pulseaudio-get-running-sink)"
-[ -z "$sink" ] && exit 1
-
 rofi_command="rofi-launch -theme themes/menus/android/three.rasi"
 
-MUTED="$(pactl list sinks | grep "Sink #$sink" -A 10 | grep "Mute" | awk '{print $2}')"
+MUTED="$(pamixer --get-mute)"
 
 active="-a 1"
-if [[ $MUTED == *"yes"* ]]; then
+if [[ $MUTED == *"true"* ]]; then
     active="-u 1"
 fi
-echo $MUTED
-echo $active
 
 ICON_UP=""
 ICON_DOWN=""
@@ -24,12 +19,12 @@ chosen="$(echo -e "$options" | $rofi_command -dmenu $active -selected-row 1)"
 
 case $chosen in
     $ICON_UP)
-    pactl set-sink-volume $sink +5%
+    pamixer -i 5
     ;;
     $ICON_DOWN)
-    pactl set-sink-volume $sink -5%
+    pamixer -d 5
     ;;
     $ICON_MUTED)
-    pactl set-sink-mute $sink toggle
+    pamixer -t
     ;;
 esac
