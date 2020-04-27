@@ -11,8 +11,8 @@ configuration {
 @import "./colors.rasi"
 
 * {
-    icon-font: "SauceCodePro Nerd Font 15";
-    text-font: "Noto Sans 14";
+    icon-font: "SauceCodePro Nerd Font 12";
+    text-font: "SauceCodePro Nerd Font 12";
 }
 
 * {
@@ -22,10 +22,20 @@ configuration {
 }
 
 window {
-    transparency: "real";
-    background-color: @background;
-    fullscreen: true;
-    padding: 12%;
+    transparency:                   "real";
+    background-color:               @background;
+    text-color:                     @foreground;
+    border:                  		0px;
+    border-radius:                  5px;
+    border-color:                  	@border;
+    height:                         55%;
+    width:                          42%;
+    location: north west;
+    y-offset: 60px;
+    x-offset: 5px;
+    padding: 50px;
+    border-radius: 6px;
+    border-color: @accent;
 }
 
 mainbox {
@@ -35,11 +45,11 @@ mainbox {
 
 inputbar {
     children: [prompt, entry];
-    margin: 0px 25% 100px 25%;
+    margin: 0 0 50px 0;
     padding: 25px;
     border: 1px;
     border-radius: 6px;
-    border-color: @foreground;
+    border-color: @background-light;
 }
 
 prompt {
@@ -54,7 +64,7 @@ entry {
 }
 
 listview {
-    columns: 7;
+    columns: 5;
     spacing: 10px;
     cycle: false;
     dynamic: true;
@@ -64,11 +74,11 @@ listview {
 element {
   orientation: vertical;
   border-radius: 10px;
-  padding: 50px 50px 50px 50px;
+  padding: 30px;
 }
 
 element-icon {
-    size: 180px;
+    size: 120px;
     margin: 0 0 10px 0;
 }
 
