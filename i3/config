@@ -36,7 +36,7 @@ set $background-color "#1a1b23"
 set $border-color "#4c5067"
 set $font-color "#f8f8f2"
 set $unfocused-border-color "#282a36"
-set $indicator-color "#282a36"
+set $indicator-color "#bd93f9"
 set $urgent-color "#4c5067"
 
 # Use Mouse+$mod to drag floating windows to their wanted position
