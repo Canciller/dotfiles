@@ -29,14 +29,13 @@ listview {
 }
 
 element {
-    border: 0;
     border-radius: 12px;
     background-color: @background-light;
     padding: @element-padding;
 }
 
 element.selected {
-    text-color: @background;
+    text-color: @foreground-dark;
     background-color: @accent;
 }
 

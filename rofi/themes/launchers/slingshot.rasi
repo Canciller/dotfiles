@@ -25,22 +25,17 @@ window {
     transparency:                   "real";
     background-color:               @background;
     text-color:                     @foreground;
-    border:                  		0px;
-    border-radius:                  5px;
-    border-color:                  	@border;
     height:                         55%;
     width:                          42%;
     location: north west;
     y-offset: 60px;
     x-offset: 5px;
     padding: 50px;
-    border-radius: 6px;
-    border-color: @accent;
+    border-radius: 5px;
 }
 
 mainbox {
   children: [ inputbar, listview ];
-  background-color: transparent;
 }
 
 inputbar {
@@ -49,18 +44,16 @@ inputbar {
     padding: 25px;
     border: 1px;
     border-radius: 6px;
-    border-color: @background-light;
+    background-color: @background-dark;
 }
 
 prompt {
     font: @icon-font;
-    background-color: inherit;
     padding: 0px 20px 0px 0px;
 }
 
 entry {
     placeholder: "Search";
-    background-color: inherit;
 }
 
 listview {
@@ -89,5 +82,5 @@ element-text {
 }
 
 element.selected {
-    background-color: @background-light;
+    background-color: @background-dark;
 }

@@ -28,7 +28,7 @@ workspace $ws10 output $primary-monitor
 
 set $path-scripts $HOME/.config/i3/scripts
 
-set $font SF Pro Display 13
+set $font SauceCodePro Nerd Font 14
 
 set $wallpaper-background-color "#21222c"
 
@@ -194,7 +194,7 @@ bindsym XF86AudioPrev exec playerctl previous
 exec --no-startup-id flameshot
 exec --no-startup-id xfce4-power-manager
 
-exec_always picom -b --config ~/.picom.conf
+exec_always --no-startup-id compton -b
 exec_always --no-startup-id hsetroot -solid $wallpaper-background-color
 exec_always --no-startup-id feh --bg-scale ~/Downloads/wallpaper1.jpg
 exec_always --no-startup-id $path-scripts/pulseaudio-start.sh; $HOME/.config/polybar/launch.sh
@@ -280,12 +280,15 @@ bindsym $mod+g mode "Gaps"
 font pango:$font
 
 # i3 gaps
-gaps inner 12
+gaps inner 16
 #smart_gaps on
 
 # borders
-default_border pixel 5
+default_border normal 0
+default_floating_border normal 8
 #smart_borders on
+
+title_align center
 
 # class                   border                  background              foreground  indicator               child_border
 

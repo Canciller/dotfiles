@@ -10,7 +10,7 @@ dotfiles_list=(
     xfce4/terminal/terminalrc::copy
     fonts:"$HOME/.local/share/fonts"
     qutebrowser
-    compton
+    compton/compton.conf:"$HOME/.compton.conf"
     git/gitconfig:"$HOME/.gitconfig"
     xorg/xprofile:"$HOME/.xprofile"
     bin:"$HOME/.local/bin"
