@@ -309,7 +309,7 @@ client.background         $background-color
 # {{{ Application Settings
 
 #assign [class="(Google-chrome|Firefox)"] $ws2
-assign [class="discord"] $ws4
+assign [class="discord"] $ws9
 
 for_window [class="(Pavucontrol|Gpick|Lxappearance|keepassxc|qBittorrent|Nvidia-settings|Arandr)"] floating enable border normal 5
 
