@@ -35,7 +35,7 @@ endef
 
 bin: ${PWD}/bin/*
 	-@for file in $(call ignore, $^) ; do\
-		echo ln -sv $${file} ${BINDIR}/$$(basename $${file});\
+		ln -sv $${file} ${BINDIR}/$$(basename $${file});\
 	done
 
 fonts: ${PWD}/fonts/*
