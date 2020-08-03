@@ -1,0 +1,95 @@
+{
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                ">"
+            ],
+            "after": [
+                ">",
+                ">"
+            ]
+        },
+        {
+            "before": [
+                "<"
+            ],
+            "after": [
+                "<",
+                "<"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "."
+            ],
+            "after": [
+                "`",
+                "m"
+            ]
+        },
+        {
+            "before": [
+                "Z"
+            ],
+            "after": [
+                ":",
+                "q",
+                "<cr>"
+            ]
+        }
+    ],
+    "vim.insertModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "j",
+                "k"
+            ],
+            "after": [
+                "<esc>"
+            ]
+        }
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                ">"
+            ],
+            "after": [
+                ">",
+                "g",
+                "v"
+            ]
+        },
+        {
+            "before": [
+                "<"
+            ],
+            "after": [
+                "<",
+                "g",
+                "v"
+            ]
+        }
+    ],
+    "vim.leader": ",",
+    "workbench.editor.enablePreview": true,
+    "workbench.colorTheme": "Dracula",
+    "editor.fontFamily": "'SauceCodePro Nerd Font Mono', monospace",
+    "window.zoomLevel": 1,
+    "editor.tabSize": 2,
+    "terminal.integrated.fontSize": 16,
+    "files.associations": {
+        "*.rasi": "css",
+        "*.xml": "html"
+    },
+    "files.autoSave": "off",
+    "terminal.integrated.rendererType": "dom",
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": true,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "npm.packageManager": "yarn",
+    "open-in-browser.default": "firefox",
+    "C_Cpp.updateChannel": "Insiders",
+    "cmake.configureOnOpen": true,
+}

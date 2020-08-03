@@ -1,0 +1,51 @@
+// Place your key bindings in this file to override the defaults
+[
+    {
+        "key": "ctrl+right",
+        "command": "workbench.action.nextEditorInGroup"
+    },
+    {
+        "key": "ctrl+left",
+        "command": "workbench.action.previousEditorInGroup"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "workbench.action.navigateLeft",
+        //"when": "explorerViewletFocus || editorFocus"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "workbench.action.navigateRight",
+        "when": "explorerViewletFocus || editorFocus"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "workbench.action.navigateUp",
+        //"when": "explorerViewletFocus || editorFocus"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "workbench.action.navigateDown",
+        //"when": "explorerViewletFocus || editorFocus"
+    },
+    {
+        "key": "s",
+        "command": "explorer.openToSide",
+        "when": "explorerViewletFocus && explorerViewletVisible && !inputFocus"
+    },
+    {
+        "key": "ctrl+enter",
+        "command": "-explorer.openToSide",
+        "when": "explorerViewletFocus && explorerViewletVisible && !inputFocus"
+    },
+    {
+        "key": "n",
+        "command": "explorer.newFile",
+        "when": "explorerViewletFocus && explorerViewletVisible && !inputFocus"
+    },
+    {
+        "key": "m",
+        "command": "explorer.newFolder",
+        "when": "explorerViewletFocus && explorerViewletVisible && !inputFocus"
+    }
+]
