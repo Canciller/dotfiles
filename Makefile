@@ -15,6 +15,10 @@ ROFIDIR=${CONFIGDIR}/rofi
 NVIMDIR=${CONFIGDIR}/nvim
 VSCODEDIR=${CONFIGDIR}/Code/User
 
+define ignore
+	$(filter-out %.ignore,$(1))
+endef
+
 .PHONY: bin\
 		fonts\
 		git\
@@ -27,7 +31,7 @@ VSCODEDIR=${CONFIGDIR}/Code/User
 		zsh\
 		vscode
 
-all: bin\
+install: bin\
 	 fonts\
 	 git\
 	 i3\
@@ -38,9 +42,7 @@ all: bin\
 	 zsh\
 	 vscode
 
-define ignore
-	$(filter-out %.ignore,$(1))
-endef
+uninstall: uninstall-vscode
 
 bin: ${PWD}/bin/*
 	-@for file in $(call ignore, $^) ; do\
@@ -95,3 +97,9 @@ vscode: ${PWD}/vscode
 	
 	-@ln -sv $</settings.json  ${VSCODEDIR}/settings.json;\
 	ln -sv $</keybindings.json ${VSCODEDIR}/keybindings.json
+
+uninstall-vscode:
+	mv ${VSCODEDIR}/settings.json ${VSCODEDIR}/settings.json.old
+	mv ${VSCODEDIR}/keybindings.json ${VSCODEDIR}/keybindings.json.old
+	rm -f ${VSCODEDIR}/settings.json
+	rm -f ${VSCODEDIR}/keybindings.json
