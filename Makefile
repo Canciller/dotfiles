@@ -23,6 +23,7 @@ endef
 		fonts\
 		git\
 		i3\
+		i3-wallpapers\
 		nvim\
 		polybar\
 		rofi\
@@ -35,6 +36,7 @@ install: bin\
 	 fonts\
 	 git\
 	 i3\
+	 i3-wallpapers\
 	 nvim\
 	 polybar\
 	 rofi\
@@ -64,6 +66,12 @@ i3: ${PWD}/i3
 	@echo mkdir -p ${I3DIR}/scripts
 	-@for file in $(call ignore, $(wildcard $</scripts/*)) ; do\
 		echo ln -sv $${file} ${I3DIR}/scripts/$$(basename $${file});\
+	done
+
+i3-wallpapers: ${PWD}/i3
+	mkdir -p ${I3DIR}/wallpapers
+	-@for file in $(call ignore, $(wildcard $</wallpapers/*)) ; do\
+		ln -sv $${file} ${I3DIR}/wallpapers/$$(basename $${file});\
 	done
 
 nvim: ${PWD}/nvim
