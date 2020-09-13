@@ -75,14 +75,14 @@ i3-wallpapers: ${PWD}/i3
 	done
 
 nvim: ${PWD}/nvim
-	@echo mkdir -p ${NVIMDIR}
-	@echo ln -sv $</init.vim ${NVIMDIR}/init.vim
+	mkdir -p ${NVIMDIR}
+	ln -sv $</init.vim ${NVIMDIR}/init.vim
 
-	@echo mkdir -p ${NVIMDIR}/syntax
-	@echo ln -sv $</syntax/c.vim ${NVIMDIR}/syntax/c.vim
+	mkdir -p ${NVIMDIR}/syntax
+	ln -sv $</syntax/c.vim ${NVIMDIR}/syntax/c.vim
 
-	@echo mkdir -p ${NVIMDIR}/after/syntax
-	@echo ln -sv $</after/syntax/javascript.vim ${NVIMDIR}/after/syntax/javascript.vim
+	mkdir -p ${NVIMDIR}/after/syntax
+	ln -sv $</after/syntax/javascript.vim ${NVIMDIR}/after/syntax/javascript.vim
 
 polybar:
 	@echo polybar

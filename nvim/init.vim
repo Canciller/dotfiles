@@ -201,8 +201,8 @@ syntax on
 let mapleader = ","
 let maplocalleader = "\\"
 
-"colorscheme dracula
-colorscheme transparent
+colorscheme dracula
+"colorscheme transparent
 
 set backupcopy=yes
 
