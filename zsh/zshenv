@@ -15,3 +15,9 @@ export PATH
 
 export GDK_SCALE=1
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
+
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
