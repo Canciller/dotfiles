@@ -91,7 +91,7 @@ polybar: ${PWD}/polybar
 	ln -sv $</launch.sh ${POLYBARDIR}/launch.sh
 	ln -sv $</themes ${POLYBARDIR}/themes
 
-rofi:
+rofi: ${PWD}/rofi
 	mkdir -p ${ROFIDIR}
 	
 	ln -sv $</config.rasi ${ROFIDIR}/config.rasi
