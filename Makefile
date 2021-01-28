@@ -92,7 +92,11 @@ polybar: ${PWD}/polybar
 	ln -sv $</themes ${POLYBARDIR}/themes
 
 rofi:
-	@echo rofi
+	mkdir -p ${ROFIDIR}
+	
+	ln -sv $</config.rasi ${ROFIDIR}/config.rasi
+	ln -sv $</scripts ${ROFIDIR}/scripts
+	ln -sv $</themes ${ROFIDIR}/themes
 
 xorg: ${PWD}/xorg/*
 	-@for file in $(call ignore, $^) ; do\
