@@ -84,8 +84,12 @@ nvim: ${PWD}/nvim
 	mkdir -p ${NVIMDIR}/after/syntax
 	ln -sv $</after/syntax/javascript.vim ${NVIMDIR}/after/syntax/javascript.vim
 
-polybar:
-	@echo polybar
+polybar: ${PWD}/polybar
+	mkdir -p ${POLYBARDIR}
+	
+	ln -sv $</config.ini ${POLYBARDIR}/config.ini
+	ln -sv $</launch.sh ${POLYBARDIR}/launch.sh
+	ln -sv $</themes ${POLYBARDIR}/themes
 
 rofi:
 	@echo rofi
