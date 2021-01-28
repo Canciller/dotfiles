@@ -60,12 +60,12 @@ git: ${PWD}/git
 	@ln -sv $</gitconfig ${HOME}/.gitconfig
 
 i3: ${PWD}/i3
-	@echo mkdir -p ${I3DIR}
-	@echo ln -sv $</config ${I3DIR}/config
+	mkdir -p ${I3DIR}
+	ln -sv $</config ${I3DIR}/config
 
-	@echo mkdir -p ${I3DIR}/scripts
+	mkdir -p ${I3DIR}/scripts
 	-@for file in $(call ignore, $(wildcard $</scripts/*)) ; do\
-		echo ln -sv $${file} ${I3DIR}/scripts/$$(basename $${file});\
+		ln -sv $${file} ${I3DIR}/scripts/$$(basename $${file});\
 	done
 
 i3-wallpapers: ${PWD}/i3
