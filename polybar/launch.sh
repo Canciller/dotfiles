@@ -14,7 +14,7 @@ launch_bar() {
     [ -z "$height" ] && height=$default_height
 
     set -a
-        source "$HOME/.polybar.conf"
+    	[ -f "$HOME/.polybar.conf" ] && source "$HOME/.polybar.conf"
     set +a
 
     height="$height"\
