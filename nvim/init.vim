@@ -204,8 +204,6 @@ let maplocalleader = "\\"
 colorscheme dracula
 "colorscheme transparent
 
-set notermguicolors
-
 set backupcopy=yes
 
 set noshowmode
@@ -215,7 +213,7 @@ set splitright
 
 set encoding=utf-8
 
-set termguicolors
+set notermguicolors
 set cursorline
 
 set number
