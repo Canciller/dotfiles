@@ -204,6 +204,8 @@ let maplocalleader = "\\"
 colorscheme dracula
 "colorscheme transparent
 
+set notermguicolors
+
 set backupcopy=yes
 
 set noshowmode
