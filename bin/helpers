@@ -15,6 +15,7 @@ function get_dpi {
 	case $MONITOR in
 		*eDP*);;
 		*DP*)DPI=$HIDPI;; # DisplayPort
+		*Virtual*)DPI=$HIDPI;; # VMWare Workstation
 	esac
 
 	echo $DPI
