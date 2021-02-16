@@ -29,6 +29,7 @@ if type xrandr; then
 		case $m in
 			*eDP*);;
 			*DP*) h=54;;
+			*Virtual*) h=54;;
 		esac
 
         launch_bar top $h $m
