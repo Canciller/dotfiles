@@ -11,6 +11,7 @@ $(info $(shell mkdir -p $(OUTDIRS)))
 I3DIR=${CONFIGDIR}/i3
 POLYBARDIR=${CONFIGDIR}/polybar
 ROFIDIR=${CONFIGDIR}/rofi
+COMPTONDIR=${CONFIGDIR}/compton
 
 NVIMDIR=${CONFIGDIR}/nvim
 VSCODEDIR=${CONFIGDIR}/Code/User
@@ -30,7 +31,8 @@ endef
 		xfce4\
 		xorg\
 		zsh\
-		vscode
+		vscode\
+		compton
 
 install: bin\
 	 fonts\
@@ -42,7 +44,8 @@ install: bin\
 	 rofi\
 	 xorg\
 	 zsh\
-	 vscode
+	 vscode\
+	 compton
 
 uninstall: uninstall-vscode
 
@@ -119,3 +122,7 @@ uninstall-vscode:
 	mv ${VSCODEDIR}/keybindings.json ${VSCODEDIR}/keybindings.json.old
 	rm -f ${VSCODEDIR}/settings.json
 	rm -f ${VSCODEDIR}/keybindings.json
+
+compton: ${PWD}/compton
+	mkdir -p ${COMPTONDIR}
+	ln -sv $</compton.conf ${COMPTONDIR}/compton.conf
