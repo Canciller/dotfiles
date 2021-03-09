@@ -54,11 +54,11 @@
     ],
     "vim.leader": ",",
     "editor.tabSize": 2,
-    "workbench.colorTheme": "Dracula",
     "editor.fontFamily": "'FiraCode Nerd Font Mono', monospace",
-    "terminal.integrated.fontSize": 16,
-    "editor.fontSize": 13,
-    "window.zoomLevel": 1,
+    "editor.fontLigatures": true,
+    "editor.fontSize": 14,
+    "terminal.integrated.fontSize": 14,
+    "window.zoomLevel": 2,
     "editor.codeActionsOnSave": {
         "source.fixAll": true
     },
@@ -72,7 +72,8 @@
     "files.autoSave": "off",
     "terminal.integrated.rendererType": "dom",
     "explorer.confirmDragAndDrop": false,
-    "explorer.confirmDelete": true,
-    "open-in-browser.default": "firefox",
-    "cmake.configureOnOpen": true
+    "explorer.confirmDelete": false,
+    "cmake.configureOnOpen": true,
+    "C_Cpp.updateChannel": "Insiders",
+    "workbench.colorTheme": "Dracula"
 }
