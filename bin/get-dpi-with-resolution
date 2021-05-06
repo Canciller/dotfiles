@@ -1,0 +1,5 @@
+#!/bin/bash
+
+source helpers
+
+get_dpi_with_resolution
