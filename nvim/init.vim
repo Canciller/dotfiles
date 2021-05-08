@@ -67,7 +67,6 @@ let g:closetag_close_shortcut = '<leader>>'
 
 "  shougu/deoplete {{{
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#auto_complete_delay = 50
 
 let g:deoplete#sources#ternjs#types = 1
 let g:deoplete#sources#ternjs#include_keywords = 1
