@@ -12,5 +12,5 @@ configuration {
     window-width: 7%;
     window-padding: 10px;
 
-    element-padding: 74px 0px 59px 75px;
+    element-padding: 74px 0px 75px 75px;
 }
