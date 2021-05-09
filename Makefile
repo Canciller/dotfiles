@@ -44,10 +44,7 @@ install: bin\
 	 rofi\
 	 xorg\
 	 zsh\
-	 vscode\
 	 compton
-
-uninstall: uninstall-vscode
 
 bin: ${PWD}/bin/*
 	-@for file in $(call ignore, $^) ; do\
@@ -110,18 +107,6 @@ zsh: ${PWD}/zsh/*
 	-@for file in $(call ignore, $^) ; do\
 		ln -sv $${file} ${HOME}/.$$(basename $${file});\
 	done
-
-vscode: ${PWD}/vscode
-	mkdir -p ${VSCODEDIR}
-	
-	-@ln -sv $</settings.json  ${VSCODEDIR}/settings.json;\
-	ln -sv $</keybindings.json ${VSCODEDIR}/keybindings.json
-
-uninstall-vscode:
-	mv ${VSCODEDIR}/settings.json ${VSCODEDIR}/settings.json.old
-	mv ${VSCODEDIR}/keybindings.json ${VSCODEDIR}/keybindings.json.old
-	rm -f ${VSCODEDIR}/settings.json
-	rm -f ${VSCODEDIR}/keybindings.json
 
 compton: ${PWD}/compton
 	mkdir -p ${COMPTONDIR}
