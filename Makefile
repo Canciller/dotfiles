@@ -14,7 +14,6 @@ ROFIDIR=${CONFIGDIR}/rofi
 COMPTONDIR=${CONFIGDIR}/compton
 
 NVIMDIR=${CONFIGDIR}/nvim
-VSCODEDIR=${CONFIGDIR}/Code/User
 
 define ignore
 	$(filter-out %.ignore,$(1))
