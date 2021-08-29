@@ -24,6 +24,7 @@ plugins=(
     python
     npm
     vi-mode
+    zsh-autosuggestions
 )
 
 [ -f "$ZSH/oh-my-zsh.sh" ] && source "$ZSH/oh-my-zsh.sh"
