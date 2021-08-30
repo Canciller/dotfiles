@@ -3,5 +3,5 @@
 @import "./shared.rasi"
 
 window {
-    height: 58.5%;
+    height: 61.5%;
 }

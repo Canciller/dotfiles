@@ -1,8 +1,7 @@
 configuration {
     show-icons: true;
     hide-scrollbar: true;
-    icon-theme: "Papirus";
-    display-drun: "";
+    display-drun: "";
     drun-display-format: "{name}";
     threads: 0;
     scroll-method: 0;
@@ -12,7 +11,7 @@ configuration {
 
 * {
     icon-font: "SauceCodePro Nerd Font 15";
-    text-font: "Noto Sans 14";
+    text-font: "FiraCode Nerd Font 14";
 }
 
 * {
@@ -39,18 +38,10 @@ inputbar {
     padding: 25px;
     border: 1px;
     border-radius: 6px;
-    border-color: @foreground;
-}
-
-prompt {
-    font: @icon-font;
-    background-color: inherit;
-    padding: 0px 20px 0px 0px;
 }
 
 entry {
     placeholder: "Search";
-    background-color: inherit;
 }
 
 listview {

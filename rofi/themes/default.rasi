@@ -16,7 +16,7 @@ configuration {
     global-font: "Open Sans 14";
     textbox-font: "SauceCodePro Nerd Font 12";
  
-    background: rgba(40, 42, 54, 80%);
+    background: rgba(40, 42, 54, 0);
     foreground-selected: #282A36;
     background-selected: #7B809D;
 
@@ -74,7 +74,7 @@ button.selected {
 textbox-prompt-colon {
     expand: false;
     font: @textbox-font;
-    str: "";
+    str: "";
     margin: 0 0.3em 0 0;
 }
 

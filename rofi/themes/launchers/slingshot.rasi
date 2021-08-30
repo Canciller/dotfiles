@@ -11,8 +11,8 @@ configuration {
 @import "./colors.rasi"
 
 * {
-    icon-font: "SauceCodePro Nerd Font 12";
-    text-font: "SauceCodePro Nerd Font 12";
+    icon-font: "SauceCodePro Nerd Font 11";
+    text-font: "FiraCode Nerd Font 11";
 }
 
 * {
@@ -25,10 +25,10 @@ window {
     transparency:                   "real";
     background-color:               @background;
     text-color:                     @foreground;
-    height:                         55%;
+    height:                         56%;
     width:                          42%;
     location: north west;
-    y-offset: 60px;
+    y-offset: 65px;
     x-offset: 5px;
     padding: 50px;
     border-radius: 5px;
