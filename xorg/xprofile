@@ -1,11 +1,7 @@
 #! /bin/sh
-[ -f "$HOME/.zshenv" ] && source "$HOME/.zshenv"
+xrdb -merge ~/.Xresources
 
-# Set Yeti Stereo Microphone, Mic volume to 0%
-yeti_card_no=$(get-sound-card-number Yeti Stereo Microphone)
-if [ -n "$yeti_card_no" ]; then
-    amixer -c"$yeti_card_no" set Mic 0%
-fi
+[ -f "$HOME/.zshenv" ] && source "$HOME/.zshenv"
 
 # Set xkeyboard layout
 default_xkb_layout=us
