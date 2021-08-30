@@ -3,7 +3,7 @@ set nocompatible
 filetype plugin on
 
 call plug#begin(stdpath('data') . '/plugged')
-Plug 'canciller/vim-dracula' "A dark theme for Vim.
+Plug 'cocopon/iceberg.vim' "Bluish color scheme for Vim and Neovim.
 
 Plug 'itchyny/lightline.vim' "A light and configurable statusline/tabline plugin for Vim.
 
@@ -91,7 +91,7 @@ endfunction
 
 " itchyny/lightline.vim {{{
 let g:lightline = {
-            \ 'colorscheme': 'dracula',
+            \ 'colorscheme': 'iceberg',
             \'active': {
             \   'left': [ ['mode', 'paster'], [ 'gitbranch', 'absolutepath', 'readonly', 'modified' ] ]
             \},
@@ -200,8 +200,7 @@ syntax on
 let mapleader = ","
 let maplocalleader = "\\"
 
-colorscheme dracula
-"colorscheme transparent
+colorscheme iceberg
 
 set backupcopy=yes
 
@@ -212,7 +211,13 @@ set splitright
 
 set encoding=utf-8
 
-set notermguicolors
+if (has('nvim'))
+  let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
+endif
+if (has('termguicolors'))
+  set termguicolors
+endif
+
 set cursorline
 
 set number
