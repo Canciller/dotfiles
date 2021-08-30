@@ -12,7 +12,8 @@ I3DIR=${CONFIGDIR}/i3
 POLYBARDIR=${CONFIGDIR}/polybar
 ROFIDIR=${CONFIGDIR}/rofi
 COMPTONDIR=${CONFIGDIR}/compton
-
+PICOMDIR=${CONFIGDIR}/picom
+ALACRITTYDIR=${CONFIGDIR}/alacritty
 NVIMDIR=${CONFIGDIR}/nvim
 
 define ignore
@@ -23,27 +24,27 @@ endef
 		fonts\
 		git\
 		i3\
-		i3-wallpapers\
+		wallpapers\
 		nvim\
 		polybar\
 		rofi\
-		xfce4\
 		xorg\
 		zsh\
-		vscode\
-		compton
+		picom\
+		alacritty
 
 install: bin\
 	 fonts\
 	 git\
 	 i3\
-	 i3-wallpapers\
+	 wallpapers\
 	 nvim\
 	 polybar\
 	 rofi\
 	 xorg\
 	 zsh\
-	 compton
+	 picom\
+	 alacritty
 
 bin: ${PWD}/bin/*
 	-@for file in $(call ignore, $^) ; do\
@@ -67,7 +68,7 @@ i3: ${PWD}/i3
 		ln -sv $${file} ${I3DIR}/scripts/$$(basename $${file});\
 	done
 
-i3-wallpapers: ${PWD}/i3
+wallpapers: ${PWD}/i3
 	mkdir -p ${I3DIR}/wallpapers
 	-@for file in $(call ignore, $(wildcard $</wallpapers/*)) ; do\
 		ln -sv $${file} ${I3DIR}/wallpapers/$$(basename $${file});\
@@ -107,6 +108,10 @@ zsh: ${PWD}/zsh/*
 		ln -sv $${file} ${HOME}/.$$(basename $${file});\
 	done
 
-compton: ${PWD}/compton
-	mkdir -p ${COMPTONDIR}
-	ln -sv $</compton.conf ${COMPTONDIR}/compton.conf
+picom: ${PWD}/picom
+	mkdir -p ${PICOMDIR}
+	ln -sv $</picom.conf ${PICOMDIR}/picom.conf
+
+alacritty: ${PWD}/alacritty
+	mkdir -p ${ALACRITTYDIR}
+	ln -sv $</alacritty.yml ${ALACRITTYDIR}/alacritty.yml
