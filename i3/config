@@ -29,10 +29,10 @@ workspace $ws10 output $primary-monitor
 set $path-scripts $HOME/.config/i3/scripts
 set $path-wallpapers $HOME/.config/i3/wallpapers
 
-set $font SauceCodePro Nerd Font 14
+set $font FiraCode Nerd Font 10
 
 set $wallpaper-background-color "#21222c"
-set $wallpaper Delorean.jpg
+set $wallpaper Abstract.jpg
 
 set $background-color "#1a1b23"
 set $border-color "#4c5067"
@@ -55,7 +55,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
+bindsym $mod+Return exec --no-startup-id alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -196,7 +196,7 @@ bindsym XF86AudioPrev exec playerctl previous
 exec --no-startup-id flameshot
 exec --no-startup-id xfce4-power-manager
 
-exec_always --no-startup-id killall compton; compton -b --config $HOME/.config/compton/compton.conf
+exec_always --no-startup-id killall picom; picom -b --experimental-backends
 exec_always --no-startup-id hsetroot -solid $wallpaper-background-color
 exec_always --no-startup-id feh --bg-scale $path-wallpapers/$wallpaper
 exec_always --no-startup-id $path-scripts/pulseaudio-start.sh; $HOME/.config/polybar/launch.sh
@@ -282,11 +282,11 @@ bindsym $mod+g mode "Gaps"
 font pango:$font
 
 # i3 gaps
-gaps inner 16
+gaps inner 8
 #smart_gaps on
 
 # borders
-default_border normal 0
+default_border pixel 0
 default_floating_border normal 8
 #smart_borders on
 
@@ -310,8 +310,8 @@ client.background         $background-color
 
 # {{{ Application Settings
 
-#assign [class="(Google-chrome|Firefox)"] $ws2
-assign [class="discord"] $ws9
+assign [class="(Google-chrome|Firefox)"] $ws2
+assign [class="discord"] $ws4
 
 for_window [class="(Pavucontrol|Gpick|Lxappearance|keepassxc|qBittorrent|Nvidia-settings|Arandr)"] floating enable border normal 5
 
