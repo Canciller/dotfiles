@@ -28,8 +28,8 @@ if type xrandr; then
 		h=$default_height
 		case $m in
 			*eDP*);;
-			*DP*) h=54;;
-			*Virtual*) h=54;;
+			*DP*) h=60;;
+			*Virtual*) h=60;;
 		esac
 
         launch_bar top $h $m
