@@ -1,8 +1,7 @@
 configuration {
     show-icons: true;
     hide-scrollbar: true;
-    icon-theme: "Papirus";
-    display-drun: "";
+    display-drun: "";
     drun-display-format: "{name}";
     threads: 0;
     scroll-method: 0;
@@ -73,6 +72,8 @@ element {
 element-icon {
     size: 120px;
     margin: 0 0 10px 0;
+    horizontal-align: 0.5;
+    vertical-align: 0.5;
 }
 
 element-text {
@@ -82,5 +83,5 @@ element-text {
 }
 
 element.selected {
-    background-color: @background-dark;
+    background-color: @background-light;
 }

@@ -41,11 +41,11 @@ inputbar {
 }
 
 entry {
-    placeholder: "Search";
+    horizontal-align: 0.5;
 }
 
 listview {
-    columns: 7;
+    columns: 5;
     spacing: 10px;
     cycle: false;
     dynamic: true;
@@ -56,17 +56,21 @@ element {
   orientation: vertical;
   border-radius: 10px;
   padding: 50px 50px 50px 50px;
+  cursor: pointer;
 }
 
 element-icon {
     size: 180px;
-    margin: 0 0 10px 0;
+    horizontal-align: 0.5;
+    vertical-align: 0.5;
+    cursor: inherit;
 }
 
 element-text {
     horizontal-align: 0.5;
     vertical-align: 0.5;
     expand: true;
+    cursor: inherit;
 }
 
 element.selected {
