@@ -16,7 +16,7 @@ configuration {
     global-font: "Open Sans 14";
     textbox-font: "SauceCodePro Nerd Font 12";
  
-    background: rgba(40, 42, 54, 0);
+    background: rgba(40, 42, 54, 80%);
     foreground-selected: #282A36;
     background-selected: #7B809D;
 
