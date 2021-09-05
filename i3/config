@@ -32,7 +32,7 @@ set $path-wallpapers $HOME/.config/i3/wallpapers
 set $font FiraCode Nerd Font 10
 
 set $wallpaper-background-color "#21222c"
-set $wallpaper Abstract.jpg
+set $wallpaper Abstract-2.jpg
 
 set $background-color "#1a1b23"
 set $border-color "#4c5067"
