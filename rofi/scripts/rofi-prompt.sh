@@ -1,0 +1,1 @@
+rofi-launch -dmenu -theme themes/prompt.rasi -password $@
