@@ -35,6 +35,8 @@ if [ $UID = 0 ]; then
     [ -f "$HOME/.zshenv" ] && source "$HOME/.zshenv"
 fi
 
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+
 # Variables
 
 EDITOR="vi"

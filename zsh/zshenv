@@ -11,6 +11,8 @@ path /usr/local/bin
 path $HOME/.local/bin
 path $HOME/.bin
 
+path /opt/genymotion/tools
+
 ANDROID_HOME=$HOME/Android/Sdk
 
 if [ -d "$ANDROID_HOME" ]; then
