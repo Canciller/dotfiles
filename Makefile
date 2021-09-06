@@ -90,6 +90,7 @@ polybar: ${PWD}/polybar
 	ln -sv $</config.ini ${POLYBARDIR}/config.ini
 	ln -sv $</launch.sh ${POLYBARDIR}/launch.sh
 	ln -sv $</themes ${POLYBARDIR}/themes
+	ln -sv $</scripts ${POLYBARDIR}/scripts
 
 rofi: ${PWD}/rofi
 	mkdir -p ${ROFIDIR}
