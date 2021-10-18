@@ -392,7 +392,7 @@ colors:
   #
   #command: None
 
-background_opacity: 0
+background_opacity: 1
 
 # Background opacity
 #
