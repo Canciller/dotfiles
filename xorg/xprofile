@@ -3,6 +3,8 @@ xrdb -merge ~/.Xresources
 
 [ -f "$HOME/.zshenv" ] && source "$HOME/.zshenv"
 
+nvidia-settings --load-config-only
+
 # Set xkeyboard layout
 default_xkb_layout=us
 xkeyboard_layout="$HOME/.xkeyboard_layout"
@@ -18,3 +20,6 @@ if which setxkbmap>/dev/null; then
 fi
 
 eval "$(ssh-agent)"
+
+export GPG_TTY=$(tty)
+gpgconf --launch gpg-agent
