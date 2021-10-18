@@ -47,12 +47,14 @@ install: bin\
 	 alacritty
 
 bin: ${PWD}/bin/*
-	-@for file in $(call ignore, $^) ; do\
+	-@./scripts/link_dir.sh bin "${BINDIR}"
+#-@for file in $(call ignore, $^) ; do\
 		ln -sv $${file} ${BINDIR}/$$(basename $${file});\
 	done
 
 fonts: ${PWD}/fonts/*
-	-@for file in $(call ignore, $^) ; do\
+	-@./scripts/link_dir.sh fonts "${FONTSDIR}"
+#-@for file in $(call ignore, $^) ; do\
 		ln -sv $${file} ${FONTSDIR}/$$(basename $${file});\
 	done
 
