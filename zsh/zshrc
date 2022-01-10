@@ -69,4 +69,9 @@ alias gdb-tui="gdb -tui -q"
 alias nvidia-gpu-utilization="watch -n 5 nvidia-smi -a --display=utilization"
 
 # NVM
-source /usr/share/nvm/init-nvm.sh
+export NVM_DIR="$HOME/.nvm"
+
+[ -s "/usr/share/nvm/init-nvm.sh" ] && \. "/usr/share/nvm/init-nvm.sh"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"
+
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
