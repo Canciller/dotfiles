@@ -313,9 +313,10 @@ client.background         $background-color
 #assign [class="(Google-chrome|Firefox|firefoxdeveloperedition)"] $ws2
 assign [class="discord"] $ws4
 
+# Floating windows by class
 for_window [class="(Pavucontrol|Gpick|Lxappearance|keepassxc|qBittorrent|Nvidia-settings|Arandr)"] floating enable border normal 5
 
-# Steam Friends List
-for_window [title="(Friends List|Steam - News*)"] floating enable border normal
+# Floating windows by title
+for_window [title="(Android Emulator*|Friends List|Steam - News*)"] floating enable border normal 5
 
 # }}}

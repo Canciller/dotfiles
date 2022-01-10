@@ -20,10 +20,10 @@ Plug 'neomake/neomake' "Neomake is a plugin for Vim/Neovim to asynchronously run
 
 Plug 'alvan/vim-closetag'
 
-Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } "Dark powered asynchronous completion framework.
-Plug 'carlitux/deoplete-ternjs'
-Plug 'deoplete-plugins/deoplete-jedi' "deoplete.nvim source for Python.
-Plug 'deoplete-plugins/deoplete-clang' "deoplete.nvim source for C/C++/Obj-C/Obj-C++ with clang-python3.
+"Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } "Dark powered asynchronous completion framework.
+"Plug 'carlitux/deoplete-ternjs'
+"Plug 'deoplete-plugins/deoplete-jedi' "deoplete.nvim source for Python.
+"Plug 'deoplete-plugins/deoplete-clang' "deoplete.nvim source for C/C++/Obj-C/Obj-C++ with clang-python3.
 Plug 'Shougo/neoinclude.vim'
 
 Plug 'pangloss/vim-javascript' "JavaScript bundle for vim, this bundle provides syntax highlighting and improved indentation.

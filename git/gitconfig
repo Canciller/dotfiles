@@ -1,10 +1,14 @@
+[include]
+	path = ~/.gitconfig.local
+
 [user]
 	email = lopez.ojeda.gabriel.emilio@gmail.com
 	name = canciller
-	signinkey = 6F543305
 [gpg]
 	program = /usr/bin/gpg2
 [commit]
 	gpgsign = true
 [tag]
 	gpgSign = true
+[init]
+	defaultBranch = develop
