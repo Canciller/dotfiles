@@ -80,6 +80,8 @@ nvim: ${PWD}/nvim
 	mkdir -p ${NVIMDIR}
 	ln -sv $</init.vim ${NVIMDIR}/init.vim
 
+	ln -sv $</coc-settings.json ${NVIMDIR}/coc-settings.json
+
 	mkdir -p ${NVIMDIR}/syntax
 	ln -sv $</syntax/c.vim ${NVIMDIR}/syntax/c.vim
 

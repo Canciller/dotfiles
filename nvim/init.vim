@@ -1,103 +1,76 @@
 " Plugins: {{{
 set nocompatible
-filetype plugin on
+filetype plugin indent on
+
+let mapleader = ","
+let maplocalleader = "\\"
 
 call plug#begin(stdpath('data') . '/plugged')
+
 Plug 'cocopon/iceberg.vim' "Bluish color scheme for Vim and Neovim.
+
+Plug 'morhetz/gruvbox' "Retro groove color scheme for Vim.
 
 Plug 'itchyny/lightline.vim' "A light and configurable statusline/tabline plugin for Vim.
 
-Plug 'tpope/vim-vinegar'
-
-Plug 'junegunn/fzf' "A command-line fuzzy finder.
-Plug 'junegunn/fzf.vim' "A command-line fuzzy finder.
-
 Plug 'tpope/vim-fugitive' "A Git wrapper so awesome, it should be illegal.
 
-Plug 'jiangmiao/auto-pairs' "Insert or delete brackets, parens, quotes in pair.
+Plug 'neoclide/coc.nvim', {'branch': 'release'} "Nodejs extension host for vim & neovim, load extensions like VSCode and host language servers.
 
-Plug 'neomake/neomake' "Neomake is a plugin for Vim/Neovim to asynchronously run programs.
+Plug 'github/copilot.vim' "A vim plugin for Copilot.
 
-Plug 'alvan/vim-closetag'
+Plug 'leafgarland/typescript-vim' "Typescript syntax files for Vim.
+
+Plug 'pangloss/vim-javascript' "JavaScript syntax files for Vim.
+
+Plug 'peitalin/vim-jsx-typescript' "React JSX syntax highlighting for vim and Typescript.
+
+"Plug 'tpope/vim-vinegar'
+
+"Plug 'junegunn/fzf' "A command-line fuzzy finder.
+"Plug 'junegunn/fzf.vim' "A command-line fuzzy finder.
+
+"Plug 'jiangmiao/auto-pairs' "Insert or delete brackets, parens, quotes in pair.
+
+"Plug 'neomake/neomake' "Neomake is a plugin for Vim/Neovim to asynchronously run programs.
+
+"Plug 'alvan/vim-closetag'
 
 "Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } "Dark powered asynchronous completion framework.
 "Plug 'carlitux/deoplete-ternjs'
 "Plug 'deoplete-plugins/deoplete-jedi' "deoplete.nvim source for Python.
 "Plug 'deoplete-plugins/deoplete-clang' "deoplete.nvim source for C/C++/Obj-C/Obj-C++ with clang-python3.
-Plug 'Shougo/neoinclude.vim'
+"Plug 'Shougo/neoinclude.vim'
 
-Plug 'pangloss/vim-javascript' "JavaScript bundle for vim, this bundle provides syntax highlighting and improved indentation.
-Plug 'maxmellon/vim-jsx-pretty' "The React syntax highlighting and indenting plugin for vim.
+"Plug 'pangloss/vim-javascript' "JavaScript bundle for vim, this bundle provides syntax highlighting and improved indentation.
+"Plug 'maxmellon/vim-jsx-pretty' "The React syntax highlighting and indenting plugin for vim.
 
-Plug 'posva/vim-vue' "Vim syntax highlighting for Vue components.
-
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} "Semshi provides semantic highlighting for Python in Neovim.
 call plug#end()
 " }}}
 
 " Plugin Options: {{{
-" alvan/vim-closetag {{{
-" These are the file extensions where this plugin is enabled.
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js,*.jsx,*.vue'
 
-" This will make the list of non-closing tags self-closing in the specified files.
-let g:closetag_xhtml_filenames = '*.xhtml,*.js,*.jsx,*.vue'
+" neoclide/coc.nvim {{{
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
-" These are the file types where this plugin is enabled.
-let g:closetag_filetypes = 'html,xhtml,phtml,js,jsx,vue'
-
-" This will make the list of non-closing tags self-closing in the specified files.
-let g:closetag_xhtml_filetypes = 'xhtml,js,jsx,vue'
-
-" This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
-let g:closetag_emptyTags_caseSensitive = 1
-
-" Disables auto-close if not in a "valid" region (based on filetype)
-let g:closetag_regions = {
-            \ 'typescript.tsx': 'jsxRegion,tsxRegion',
-            \ 'javascript.jsx': 'jsxRegion',
-            \ }
-
-" Shortcut for closing tags
-let g:closetag_shortcut = '>'
-
-" Add > at current position without closing the current tag
-let g:closetag_close_shortcut = '<leader>>'
+" Symbol renaming.
+nnoremap <F2> <Plug>(coc-rename)
 " }}}
-
-"  shougu/deoplete {{{
-let g:deoplete#enable_at_startup = 1
-
-let g:deoplete#sources#ternjs#types = 1
-let g:deoplete#sources#ternjs#include_keywords = 1
-
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | silent! pclose | endif
-
-inoremap <silent><expr> <TAB>
-            \ pumvisible() ? "\<C-n>" :
-            \ <SID>check_back_space() ? "\<TAB>" :
-            \ deoplete#mappings#manual_complete()
-function! s:check_back_space() abort "{{{
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~ '\s'
-endfunction"}}}
-"  }}}
-
-" numirias/semshi {{{
-function! SemshiHighlights()
-    sign define semshiError text=\  texthl=semshiErrorSign
-endfunction
-" }}}
-
+"
 " itchyny/lightline.vim {{{
 let g:lightline = {
             \ 'colorscheme': 'iceberg',
             \'active': {
-            \   'left': [ ['mode', 'paster'], [ 'gitbranch', 'absolutepath', 'readonly', 'modified' ] ]
+            \   'left': [ ['mode', 'paster'], [ 'gitbranch', 'cocstatus', 'absolutepath', 'readonly', 'modified' ] ]
             \},
             \'component_function': {
             \   'readonly': 'LightlineReadonly',
-            \   'gitbranch': 'fugitive#head'
+            \   'gitbranch': 'FugitiveHead',
+            \   'cocstatus': 'coc#status'
             \}
             \}
 
@@ -144,8 +117,33 @@ endfunction
 "}}}
 " }}}
 
-" jiangmiao/auto-pairs {{{
-let g:AutoPairsMultilineClose = 0
+" alvan/vim-closetag {{{
+" These are the file extensions where this plugin is enabled.
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js,*.jsx,*.vue'
+
+" This will make the list of non-closing tags self-closing in the specified files.
+let g:closetag_xhtml_filenames = '*.xhtml,*.js,*.jsx,*.vue'
+
+" These are the file types where this plugin is enabled.
+let g:closetag_filetypes = 'html,xhtml,phtml,js,jsx,vue'
+
+" This will make the list of non-closing tags self-closing in the specified files.
+let g:closetag_xhtml_filetypes = 'xhtml,js,jsx,vue'
+
+" This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
+let g:closetag_emptyTags_caseSensitive = 1
+
+" Disables auto-close if not in a "valid" region (based on filetype)
+let g:closetag_regions = {
+            \ 'typescript.tsx': 'jsxRegion,tsxRegion',
+            \ 'javascript.jsx': 'jsxRegion',
+            \ }
+
+" Shortcut for closing tags
+let g:closetag_shortcut = '>'
+
+" Add > at current position without closing the current tag
+let g:closetag_close_shortcut = '<leader>>'
 " }}}
 
 " mxw/vim-jsx-pretty {{{
@@ -177,32 +175,15 @@ augroup filetype_fzf
 augroup END
 " }}}
 
-" neomake/neomake {{{
-let g:neomake_javascript_enabled_makers = ['eslint']
-" }}}
-
-" arakashic/chromatica.nvim {{{
-let g:chromatica#enable_at_startup = 1
-let g:chromatica#responsive_mode = 1
-let g:chromatica#enable_log = 0
 "}}}
-
-" deoplete-plugins/deoplete-clang {{{
-let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
-let g:deoplete#sources#clang#clang_header = '/usr/lib/clang/9.0.0'
-"}}}
-"}}}
-
+"
 " Vim Options: {{{
-filetype plugin indent on
 syntax on
 
-let mapleader = ","
-let maplocalleader = "\\"
-
-colorscheme iceberg
-
 set backupcopy=yes
+
+colorscheme gruvbox
+"colorscheme iceberg
 
 set noshowmode
 
@@ -211,17 +192,10 @@ set splitright
 
 set encoding=utf-8
 
-if (has('nvim'))
-  let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
-endif
-if (has('termguicolors'))
-  set termguicolors
-endif
-
 set cursorline
 
 set number
-set norelativenumber
+set relativenumber
 set numberwidth=5
 
 set wrap
@@ -253,48 +227,45 @@ let g:netrw_winsize = 16
 " }}}
 
 " Autocmds: {{{
+autocmd FileType json syntax match Comment +\/\/.\+$+
+
+augroup filetype_ts
+  autocmd!
+  autocmd FileType typescript setlocal foldmethod=syntax
+  autocmd FileType typescriptreact setlocal foldmethod=syntax
+  autocmd FileType typescript setlocal foldlevel=99
+  autocmd FileType typescriptreact setlocal foldlevel=99
+augroup END
+
 augroup filetype_vim
-    autocmd!
-    autocmd FileType vim nnoremap <buffer> <localleader>c I"<esc>
-    autocmd FileType vim setlocal foldmethod=marker
+  autocmd!
+  autocmd FileType vim nnoremap <buffer> <localleader>c I"<esc>
+  autocmd FileType vim setlocal foldmethod=marker
 augroup END
 
 augroup filetype_conf
-    autocmd!
-    autocmd FileType conf setlocal foldmethod=marker
-augroup END
-
-augroup filetype_cpp
-    autocmd!
-    autocmd FileType cpp setlocal expandtab
-    autocmd FileType cpp setlocal listchars=tab:→\ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨
-    autocmd FileType cpp setlocal showbreak=
-augroup END
-
-augroup filetype_vue
-    autocmd!
-    autocmd FileType vue setlocal tabstop=2
-    autocmd FileType vue setlocal shiftwidth=2
-augroup END
-
-augroup filetype_py
-    autocmd!
-    autocmd FileType python call SemshiHighlights()
+  autocmd!
+  autocmd FileType conf setlocal foldmethod=marker
 augroup END
 
 augroup filetype_netrw
-    autocmd!
-    autocmd FileType netrw setlocal bufhidden=delete
+  autocmd!
+  autocmd FileType netrw setlocal bufhidden=delete
 augroup END
 
 augroup filetype_all
-    autocmd!
-    autocmd BufNewFile,BufRead * onoremap ah :<c-u>execute "normal! ?^[=-][=-]\\+\r:nohlsearch\rg_vk0"<cr>
-    autocmd BufNewFile,BufRead * onoremap ih :<c-u>execute "normal! ?^[=-][=-]\\+\r:nohlsearch\rg_kvg_"<cr>
-    autocmd BufNewFile,BufRead * onoremap in@ :<c-u>execute "normal! /@\r:nohlsearch\r1hvB"<cr>
-    autocmd BufWritePost init.vim source %
+  autocmd!
+  autocmd BufNewFile,BufRead * onoremap ah :<c-u>execute "normal! ?^[=-][=-]\\+\r:nohlsearch\rg_vk0"<cr>
+  autocmd BufNewFile,BufRead * onoremap ih :<c-u>execute "normal! ?^[=-][=-]\\+\r:nohlsearch\rg_kvg_"<cr>
+  autocmd BufNewFile,BufRead * onoremap in@ :<c-u>execute "normal! /@\r:nohlsearch\r1hvB"<cr>
+  autocmd BufWritePost init.vim source %
 augroup END
 
+augroup remember_folds
+  autocmd!
+  autocmd BufWinLeave * mkview
+  autocmd BufWinEnter * silent! loadview
+augroup END
 " }}}
 
 " Mappings: {{{
@@ -335,7 +306,7 @@ nnoremap <c-l> <c-w>l
 
 "split resize
 nnoremap <silent> <up> :res -5<cr>
-nnoremap <silent> <down> :res +5<cr>
+noremap <silent> <down> :res +5<cr>
 nnoremap <silent> <left> :vertical res -5<cr>
 nnoremap <silent> <right> :vertical res +5<cr>
 
@@ -361,10 +332,10 @@ nnoremap <silent> <esc><esc> :nohlsearch<cr>
 nnoremap <leader>= mmggVG=`m
 
 "replace all ocurrences of word under cursor
-nnoremap <leader>r :%s/\<<c-r><c-w>\>//g<left><left>
+"nnoremap <leader>r :%s/\<<c-r><c-w>\>//g<left><left>
 
 "find all ocurrences of word under cursor
-nnoremap <leader>f /\<<c-r><c-w>\><cr>
+"nnoremap <leader>f /\<<c-r><c-w>\><cr>
 
 "fold close/open
 nnoremap <space> za
