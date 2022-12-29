@@ -5,15 +5,19 @@ function path {
 	esac
 }
 
-path opt/cuda/bin
+path /opt/cuda/bin
 path /usr/local/bin
+path /usr/local/sbin
 
 path $HOME/.local/bin
 path $HOME/.bin
 
 path /opt/genymotion/tools
 
-ANDROID_HOME=$HOME/Android/Sdk
+export GEM_HOME=$HOME/.gem
+path $GEM_HOME/bin
+
+ANDROID_HOME=$HOME/Library/Android/Sdk
 
 if [ -d "$ANDROID_HOME" ]; then
 	path $ANDROID_HOME/emulator
@@ -29,4 +33,6 @@ fi
 
 export PATH
 
-export SUDO_ASKPASS=$HOME/.local/bin/rofi-password-prompt
+#export SUDO_ASKPASS=$HOME/.local/bin/rofi-password-prompt
+
+source "$HOME/.cargo/env"

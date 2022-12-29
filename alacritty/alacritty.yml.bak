@@ -23,13 +23,20 @@
   # available, otherwise `xterm-256color` is used.
   #TERM: alacritty
 
+window:
+  padding:
+    x: 10
+    y: 10
+  dimensions:
+    columns: 120
+    lines: 40
+
 #window:
   # Window dimensions (changes require restart)
   #
-  # Number of lines/columns (not pixels) in the terminal. Both lines and columns
-  # must be non-zero for this to take effect. The number of columns must be at
-  # least `2`, while using a value of `0` for columns and lines will fall back
-  # to the window manager's recommended size
+  # Number of lines/columns (not pixels) in the terminal. The number of columns
+  # must be at least `2`, while using a value of `0` for columns and lines will
+  # fall back to the window manager's recommended size.
   #dimensions:
   #  columns: 0
   #  lines: 0
@@ -64,12 +71,6 @@
   #     - buttonless: Title bar, transparent background and no title bar buttons
   #decorations: full
 
-  # Background opacity
-  #
-  # Window opacity as a floating point number from `0.0` to `1.0`.
-  # The value `0.0` is completely transparent and `1.0` is opaque.
-  #opacity: 1.0
-
   # Startup Mode (changes require restart)
   #
   # Values for `startup_mode`:
@@ -94,12 +95,11 @@
     # General application class
     #general: Alacritty
 
-  # Decorations theme variant (Linux/BSD only)
+  # GTK theme variant (Linux/BSD only)
   #
-  # Override the variant of the GTK theme/Wayland client side decorations.
-  # Commonly supported values are `dark` and `light`. Set this to `None` to use
-  # the default theme variant.
-  #decorations_theme_variant: None
+  # Override the variant of the GTK theme. Commonly supported values are `dark`
+  # and `light`. Set this to `None` to use the default theme variant.
+  #gtk_theme_variant: None
 
 #scrolling:
   # Maximum number of lines in the scrollback buffer.
@@ -109,18 +109,12 @@
   # Scrolling distance multiplier.
   #multiplier: 3
 
-# Font configuration
-
 font:
-  size: 11
+  size: 10
   normal:
-    family: 'FiraCode Nerd Font Mono'
+    family: 'FiraCode Nerd Font'
 
-#font:
-#  size: 10
-#  normal:
-#    family: 'FiraCode Nerd Font'
-
+# Font configuration
 #font:
   # Normal (roman) font face
   #normal:
@@ -185,15 +179,43 @@ font:
   #  x: 0
   #  y: 0
 
-  # Use built-in font for box drawing characters.
+  # Thin stroke font rendering (macOS only)
   #
-  # If `true`, Alacritty will use a custom built-in font for box drawing
-  # characters (Unicode points 2500 - 259f).
-  #
-  #builtin_box_drawing: true
+  # Thin strokes are suitable for retina displays, but for non-retina screens
+  # it is recommended to set `use_thin_strokes` to `false`.
+  #use_thin_strokes: true
 
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
+
+# Colors (Iceberg Dark)
+colors:
+  # Default colors
+  primary:
+    background: "#161821"
+    foreground: "#d2d4de"
+
+  # Normal colors
+  normal:
+    black: "#161821"
+    red: "#e27878"
+    green: "#b4be82"
+    yellow: "#e2a478"
+    blue: "#84a0c6"
+    magenta: "#a093c7"
+    cyan: "#89b8c2"
+    white: "#c6c8d1"
+
+  # Bright colors
+  bright:
+    black: "#6b7089"
+    red: "#e98989"
+    green: "#c0ca8e"
+    yellow: "#e9b189"
+    blue: "#91acd1"
+    magenta: "#ada0d3"
+    cyan: "#95c4ce"
+    white: "#d2d4de"
 
 # Colors (Tomorrow Night)
 #colors:
@@ -244,7 +266,11 @@ font:
     #  foreground: '#ffffff'
     #  background: '#000000'
 
-  # Keyboard hints
+    #bar:
+    #  background: '#c5c8c6'
+    #  foreground: '#1d1f21'
+
+  # Keyboard regex hints
   #hints:
     # First character in the hint label
     #
@@ -271,15 +297,6 @@ font:
   #line_indicator:
   #  foreground: None
   #  background: None
-
-  # Footer bar
-  #
-  # Color used for the footer bar on the bottom, used by search regex input,
-  # hyperlink URI preview, etc.
-  #
-  #footer_bar:
-  #  background: '#c5c8c6'
-  #  foreground: '#1d1f21'
 
   # Selection colors
   #
@@ -336,13 +353,6 @@ font:
   #   `- { index: 16, color: '#ff00ff' }`
   #
   #indexed_colors: []
-
-  # Transparent cell backgrounds
-  #
-  # Whether or not `window.opacity` applies to all cell backgrounds or only to
-  # the default background. When set to `true` all cells will be transparent
-  # regardless of their background color.
-  #transparent_background_colors: false
 
 # Bell
 #
@@ -424,11 +434,6 @@ font:
   # Cursor blinking interval in milliseconds.
   #blink_interval: 750
 
-  # Time after which cursor stops blinking, in seconds.
-  #
-  # Specifying '0' will disable timeout for blinking.
-  #blink_timeout: 5
-
   # If this is `true`, the cursor will be rendered as a hollow box when the
   # window is not focused.
   #unfocused_hollow: true
@@ -447,7 +452,8 @@ font:
 # shell.
 #
 # Default:
-#   - (Linux/BSD/macOS) `$SHELL` or the user's login shell, if `$SHELL` is unset
+#   - (macOS) /bin/bash --login
+#   - (Linux/BSD) user login shell
 #   - (Windows) powershell
 #shell:
 #  program: /bin/bash
@@ -463,9 +469,6 @@ font:
 # Send ESC (\x1b) before characters when alt is pressed.
 #alt_send_esc: true
 
-# Offer IPC using `alacritty msg` (unix only)
-#ipc_socket: true
-
 #mouse:
   # Click settings
   #
@@ -478,22 +481,18 @@ font:
   # If this is `true`, the cursor is temporarily hidden when typing.
   #hide_when_typing: false
 
-# Hints
+# Regex hints
 #
-# Terminal hints can be used to find text or hyperlink in the visible part of
-# the terminal and pipe it to other applications.
+# Terminal hints can be used to find text in the visible part of the terminal
+# and pipe it to other applications.
 #hints:
   # Keys used for the hint labels.
   #alphabet: "jfkdls;ahgurieowpq"
 
   # List with all available hints
   #
-  # Each hint must have any of `regex` or `hyperlinks` field and either an
-  # `action` or a `command` field. The fields `mouse`, `binding` and
-  # `post_processing` are optional.
-  #
-  # The `hyperlinks` option will cause OSC 8 escape sequence hyperlinks to be
-  # highlighted.
+  # Each hint must have a `regex` and either an `action` or a `command` field.
+  # The fields `mouse`, `binding` and `post_processing` are optional.
   #
   # The fields `command`, `binding.key`, `binding.mods`, `binding.mode` and
   # `mouse.mods` accept the same values as they do in the `key_bindings` section.
@@ -503,8 +502,7 @@ font:
   #
   # If the `post_processing` field is set to `true`, heuristics will be used to
   # shorten the match if there are characters likely not to be part of the hint
-  # (e.g. a trailing `.`). This is most useful for URIs and applies only to
-  # `regex` matches.
+  # (e.g. a trailing `.`). This is most useful for URIs.
   #
   # Values for `action`:
   #   - Copy
@@ -518,7 +516,6 @@ font:
   #enabled:
   # - regex: "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)\
   #           [^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
-  #   hyperlinks: true
   #   command: xdg-open
   #   post_processing: true
   #   mouse:
@@ -546,20 +543,13 @@ font:
 #   - Right
 #   - Numeric identifier such as `5`
 #
-# - `action` (see key bindings for actions not exclusive to mouse mode)
-#
-# - Mouse exclusive actions:
-#
-#   - ExpandSelection
-#       Expand the selection to the current mouse cursor location.
+# - `action` (see key bindings)
 #
 # And optionally:
 #
 # - `mods` (see key bindings)
 #mouse_bindings:
-#  - { mouse: Right,                 action: ExpandSelection }
-#  - { mouse: Right,  mods: Control, action: ExpandSelection }
-#  - { mouse: Middle, mode: ~Vi,     action: PasteSelection  }
+#  - { mouse: Middle, action: PasteSelection }
 
 # Key bindings
 #
@@ -628,8 +618,6 @@ font:
 #   - ToggleFullscreen
 #   - SpawnNewInstance
 #       Spawn a new instance of Alacritty.
-#   - CreateNewWindow
-#       Create a new Alacritty window from the current process.
 #   - ClearLogNotice
 #       Clear Alacritty's UI warning and error notice.
 #   - ClearSelection
@@ -647,8 +635,6 @@ font:
 #   - ToggleBlockSelection
 #   - ToggleSemanticSelection
 #       Toggle semantic selection based on `selection.semantic_escape_chars`.
-#   - CenterAroundViCursor
-#       Center view around vi mode cursor
 #
 # - Vi mode exclusive cursor motion actions:
 #
@@ -769,25 +755,14 @@ font:
 #
 # If the same trigger is assigned to multiple actions, all of them are executed
 # in the order they were defined in.
-key_bindings:
-  # Ajustes para teclado macOS español/Spanish de España con layout ISO (no ANSI); tecla Intro grande.
-  - { key: 10,        mods: Alt,    chars: "\\" } # barra invertida `\`
-  - { key: 18,        mods: Alt,    chars: "|" } # barra vertical `|`
-  - { key: Key2,      mods: Alt,    chars: "@" } # arroba `@`
-  - { key: Key3,      mods: Alt,    chars: "#" } # almohadilla/cardinalidad `#`
-  - { key: Key6,      mods: Alt,    chars: "¬" } # negación en lógica `¬`
-  - { key: 39,        mods: Alt,    chars: "{" } # abre llaves `{`
-  - { key: 42,        mods: Alt,    chars: "}" } # cierra llaves `}`
-  - { key: 33,        mods: Alt,    chars: "[" } # abre corchetes `[`
-  - { key: 30,        mods: Alt,    chars: "]" } # cierra corchetes `]`
-
+#key_bindings:
   #- { key: Paste,                                       action: Paste          }
   #- { key: Copy,                                        action: Copy           }
   #- { key: L,         mods: Control,                    action: ClearLogNotice }
   #- { key: L,         mods: Control, mode: ~Vi|~Search, chars: "\x0c"          }
-  #- { key: PageUp,    mods: Shift,   mode: ~Alt,        action: ScrollPageUp   }
+  #- { key: PageUp,    mods: Shift,   mode: ~Alt,        action: ScrollPageUp,  }
   #- { key: PageDown,  mods: Shift,   mode: ~Alt,        action: ScrollPageDown }
-  #- { key: Home,      mods: Shift,   mode: ~Alt,        action: ScrollToTop    }
+  #- { key: Home,      mods: Shift,   mode: ~Alt,        action: ScrollToTop,   }
   #- { key: End,       mods: Shift,   mode: ~Alt,        action: ScrollToBottom }
 
   # Vi Mode
@@ -813,7 +788,6 @@ key_bindings:
   #- { key: V,      mods: Control,       mode: Vi|~Search, action: ToggleBlockSelection    }
   #- { key: V,      mods: Alt,           mode: Vi|~Search, action: ToggleSemanticSelection }
   #- { key: Return,                      mode: Vi|~Search, action: Open                    }
-  #- { key: Z,                           mode: Vi|~Search, action: CenterAroundViCursor    }
   #- { key: K,                           mode: Vi|~Search, action: Up                      }
   #- { key: J,                           mode: Vi|~Search, action: Down                    }
   #- { key: H,                           mode: Vi|~Search, action: Left                    }
@@ -852,6 +826,7 @@ key_bindings:
   #- { key: Down,                  mode: Search,     action: SearchHistoryNext     }
   #- { key: Return,                mode: Search|~Vi, action: SearchFocusNext       }
   #- { key: Return, mods: Shift,   mode: Search|~Vi, action: SearchFocusPrevious   }
+
   # (Windows, Linux, and BSD only)
   #- { key: V,              mods: Control|Shift, mode: ~Vi,        action: Paste            }
   #- { key: C,              mods: Control|Shift,                   action: Copy             }
@@ -911,6 +886,3 @@ key_bindings:
 
   # Print all received window events.
   #print_events: false
-
-  # Highlight window damage information.
-  #highlight_damage: false
