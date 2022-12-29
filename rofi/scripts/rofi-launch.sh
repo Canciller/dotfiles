@@ -1,1 +1,0 @@
-rofi -dpi $(get-dpi) $@

@@ -1,5 +1,0 @@
-#!/bin/bash
-
-command-exists pactl || exit 1
-
-pactl list sinks short | grep RUNNING | awk '{print $1;}'

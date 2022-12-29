@@ -1,3 +1,7 @@
+if [ $UID = 0 ]; then
+    [ -f "$HOME/.zshenv" ] && source "$HOME/.zshenv"
+fi
+
 export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="candy"
@@ -20,35 +24,15 @@ plugins=(
     python
     npm
     brew
-    zsh-autosuggestions
+    #zsh-autosuggestions
 )
 
 [ -f "$ZSH/oh-my-zsh.sh" ] && source "$ZSH/oh-my-zsh.sh"
 
 zstyle ':completion:*' rehash true
 
-if [ $UID = 0 ]; then
-    [ -f "$HOME/.zshenv" ] && source "$HOME/.zshenv"
-fi
-
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=white,bold"
-
-# Variables
-
-EDITOR="vi"
-
-if command-exists "nvim"; then
-    EDITOR="nvim"
-elif command-exists "vim"; then
-    EDITOR="vim"
-fi
-
-export EDITOR;
-
-export CONFIG="$HOME/.config"
-export DOTFILES="$HOME/.dotfiles"
-export PROJECTS="$HOME/.projects"
 
 # Quick edit aliases
 
@@ -64,15 +48,29 @@ alias zsh-source="source $HOME/.zshrc"
 alias gdb-tui="gdb -tui -q"
 alias nvidia-gpu-utilization="watch -n 5 nvidia-smi -a --display=utilization"
 
-# nvm
-export NVM_DIR="$HOME/.nvm"
 
-[ -s "/usr/share/nvm/init-nvm.sh" ] && \. "/usr/share/nvm/init-nvm.sh"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"
-
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
+# zsh-syntax-highlighting
+source "$HOME/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 # rbenv
 eval "$(rbenv init - zsh)"
 
-source "$HOME/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+# cargo
+if [ -f "$HOME/.cargo/env" ]; then
+	source "$HOME/.cargo/env"
+fi
+
+# editor
+EDITOR="vi"
+
+if command_exists "nvim"; then
+    EDITOR="nvim"
+elif command_exists "vim"; then
+    EDITOR="vim"
+fi
+
+export EDITOR;
+
+# directories
+export CONFIG="$HOME/.config"
+export DOTFILES="$HOME/.dotfiles"

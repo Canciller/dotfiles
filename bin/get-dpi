@@ -1,5 +1,0 @@
-#!/bin/bash
-
-source helpers
-
-get_dpi $1

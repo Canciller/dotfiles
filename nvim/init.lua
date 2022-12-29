@@ -1,8 +1,8 @@
+require('packer_init')
+
 require('options')
 require('keymaps')
 require('autocmds')
-
-require('packer_init')
 
 require('plugins/lualine')
 require('plugins/bufferline')

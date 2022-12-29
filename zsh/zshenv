@@ -5,6 +5,17 @@ function path {
 	esac
 }
 
+function command_exists {
+	[ -z "$1" ] && return 1
+
+	arr=($1)
+	for i in "$@"; do
+	    command -v "$i" &>/dev/null || return 1
+	done
+
+	return 0
+}
+
 path /opt/cuda/bin
 path /usr/local/bin
 path /usr/local/sbin
@@ -14,25 +25,27 @@ path $HOME/.bin
 
 path /opt/genymotion/tools
 
+# gem
 export GEM_HOME=$HOME/.gem
 path $GEM_HOME/bin
 
-ANDROID_HOME=$HOME/Library/Android/Sdk
+# android
+export ANDROID_HOME=$HOME/Library/Android/Sdk
+path $ANDROID_HOME/emulator
+path $ANDROID_HOME/tools
+path $ANDROID_HOME/tools/bin
+path $ANDROID_HOME/platform-tools
 
-if [ -d "$ANDROID_HOME" ]; then
-	path $ANDROID_HOME/emulator
-	path $ANDROID_HOME/tools
-	path $ANDROID_HOME/tools/bin
-	path $ANDROID_HOME/platform-tools
+# java
+path "/opt/homebrew/opt/openjdk/bin"
 
-	export ANDROID_HOME
-fi
+# volta
+export VOLTA_HOME=$HOME/.volta
+path $VOLTA_HOME/bin
 
 #export GDK_SCALE=1
 #export QT_AUTO_SCREEN_SCALE_FACTOR=1
+#export SUDO_ASKPASS=$HOME/.local/bin/rofi-password-prompt
 
 export PATH
 
-#export SUDO_ASKPASS=$HOME/.local/bin/rofi-password-prompt
-
-source "$HOME/.cargo/env"

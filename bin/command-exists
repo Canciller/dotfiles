@@ -1,8 +1,0 @@
-#!/bin/bash
-
-[ -z "$1" ] && exit 1
-
-arr=($1)
-for i in "$@"; do
-    command -v "$i" &>/dev/null || exit 1
-done

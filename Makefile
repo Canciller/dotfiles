@@ -1,122 +1,24 @@
-BINDIR=${HOME}/.local/bin
-FONTSDIR=${HOME}/.local/share/fonts
-CONFIGDIR=${HOME}/.config
+CONFIG=${HOME}/.config
+LOCAL=${HOME}/.local
 
-OUTDIRS=${BINDIR}\
-		${FONTSDIR}\
-		${CONFIGDIR}
+NVIMDIR=${CONFIG}/nvim
 
-$(info $(shell mkdir -p $(OUTDIRS)))
+.PHONY: git\
+	nvim\
+	zsh
 
-I3DIR=${CONFIGDIR}/i3
-POLYBARDIR=${CONFIGDIR}/polybar
-ROFIDIR=${CONFIGDIR}/rofi
-COMPTONDIR=${CONFIGDIR}/compton
-PICOMDIR=${CONFIGDIR}/picom
-ALACRITTYDIR=${CONFIGDIR}/alacritty
-NVIMDIR=${CONFIGDIR}/nvim
-
-define ignore
-	$(filter-out %.ignore,$(1))
-endef
-
-.PHONY: bin\
-		fonts\
-		git\
-		i3\
-		wallpapers\
-		nvim\
-		polybar\
-		rofi\
-		xorg\
-		zsh\
-		picom\
-		alacritty
-
-install: bin\
-	 fonts\
-	 git\
-	 i3\
-	 wallpapers\
+install: git\
 	 nvim\
-	 polybar\
-	 rofi\
-	 xorg\
-	 zsh\
-	 picom\
-	 alacritty
+	 zsh
 
-bin: ${PWD}/bin/*
-	-@./scripts/link_dir.sh bin "${BINDIR}"
-#-@for file in $(call ignore, $^) ; do\
-		ln -sv $${file} ${BINDIR}/$$(basename $${file});\
-	done
-
-fonts: ${PWD}/fonts/*
-	-@./scripts/link_dir.sh fonts "${FONTSDIR}"
-#-@for file in $(call ignore, $^) ; do\
-		ln -sv $${file} ${FONTSDIR}/$$(basename $${file});\
-	done
+zsh: ${PWD}/zsh
+	ln -sv $</zshrc ${HOME}/.zshrc
+	ln -sv $</zshenv ${HOME}/.zshenv
 
 git: ${PWD}/git
-	@ln -sv $</gitconfig ${HOME}/.gitconfig
-
-i3: ${PWD}/i3
-	mkdir -p ${I3DIR}
-	ln -sv $</config ${I3DIR}/config
-
-	mkdir -p ${I3DIR}/scripts
-	-@for file in $(call ignore, $(wildcard $</scripts/*)) ; do\
-		ln -sv $${file} ${I3DIR}/scripts/$$(basename $${file});\
-	done
-
-wallpapers: ${PWD}/i3
-	mkdir -p ${I3DIR}/wallpapers
-	-@for file in $(call ignore, $(wildcard $</wallpapers/*)) ; do\
-		ln -sv $${file} ${I3DIR}/wallpapers/$$(basename $${file});\
-	done
+	ln -sv $</gitconfig ${HOME}/.gitconfig
 
 nvim: ${PWD}/nvim
-	mkdir -p ${NVIMDIR}
-	ln -sv $</init.vim ${NVIMDIR}/init.vim
+	mkdir -p ${CONFIG}
+	ln -sv $< ${NVIMDIR}
 
-	ln -sv $</coc-settings.json ${NVIMDIR}/coc-settings.json
-
-	mkdir -p ${NVIMDIR}/syntax
-	ln -sv $</syntax/c.vim ${NVIMDIR}/syntax/c.vim
-
-	mkdir -p ${NVIMDIR}/after/syntax
-	ln -sv $</after/syntax/javascript.vim ${NVIMDIR}/after/syntax/javascript.vim
-
-polybar: ${PWD}/polybar
-	mkdir -p ${POLYBARDIR}
-	
-	ln -sv $</config.ini ${POLYBARDIR}/config.ini
-	ln -sv $</launch.sh ${POLYBARDIR}/launch.sh
-	ln -sv $</themes ${POLYBARDIR}/themes
-	ln -sv $</scripts ${POLYBARDIR}/scripts
-
-rofi: ${PWD}/rofi
-	mkdir -p ${ROFIDIR}
-	
-	ln -sv $</config.rasi ${ROFIDIR}/config.rasi
-	ln -sv $</scripts ${ROFIDIR}/scripts
-	ln -sv $</themes ${ROFIDIR}/themes
-
-xorg: ${PWD}/xorg/*
-	-@for file in $(call ignore, $^) ; do\
-		ln -sv $${file} ${HOME}/.$$(basename $${file});\
-	done
-
-zsh: ${PWD}/zsh/*
-	-@for file in $(call ignore, $^) ; do\
-		ln -sv $${file} ${HOME}/.$$(basename $${file});\
-	done
-
-picom: ${PWD}/picom
-	mkdir -p ${PICOMDIR}
-	ln -sv $</picom.conf ${PICOMDIR}/picom.conf
-
-alacritty: ${PWD}/alacritty
-	mkdir -p ${ALACRITTYDIR}
-	ln -sv $</alacritty.yml ${ALACRITTYDIR}/alacritty.yml

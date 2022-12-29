@@ -1,7 +1,0 @@
-@import "./settings.rasi"
-
-@import "./shared.rasi"
-
-window {
-    height: 61.5%;
-}
