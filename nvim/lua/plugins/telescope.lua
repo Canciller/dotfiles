@@ -33,7 +33,7 @@ telescope.setup({
   defaults = {
     mappings = {
       n = {
-        ["q"] = actions.close,
+        ["<esc><esc>"] = actions.close,
         ["x"] = actions.file_split,
         ["v"] = actions.file_vsplit,
         ["t"] = actions.select_tab,
@@ -49,7 +49,6 @@ local function file_browser()
   telescope.extensions.file_browser.file_browser({
     path = "%:p:h",
     cwd = telescope_buffer_dir(),
-    respect_gitignore = false,
     hidden = true,
     grouped = true,
     initial_mode = "normal",
@@ -63,15 +62,17 @@ vim.keymap.set(
   { noremap = true, silent = true }
 )
 
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {
+local function find_files()
+  builtin.git_files()
+end
+
+vim.keymap.set('n', '<leader>ff', find_files, {
   noremap = true,
   silent = true
 })
 
 local find_all_files = function()
-  builtin.find_files {
-    no_ignore = true
-  }
+  builtin.find_files()
 end
 
 vim.keymap.set('n', '<leader>fa', find_all_files, {
