@@ -77,5 +77,11 @@ return require('packer').startup(function(use)
   use 'JoosepAlviste/nvim-ts-context-commentstring'
 
   use "folke/trouble.nvim"
+
+  use "RRethy/vim-illuminate"
+
+  use "f-person/git-blame.nvim"
+
+  use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
 end)
 

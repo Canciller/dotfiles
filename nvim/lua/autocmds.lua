@@ -29,3 +29,16 @@ autocmd('FileType', {
   pattern = { 'typescript', 'typescriptreact' },
   command = "compiler tsc"
 })
+
+-- Save folds on write and restore on open
+augroup('RememberFolds', { clear = true })
+autocmd('BufWinLeave', {
+  group = 'RememberFolds',
+  pattern = '*.*',
+  command = 'mkview'
+})
+autocmd('BufWinEnter', {
+  group = 'RememberFolds',
+  pattern = '*.*',
+  command = 'silent! loadview'
+})
