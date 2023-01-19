@@ -5,14 +5,21 @@ saga.setup {
   server_filetype_map = {
     typescript = 'typescript'
   },
-  finder_action_keys = {
+  finder = {
     open = {'o', '<CR>'},
     vsplit = 'v',
     split = 'x',
     tabe = 't',
     quit = {'q', '<ESC>'},
   },
-  rename_in_select = false,
+  rename = {
+    quit = '<C-c>',
+    exec = '<CR>',
+    mark = 'x',
+    confirm = '<CR>',
+    in_select = false,
+    whole_project = false,
+  },
 }
 
 local opts = { noremap = true, silent = true }
