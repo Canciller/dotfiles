@@ -79,6 +79,11 @@ _G.packer_plugins = {
     path = "/Users/canciller/.local/share/nvim/site/pack/packer/start/Comment.nvim",
     url = "https://github.com/numToStr/Comment.nvim"
   },
+  ["alpha-nvim"] = {
+    loaded = true,
+    path = "/Users/canciller/.local/share/nvim/site/pack/packer/start/alpha-nvim",
+    url = "https://github.com/goolord/alpha-nvim"
+  },
   ["bufferline.nvim"] = {
     loaded = true,
     path = "/Users/canciller/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
@@ -113,6 +118,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/canciller/.local/share/nvim/site/pack/packer/start/dracula.nvim",
     url = "https://github.com/Mofiqul/dracula.nvim"
+  },
+  ["git-blame.nvim"] = {
+    loaded = true,
+    path = "/Users/canciller/.local/share/nvim/site/pack/packer/start/git-blame.nvim",
+    url = "https://github.com/f-person/git-blame.nvim"
   },
   ["gitsigns.nvim"] = {
     loaded = true,
@@ -174,6 +184,21 @@ _G.packer_plugins = {
     path = "/Users/canciller/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
+  ["nvim-notify"] = {
+    loaded = true,
+    path = "/Users/canciller/.local/share/nvim/site/pack/packer/start/nvim-notify",
+    url = "https://github.com/rcarriga/nvim-notify"
+  },
+  ["nvim-surround"] = {
+    loaded = true,
+    path = "/Users/canciller/.local/share/nvim/site/pack/packer/start/nvim-surround",
+    url = "https://github.com/kylechui/nvim-surround"
+  },
+  ["nvim-tree.lua"] = {
+    loaded = true,
+    path = "/Users/canciller/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
+    url = "https://github.com/nvim-tree/nvim-tree.lua"
+  },
   ["nvim-treesitter"] = {
     loaded = true,
     path = "/Users/canciller/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
@@ -188,6 +213,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/canciller/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring",
     url = "https://github.com/JoosepAlviste/nvim-ts-context-commentstring"
+  },
+  ["nvim-ufo"] = {
+    loaded = true,
+    path = "/Users/canciller/.local/share/nvim/site/pack/packer/start/nvim-ufo",
+    url = "https://github.com/kevinhwang91/nvim-ufo"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
@@ -208,6 +238,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/canciller/.local/share/nvim/site/pack/packer/start/prettier.nvim",
     url = "https://github.com/MunifTanjim/prettier.nvim"
+  },
+  ["promise-async"] = {
+    loaded = true,
+    path = "/Users/canciller/.local/share/nvim/site/pack/packer/start/promise-async",
+    url = "https://github.com/kevinhwang91/promise-async"
   },
   ["sqlite.lua"] = {
     loaded = true,
@@ -253,6 +288,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/canciller/.local/share/nvim/site/pack/packer/start/vim-hardtime",
     url = "https://github.com/takac/vim-hardtime"
+  },
+  ["vim-illuminate"] = {
+    loaded = true,
+    path = "/Users/canciller/.local/share/nvim/site/pack/packer/start/vim-illuminate",
+    url = "https://github.com/RRethy/vim-illuminate"
   },
   ["vscode.nvim"] = {
     loaded = true,

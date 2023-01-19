@@ -20,6 +20,9 @@ saga.setup {
     in_select = false,
     whole_project = false,
   },
+  diagnostic = {
+    show_code_action = false
+  },
 }
 
 local opts = { noremap = true, silent = true }
