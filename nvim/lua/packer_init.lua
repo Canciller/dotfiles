@@ -83,5 +83,7 @@ return require('packer').startup(function(use)
   use "f-person/git-blame.nvim"
 
   use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
+
+  use "nvim-tree/nvim-tree.lua"
 end)
 
