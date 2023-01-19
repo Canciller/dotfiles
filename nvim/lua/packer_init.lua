@@ -48,13 +48,15 @@ return require('packer').startup(function(use)
   use 'windwp/nvim-autopairs'
   use 'windwp/nvim-ts-autotag'
 
-  use {
-    'nvim-telescope/telescope.nvim', branch = '0.1.x',
-    requires = { {'nvim-lua/plenary.nvim'} }
-  }
+  use 'nvim-telescope/telescope.nvim'
 
-  use { 'nvim-telescope/telescope-file-browser.nvim' }
-  use {'smartpde/telescope-recent-files'}
+  use 'nvim-telescope/telescope-file-browser.nvim'
+  use 'smartpde/telescope-recent-files'
+  use {
+    "nvim-telescope/telescope-frecency.nvim",
+    requires = {"kkharji/sqlite.lua"}
+  }
+  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
   use {
     'nvim-treesitter/nvim-treesitter',

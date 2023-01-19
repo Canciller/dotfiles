@@ -25,6 +25,8 @@ o.expandtab = true
 o.title = true
 o.titlestring = "%t %m"
 
+o.timeoutlen = 500
+
 --o.mouse = ""
 
 cmd('colorscheme tokyonight-night')

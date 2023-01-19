@@ -25,7 +25,9 @@ map('', '<right>', '<nop>')
 map('i', '<esc>', '<nop>')
 
 -- enter normal mode in insert mode
-map('i', 'jk', '<esc>1l')
+map('i', 'jk', '<esc>')
+-- map('v', 'jk', '<esc>')
+map('c', 'jk', '<c-c>')
 
 -- ctrl+] not working on latam keybord
 map('n', '<c-+>', '<c-]>')
@@ -68,5 +70,7 @@ map('n', '<leader>ga', ':tabedit $CONFIG/nvim/lua/autocmds.lua<cr>')
 -- open options.lua in new tab
 map('n', '<leader>go', ':tabedit $CONFIG/nvim/lua/options.lua<cr>')
 
--- disable history
-map('n', 'q:', '<nop>')
+-- record macro
+map('n', 'q', '<nop>')
+map('n', '<leader>q', 'q')
+

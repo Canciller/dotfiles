@@ -28,12 +28,20 @@ telescope.setup({
     recent_files = {
       only_cwd = true,
       show_current_file = false
-    }
+    },
+  },
+  pickers = {
+    live_grep = {
+      additional_args = function(opts)
+        return {"--hidden", "-u"}
+      end
+    },
   },
   defaults = {
+    path_display = { "truncate" },
     mappings = {
       n = {
-        ["<esc><esc>"] = actions.close,
+        ["q"] = actions.close,
         ["x"] = actions.file_split,
         ["v"] = actions.file_vsplit,
         ["t"] = actions.select_tab,
@@ -42,8 +50,10 @@ telescope.setup({
   },
 })
 
-telescope.load_extension "file_browser"
 telescope.load_extension "recent_files"
+telescope.load_extension "file_browser"
+telescope.load_extension "frecency"
+telescope.load_extension "fzf"
 
 local function file_browser()
   telescope.extensions.file_browser.file_browser({
@@ -72,7 +82,9 @@ vim.keymap.set('n', '<leader>ff', find_files, {
 })
 
 local find_all_files = function()
-  builtin.find_files()
+  builtin.find_files({
+    no_ignore = true
+  })
 end
 
 vim.keymap.set('n', '<leader>fa', find_all_files, {
