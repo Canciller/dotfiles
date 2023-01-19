@@ -53,8 +53,8 @@ return require('packer').startup(function(use)
   use 'nvim-telescope/telescope-file-browser.nvim'
   use 'smartpde/telescope-recent-files'
   use {
-    "nvim-telescope/telescope-frecency.nvim",
-    requires = {"kkharji/sqlite.lua"}
+    'nvim-telescope/telescope-frecency.nvim',
+    requires = {'kkharji/sqlite.lua'}
   }
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
@@ -71,27 +71,29 @@ return require('packer').startup(function(use)
   use 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
 
   use 'NvChad/nvim-colorizer.lua'
-  use "lukas-reineke/indent-blankline.nvim"
+  use 'lukas-reineke/indent-blankline.nvim'
 
   use 'numToStr/Comment.nvim'
   use 'JoosepAlviste/nvim-ts-context-commentstring'
 
-  use "folke/trouble.nvim"
+  use 'folke/trouble.nvim'
 
-  use "RRethy/vim-illuminate"
+  use 'RRethy/vim-illuminate'
 
-  use "f-person/git-blame.nvim"
+  use 'f-person/git-blame.nvim'
 
   use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
 
-  use "nvim-tree/nvim-tree.lua"
+  use 'nvim-tree/nvim-tree.lua'
 
-  use "rcarriga/nvim-notify"
+  use 'rcarriga/nvim-notify'
 
   use({
-    "kylechui/nvim-surround",
-    tag = "*",
+    'kylechui/nvim-surround',
+    tag = '*',
   })
+
+  use 'goolord/alpha-nvim'
 end)
 
 
