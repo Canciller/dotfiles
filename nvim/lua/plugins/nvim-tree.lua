@@ -4,9 +4,9 @@ vim.g.loaded_netrwPlugin = 1
 
 -- empty setup using defaults
 require("nvim-tree").setup({
+  hijack_netrw = false,
   view = {
     relativenumber = true
   }
 })
 
--- require('nvim-tree.view').View.winopts.relativenumber = true
