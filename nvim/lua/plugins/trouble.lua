@@ -1,4 +1,17 @@
-require("trouble").setup()
+require("trouble").setup({
+  signs = {
+      error = "E",
+      warning = "W",
+      hint = "H",
+      information = "I",
+      other = "O"
+  },
+  action_keys = {
+    open_split = { "x" }, -- open buffer in new split
+    open_vsplit = { "v" }, -- open buffer in new vsplit
+    open_tab = { "t" }, -- open buffer in new tab
+  }
+})
 
 vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>",
   {silent = true, noremap = true}
@@ -16,6 +29,6 @@ vim.keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>",
   {silent = true, noremap = true}
 )
 
---[[ vim.keymap.set("n", "gR", "<cmd>TroubleToggle lsp_references<cr>",
+vim.keymap.set("n", "gr", "<cmd>TroubleToggle lsp_references<cr>",
   {silent = true, noremap = true}
-) ]]
+)

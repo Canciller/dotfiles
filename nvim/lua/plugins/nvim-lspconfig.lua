@@ -14,22 +14,26 @@ local on_attach = function(client, bufnr)
   end ]]
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
 
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+  --[[ vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts) ]]
+
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
   vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+
   -- vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
   -- vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
   --[[ vim.keymap.set('n', '<leader>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, bufopts) ]]
   -- vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
+
   vim.keymap.set('n', '<f2>', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<leader>fo', function() vim.lsp.buf.format { async = true } end, bufopts)
   vim.keymap.set('n', '<leader>cd', vim.diagnostic.open_float, buf)
+  vim.keymap.set('n', '<leader>fo', function() vim.lsp.buf.format { async = true } end, bufopts)
+
   vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, bufopts)
   vim.keymap.set('n', ']d', vim.diagnostic.goto_next, bufopts)
   -- vim.keymap.set('n', '<leader>cd', vim.diagnostic.setloclist, bufopts)
@@ -40,3 +44,14 @@ nvim_lsp.tsserver.setup {
   on_attach = on_attach,
 }
 
+local signs = {
+    Error = "E",
+    Warn = "W",
+    Hint = "H",
+    Info = "I"
+}
+
+ for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+ end

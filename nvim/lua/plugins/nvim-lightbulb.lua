@@ -1,6 +1,11 @@
 require('nvim-lightbulb').setup({
-  ignore = {
-    'null-ls'
+  sign = {
+    enabled = false
   },
-  autocmd = { enabled = true },
+  float = {
+    enabled = true
+  },
+  autocmd = { enabled = false },
 })
+
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb({ ignore = {"null-ls"} })]]

@@ -110,6 +110,10 @@ return require('packer').startup(function(use)
       'kosayoda/nvim-lightbulb',
       requires = 'antoinemadec/FixCursorHold.nvim',
   }
+
+  use 'rmagatti/goto-preview'
+
+  use 'gbprod/substitute.nvim'
 end)
 
 

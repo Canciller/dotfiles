@@ -1,4 +1,7 @@
 require("noice").setup({
+  --[[ cmdline = {
+    view = 'cmdline',
+  }, ]]
   presets = {
     inc_rename = true,
     lsp_doc_border = true,
