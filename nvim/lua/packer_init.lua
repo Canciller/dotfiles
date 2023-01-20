@@ -114,6 +114,8 @@ return require('packer').startup(function(use)
   use 'rmagatti/goto-preview'
 
   use 'gbprod/substitute.nvim'
+
+  use 'folke/todo-comments.nvim'
 end)
 
 
