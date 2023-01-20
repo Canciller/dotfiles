@@ -100,12 +100,16 @@ return require('packer').startup(function(use)
 
   use 'smjonas/inc-rename.nvim'
 
-  use({
-    'folke/noice.nvim',
-    requires = {
-      'MunifTanjim/nui.nvim',
-      }
-  })
+  use 'MunifTanjim/nui.nvim'
+
+  use 'folke/noice.nvim'
+
+  use 'stevearc/dressing.nvim'
+
+  use {
+      'kosayoda/nvim-lightbulb',
+      requires = 'antoinemadec/FixCursorHold.nvim',
+  }
 end)
 
 
