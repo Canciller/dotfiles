@@ -54,6 +54,7 @@ telescope.load_extension "recent_files"
 telescope.load_extension "file_browser"
 telescope.load_extension "frecency"
 telescope.load_extension "fzf"
+telescope.load_extension "noice"
 
 local function file_browser()
   telescope.extensions.file_browser.file_browser({

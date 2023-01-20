@@ -97,6 +97,15 @@ return require('packer').startup(function(use)
   })
 
   use 'goolord/alpha-nvim'
+
+  use 'smjonas/inc-rename.nvim'
+
+  use({
+    'folke/noice.nvim',
+    requires = {
+      'MunifTanjim/nui.nvim',
+      }
+  })
 end)
 
 
