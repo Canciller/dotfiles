@@ -39,9 +39,12 @@ local on_attach = function(client, bufnr)
   -- vim.keymap.set('n', '<leader>cd', vim.diagnostic.setloclist, bufopts)
 end
 
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
 -- TypeScript
 nvim_lsp.tsserver.setup {
   on_attach = on_attach,
+  capabilities = capabilities
 }
 
 local signs = {
@@ -57,11 +60,12 @@ local signs = {
  end
 
 -- Show line diagnostics automatically in hover window
-vim.o.updatetime = 250
-vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+-- vim.o.updatetime = 250
+-- vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
 
 vim.diagnostic.config({
   virtual_text = false,
   virtual_lines = false,
+  update_in_insert = false,
   float = { border = "rounded" },
 })

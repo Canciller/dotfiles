@@ -17,4 +17,11 @@ require("noice").setup({
       opts = { skip = true },
     },
   },
+  lsp = {
+    signature = {
+      auto_open = {
+        enabled = false
+      }
+    }
+  }
 })

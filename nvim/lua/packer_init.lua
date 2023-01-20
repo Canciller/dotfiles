@@ -18,8 +18,6 @@ return require('packer').startup(function(use)
 
   use 'nvim-lua/plenary.nvim'
 
-  use 'j-hui/fidget.nvim'
-
   use 'sindrets/diffview.nvim'
   use 'lewis6991/gitsigns.nvim'
 
@@ -69,7 +67,7 @@ return require('packer').startup(function(use)
     end,
     }
 
-  use 'glepnir/lspsaga.nvim'
+  -- use 'glepnir/lspsaga.nvim'
 
   use 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
 
@@ -116,6 +114,10 @@ return require('packer').startup(function(use)
   use 'gbprod/substitute.nvim'
 
   use 'folke/todo-comments.nvim'
+
+  use({"L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*"})
+  use 'saadparwaiz1/cmp_luasnip'
+  use 'Canciller/friendly-snippets'
 end)
 
 
