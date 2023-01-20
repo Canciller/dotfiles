@@ -9,6 +9,7 @@ local sources = {
   null_ls.builtins.diagnostics.eslint_d.with({
     diagnostics_format = '[eslint] #{m}\n(#{c})'
   }),
+  require("typescript.extensions.null-ls.code-actions"),
 }
 
 null_ls.setup({

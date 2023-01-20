@@ -18,6 +18,8 @@ return require('packer').startup(function(use)
 
   use 'nvim-lua/plenary.nvim'
 
+  use 'j-hui/fidget.nvim'
+
   use 'sindrets/diffview.nvim'
   use 'lewis6991/gitsigns.nvim'
 
@@ -30,6 +32,7 @@ return require('packer').startup(function(use)
   use 'onsails/lspkind-nvim'
   use 'neovim/nvim-lspconfig'
   use 'jose-elias-alvarez/null-ls.nvim'
+  use 'jose-elias-alvarez/typescript.nvim'
   use 'MunifTanjim/prettier.nvim'
 
   use 'takac/vim-hardtime'
