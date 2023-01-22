@@ -28,9 +28,7 @@ cmp.setup({
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-      -- they way you will only jump inside the snippet region
-      elseif luasnip.expand_or_jumpable() then
+      elseif luasnip.expand_or_locally_jumpable() then
         luasnip.expand_or_jump()
       elseif has_words_before() then
         cmp.complete()
@@ -49,7 +47,18 @@ cmp.setup({
       end
     end, { "i", "s" }),
 
-    ['<cr>'] = function(fallback)
+    ['<CR>'] = cmp.mapping(function(fallback)
+      if cmp.visible() and luasnip.expand_or_locally_jumpable() then
+        luasnip.expand_or_jump()
+      elseif cmp.visible() then
+        cmp.confirm({
+          select = true
+        })
+      else
+        fallback()
+      end
+    end)
+    --[[ ['<cr>'] = function(fallback)
       -- Don't block <CR> if signature help is active
       -- https://github.com/hrsh7th/cmp-nvim-lsp-signature-help/issues/13
       if not cmp.visible() or not cmp.get_selected_entry() or cmp.get_selected_entry().source.name == 'nvim_lsp_signature_help' then
@@ -63,7 +72,7 @@ cmp.setup({
           select = false,
         })
       end
-    end
+    end ]]
   }),
   snippet = {
     expand = function(args)
@@ -75,7 +84,7 @@ cmp.setup({
     { name = 'nvim_lsp_signature_help' },
     { name = 'buffer' },
     { name = 'path' },
-    { name = 'luasnip' }
+    { name = 'luasnip', option = { use_show_condition = false } },
   }),
   formatting = {
     format = lspkind.cmp_format({

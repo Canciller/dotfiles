@@ -3,7 +3,7 @@ require("noice").setup({
     view = 'cmdline',
   }, ]]
   presets = {
-    inc_rename = true,
+    inc_rename = false,
     lsp_doc_border = true,
     command_palette = true
   },
@@ -22,6 +22,9 @@ require("noice").setup({
       auto_open = {
         enabled = false
       }
+    },
+    progress = {
+      view = 'mini'
     }
   }
 })

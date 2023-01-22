@@ -67,6 +67,8 @@ return require('packer').startup(function(use)
     end,
     }
 
+  use 'nvim-treesitter/nvim-treesitter-textobjects'
+
   -- use 'glepnir/lspsaga.nvim'
 
   use 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'

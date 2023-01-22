@@ -37,6 +37,24 @@ ts.setup {
   context_commentstring = {
     enable = true,
     enable_autocmd = false,
+  },
+  textobjects = {
+    select = {
+      enable = true,
+      lookahead = true,
+      keymaps = {
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ia"] = "@parameter.inner",
+        ["aa"] = "@parameter.outer",
+        ["ak"] = "@comment.outer"
+      },
+      selection_modes = {
+        ['@function.outer'] = 'V', -- linewise
+        ['@function.inner'] = 'V', -- linewise
+        ['@comment.outer'] = 'V', -- linewise
+      },
+    },
   }
 }
 
@@ -46,4 +64,3 @@ parser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }
 vim.o.foldlevel = 99
 vim.o.foldmethod = 'expr'
 vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
-

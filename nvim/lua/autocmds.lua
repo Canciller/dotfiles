@@ -30,6 +30,17 @@ autocmd('FileType', {
   command = "compiler tsc"
 })
 
+augroup('ReactHooksTypescript', { clear = true })
+autocmd(
+  { 'BufNew', 'BufNewFile', 'BufRead' },
+  {
+    group = 'ReactHooksTypescript',
+    pattern = 'use*.ts',
+    command = 'set filetype=typescriptreact'
+  }
+)
+
+
 -- Save folds on write and restore on open
 augroup('RememberFolds', { clear = true })
 autocmd('BufWinLeave', {
