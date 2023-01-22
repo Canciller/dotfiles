@@ -32,3 +32,17 @@ vim.keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>",
 vim.keymap.set("n", "gr", "<cmd>Trouble lsp_references<cr>",
   {silent = true, noremap = true}
 )
+
+local autocmd = vim.api.nvim_create_autocmd
+
+autocmd('QuickFixCmdPost', {
+  nested = true,
+  pattern = '[^l]*',
+  command = 'Trouble quickfix'
+})
+
+autocmd('QuickFixCmdPre', {
+  nested = true,
+  pattern = '[^l]*',
+  command = 'TroubleClose'
+})

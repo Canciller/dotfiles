@@ -27,6 +27,8 @@ o.titlestring = "%t %m"
 
 o.timeoutlen = 500
 
+o.autowrite = true
+
 --o.mouse = ""
 
 cmd('colorscheme tokyonight-night')
