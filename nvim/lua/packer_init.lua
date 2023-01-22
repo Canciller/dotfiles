@@ -120,6 +120,11 @@ return require('packer').startup(function(use)
   use({"L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*"})
   use 'saadparwaiz1/cmp_luasnip'
   use 'Canciller/friendly-snippets'
+
+  use({
+    'weilbith/nvim-code-action-menu',
+    cmd = 'CodeActionMenu',
+  })
 end)
 
 

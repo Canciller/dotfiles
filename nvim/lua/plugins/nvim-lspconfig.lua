@@ -30,7 +30,7 @@ local on_attach = function(client, bufnr)
   -- vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
 
   vim.keymap.set('n', '<f2>', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set('n', '<leader>ca', ':CodeActionMenu<cr>', bufopts)
   vim.keymap.set('n', '<leader>cd', vim.diagnostic.open_float, buf)
   vim.keymap.set('n', '<leader>fo', function() vim.lsp.buf.format { async = true } end, bufopts)
 
@@ -69,3 +69,7 @@ vim.diagnostic.config({
   update_in_insert = false,
   float = { border = "rounded" },
 })
+
+vim.g.code_action_menu_show_details = true
+vim.g.code_action_menu_show_diff = true
+vim.g.code_action_menu_show_action_kind = false
