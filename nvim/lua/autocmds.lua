@@ -40,7 +40,6 @@ autocmd(
   }
 )
 
-
 -- Save folds on write and restore on open
 augroup('RememberFolds', { clear = true })
 autocmd('BufWinLeave', {

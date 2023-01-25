@@ -1,13 +1,14 @@
 local status, nvim_lsp = pcall(require, "lspconfig")
 if (not status) then return end
+local rt = require('rust-tools')
 
 local protocol = require('vim.lsp.protocol')
 local navic = require("nvim-navic")
 
 local on_attach = function(client, bufnr)
-  if client.server_capabilities.documentSymbolProvider then
+  --[[ if client.server_capabilities.documentSymbolProvider then
       navic.attach(client, bufnr)
-  end
+  end ]]
 
   -- format on save
   --[[ if client.server_capabilities.documentFormattingProvider then
@@ -51,6 +52,19 @@ nvim_lsp.tsserver.setup {
   on_attach = on_attach,
   capabilities = capabilities
 }
+
+-- Rust
+rt.setup {
+  server = {
+    on_attach = on_attach,
+    capabilities = capabilities
+  }
+}
+
+-- vim.g.rust_recommended_style = false
+vim.g.rustfmt_autosave = true
+
+-- Diagnostics
 
 local signs = {
     Error = "E",

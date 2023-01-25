@@ -45,3 +45,5 @@ path $VOLTA_HOME/bin
 
 export PATH
 
+# rust
+source "$HOME/.cargo/env"

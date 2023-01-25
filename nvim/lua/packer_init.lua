@@ -127,6 +127,10 @@ return require('packer').startup(function(use)
   })
 
   use 'SmiteshP/nvim-navic'
+
+  use 'simrat39/rust-tools.nvim'
+
+  use 'rust-lang/rust.vim'
 end)
 
 

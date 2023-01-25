@@ -26,6 +26,7 @@ plugins=(
   brew
   #zsh-autocomplete
   zsh-autosuggestions
+  rust
 )
 
 [ -f "$ZSH/oh-my-zsh.sh" ] && source "$ZSH/oh-my-zsh.sh"

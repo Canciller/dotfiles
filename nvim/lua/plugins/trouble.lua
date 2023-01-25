@@ -22,12 +22,41 @@ vim.keymap.set("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>"
 vim.keymap.set("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>",
   {silent = true, noremap = true}
 )
-vim.keymap.set("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>",
+--[[ vim.keymap.set("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>",
   {silent = true, noremap = true}
-)
-vim.keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>",
+) ]]
+--[[ vim.keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>",
   {silent = true, noremap = true}
-)
+) ]]
+
+vim.cmd [[
+  function! ToggleQuickFix()
+      if empty(filter(getwininfo(), 'v:val.quickfix'))
+          copen
+      else
+          cclose
+      endif
+  endfunction
+
+  function! ToggleLocationList()
+      if empty(filter(getwininfo(), 'v:val.quickfix'))
+          lopen
+      else
+          lclose
+      endif
+  endfunction
+
+  nnoremap <silent> <leader>xq :call ToggleQuickFix()<cr>
+  nnoremap <silent> ]q :cnext<cr>
+  nnoremap <silent> [q :cprev<cr>
+
+  autocmd FileType qf nnoremap <buffer> t <C-W><cr><C-W>T
+  autocmd FileType qf nnoremap <buffer> x <C-W><cr>
+  autocmd FileType qf nnoremap <buffer> v <C-W><cr><C-W>L
+
+  nnoremap <silent> <leader>xl :call ToggleLocationList()<cr>
+]]
+
 
 vim.keymap.set("n", "gr", "<cmd>Trouble lsp_references<cr>",
   {silent = true, noremap = true}
@@ -35,14 +64,20 @@ vim.keymap.set("n", "gr", "<cmd>Trouble lsp_references<cr>",
 
 local autocmd = vim.api.nvim_create_autocmd
 
-autocmd('QuickFixCmdPost', {
+--[[ autocmd('QuickFixCmdPost', {
   nested = true,
   pattern = '[^l]*',
   command = 'Trouble quickfix'
-})
+}) ]]
 
-autocmd('QuickFixCmdPre', {
+--[[ autocmd('QuickFixCmdPre', {
   nested = true,
   pattern = '[^l]*',
   command = 'TroubleClose'
+}) ]]
+
+autocmd('QuickFixCmdPost', {
+  nested = true,
+  pattern = '[^l]*',
+  command = 'cwindow'
 })

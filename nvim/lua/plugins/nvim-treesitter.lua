@@ -21,7 +21,12 @@ ts.setup {
     "json",
     "css",
     "html",
-    "markdown"
+    "markdown",
+    "markdown_inline",
+    "regex",
+    "bash",
+    "rust",
+    "toml",
   },
   autotag = {
     enable = true,
