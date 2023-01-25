@@ -2,8 +2,13 @@ local status, nvim_lsp = pcall(require, "lspconfig")
 if (not status) then return end
 
 local protocol = require('vim.lsp.protocol')
+local navic = require("nvim-navic")
 
 local on_attach = function(client, bufnr)
+  if client.server_capabilities.documentSymbolProvider then
+      navic.attach(client, bufnr)
+  end
+
   -- format on save
   --[[ if client.server_capabilities.documentFormattingProvider then
     vim.api.nvim_create_autocmd("BufWritePre", {
