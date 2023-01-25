@@ -16,6 +16,14 @@ require("noice").setup({
       },
       opts = { skip = true },
     },
+    {
+      filter = {
+        event = "msg_show",
+        kind = "",
+        find = "change; before",
+      },
+      opts = { skip = true },
+    },
   },
   lsp = {
     signature = {
@@ -24,6 +32,7 @@ require("noice").setup({
       }
     },
     progress = {
+      enabled = false,
       view = 'mini'
     }
   }
