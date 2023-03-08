@@ -46,8 +46,11 @@ cmp.setup({
         fallback()
       end
     end, { "i", "s" }),
+    ["<cr>"] = cmp.mapping.confirm({
+      select = true
+    }),
 
-    ['<CR>'] = cmp.mapping(function(fallback)
+    --[[ ['<CR>'] = cmp.mapping(function(fallback)
       if cmp.visible() and luasnip.expand_or_locally_jumpable() then
         luasnip.expand_or_jump()
       elseif cmp.visible() then
@@ -57,7 +60,7 @@ cmp.setup({
       else
         fallback()
       end
-    end)
+    end) ]]
     --[[ ['<cr>'] = function(fallback)
       -- Don't block <CR> if signature help is active
       -- https://github.com/hrsh7th/cmp-nvim-lsp-signature-help/issues/13
@@ -81,7 +84,7 @@ cmp.setup({
   },
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
-    { name = 'nvim_lsp_signature_help' },
+    -- { name = 'nvim_lsp_signature_help' },
     { name = 'buffer' },
     { name = 'path' },
     { name = 'luasnip', option = { use_show_condition = false } },

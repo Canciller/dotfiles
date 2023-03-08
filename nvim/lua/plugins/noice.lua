@@ -32,6 +32,22 @@ require("noice").setup({
       },
       opts = { skip = true },
     },
+    {
+      filter = {
+        event = "msg_show",
+        kind = "",
+        find = "changes; before",
+      },
+      opts = { skip = true },
+    },
+    {
+      filter = {
+        event = "msg_show",
+        kind = "",
+        find = "changes; after",
+      },
+      opts = { skip = true },
+    },
   },
   lsp = {
     signature = {

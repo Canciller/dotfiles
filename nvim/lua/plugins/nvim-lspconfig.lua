@@ -26,7 +26,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts) ]]
 
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+  -- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
 
   -- vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
   -- vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
@@ -58,10 +58,13 @@ rt.setup {
   server = {
     on_attach = on_attach,
     capabilities = capabilities
+  },
+  inlay_hints = {
+      parameter_hints_prefix = "<- ",
+      other_hints_prefix = "=> ",
   }
 }
 
--- vim.g.rust_recommended_style = false
 vim.g.rustfmt_autosave = true
 
 -- Diagnostics

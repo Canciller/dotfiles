@@ -29,6 +29,8 @@ map('i', 'jk', '<esc>')
 -- map('v', 'jk', '<esc>')
 map('c', 'jk', '<c-c>')
 
+map('t', 'jk', '<C-\\><C-n>')
+
 -- ctrl+] not working on latam keybord
 map('n', '<c-+>', '<c-]>')
 
