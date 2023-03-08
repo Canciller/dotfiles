@@ -16,121 +16,121 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
-  use 'nvim-lua/plenary.nvim'
+  -- use 'nvim-lua/plenary.nvim'
 
-  use 'sindrets/diffview.nvim'
-  use 'lewis6991/gitsigns.nvim'
+  -- use 'sindrets/diffview.nvim'
+  -- use 'lewis6991/gitsigns.nvim'
 
-  use 'hrsh7th/nvim-cmp'
-  use 'hrsh7th/cmp-nvim-lsp-signature-help'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-path'
+  -- use 'hrsh7th/nvim-cmp'
+  -- use 'hrsh7th/cmp-nvim-lsp-signature-help'
+  -- use 'hrsh7th/cmp-buffer'
+  -- use 'hrsh7th/cmp-nvim-lsp'
+  -- use 'hrsh7th/cmp-path'
 
-  use 'onsails/lspkind-nvim'
-  use 'neovim/nvim-lspconfig'
-  use 'jose-elias-alvarez/null-ls.nvim'
-  use 'jose-elias-alvarez/typescript.nvim'
-  use 'MunifTanjim/prettier.nvim'
+  -- use 'onsails/lspkind-nvim'
+  -- use 'neovim/nvim-lspconfig'
+  -- use 'jose-elias-alvarez/null-ls.nvim'
+  -- use 'jose-elias-alvarez/typescript.nvim'
+  -- use 'MunifTanjim/prettier.nvim'
 
-  use 'takac/vim-hardtime'
+  -- use 'takac/vim-hardtime'
 
-  use 'sainnhe/gruvbox-material'
-  use 'Mofiqul/dracula.nvim'
-  use 'Mofiqul/vscode.nvim'
-  use 'folke/tokyonight.nvim'
+  -- use 'sainnhe/gruvbox-material'
+  -- use 'Mofiqul/dracula.nvim'
+  -- use 'Mofiqul/vscode.nvim'
+  -- use 'folke/tokyonight.nvim'
 
-  use 'kyazdani42/nvim-web-devicons'
+  -- use 'kyazdani42/nvim-web-devicons'
 
-  use 'nvim-lualine/lualine.nvim'
+  -- use 'nvim-lualine/lualine.nvim'
 
-  use 'akinsho/bufferline.nvim'
+  -- use 'akinsho/bufferline.nvim'
 
-  use 'windwp/nvim-autopairs'
-  use 'windwp/nvim-ts-autotag'
+  -- use 'windwp/nvim-autopairs'
+  -- use 'windwp/nvim-ts-autotag'
 
-  use 'nvim-telescope/telescope.nvim'
+  -- use 'nvim-telescope/telescope.nvim'
 
-  use 'nvim-telescope/telescope-file-browser.nvim'
-  use 'smartpde/telescope-recent-files'
-  use {
-    'nvim-telescope/telescope-frecency.nvim',
-    requires = {'kkharji/sqlite.lua'}
-  }
-  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  -- use 'nvim-telescope/telescope-file-browser.nvim'
+  -- use 'smartpde/telescope-recent-files'
+  -- use {
+  --   'nvim-telescope/telescope-frecency.nvim',
+  --   requires = {'kkharji/sqlite.lua'}
+  -- }
+  -- use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = function()
-        local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-        ts_update()
-    end,
-    }
+  -- use {
+  --   'nvim-treesitter/nvim-treesitter',
+  --   run = function()
+  --       local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+  --       ts_update()
+  --   end,
+  --   }
 
-  use 'nvim-treesitter/nvim-treesitter-textobjects'
+  -- use 'nvim-treesitter/nvim-treesitter-textobjects'
 
-  -- use 'glepnir/lspsaga.nvim'
+  -- -- use 'glepnir/lspsaga.nvim'
 
-  use 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
+  -- use 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
 
-  use 'NvChad/nvim-colorizer.lua'
-  use 'lukas-reineke/indent-blankline.nvim'
+  -- use 'NvChad/nvim-colorizer.lua'
+  -- use 'lukas-reineke/indent-blankline.nvim'
 
-  use 'numToStr/Comment.nvim'
-  use 'JoosepAlviste/nvim-ts-context-commentstring'
+  -- use 'numToStr/Comment.nvim'
+  -- use 'JoosepAlviste/nvim-ts-context-commentstring'
 
-  use 'folke/trouble.nvim'
+  -- use 'folke/trouble.nvim'
 
-  use 'RRethy/vim-illuminate'
+  -- use 'RRethy/vim-illuminate'
 
-  use 'f-person/git-blame.nvim'
+  -- use 'f-person/git-blame.nvim'
 
-  use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
+  -- use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
 
-  use 'nvim-tree/nvim-tree.lua'
+  -- use 'nvim-tree/nvim-tree.lua'
 
-  use 'rcarriga/nvim-notify'
+  -- use 'rcarriga/nvim-notify'
 
-  use({
-    'kylechui/nvim-surround',
-    tag = '*',
-  })
+  -- use({
+  --   'kylechui/nvim-surround',
+  --   tag = '*',
+  -- })
 
-  use 'goolord/alpha-nvim'
+  -- use 'goolord/alpha-nvim'
 
-  use 'smjonas/inc-rename.nvim'
+  -- use 'smjonas/inc-rename.nvim'
 
-  use 'MunifTanjim/nui.nvim'
+  -- use 'MunifTanjim/nui.nvim'
 
-  use 'folke/noice.nvim'
+  -- use 'folke/noice.nvim'
 
-  use 'stevearc/dressing.nvim'
+  -- use 'stevearc/dressing.nvim'
 
-  use {
-      'kosayoda/nvim-lightbulb',
-      requires = 'antoinemadec/FixCursorHold.nvim',
-  }
+  -- use {
+  --     'kosayoda/nvim-lightbulb',
+  --     requires = 'antoinemadec/FixCursorHold.nvim',
+  -- }
 
-  use 'rmagatti/goto-preview'
+  -- use 'rmagatti/goto-preview'
 
-  use 'gbprod/substitute.nvim'
+  -- use 'gbprod/substitute.nvim'
 
-  use 'folke/todo-comments.nvim'
+  -- use 'folke/todo-comments.nvim'
 
-  use({"L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*"})
-  use 'saadparwaiz1/cmp_luasnip'
-  use 'Canciller/friendly-snippets'
+  -- use({"L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*"})
+  -- use 'saadparwaiz1/cmp_luasnip'
+  -- use 'Canciller/friendly-snippets'
 
-  use({
-    'weilbith/nvim-code-action-menu',
-    cmd = 'CodeActionMenu',
-  })
+  -- use({
+  --   'weilbith/nvim-code-action-menu',
+  --   cmd = 'CodeActionMenu',
+  -- })
 
-  use 'SmiteshP/nvim-navic'
+  -- use 'SmiteshP/nvim-navic'
 
-  use 'simrat39/rust-tools.nvim'
+  -- use 'simrat39/rust-tools.nvim'
 
-  use 'rust-lang/rust.vim'
+  -- use 'rust-lang/rust.vim'
 end)
 
 
