@@ -28,6 +28,8 @@ local plugins = {
   require('plugins/syntax/nvim-surround'),
   require('plugins/statuslines/lualine'),
   require('plugins/tablines/bufferline'),
+  require('plugins/comments/comment'),
+  require('plugins/comments/todo-comments'),
 }
 
 require("lazy").setup(plugins)
@@ -56,13 +58,11 @@ require("lazy").setup(plugins)
 -- require('plugins/colorizer')
 -- require('plugins/shade')
 -- require('plugins/indent_blankline')
--- require('plugins/Comment')
 -- require('plugins/nvim-tree')
 -- require('plugins/alpha-nvim')
 -- require('plugins/dressing')
 -- -- require('plugins/nvim-lightbulb')
 -- require('plugins/goto-preview')
 -- require('plugins/substitute')
--- require('plugins/todo-comments')
 -- require('plugins/luasnip')
 -- require('plugins/diffview')

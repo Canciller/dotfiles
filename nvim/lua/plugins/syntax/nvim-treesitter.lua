@@ -2,22 +2,23 @@ return {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     lazy = false,
+    dependencies = {'JoosepAlviste/nvim-ts-context-commentstring'},
     config = function()
         require('nvim-treesitter.configs').setup {
             highlight = {
-                enable = true,
+                enable = true
             },
             indent = {
-                enable = true,
+                enable = true
             },
             ensure_installed = {"vim", "comment", "help", "lua", "tsx", "typescript", "javascript", "json", "css",
                                 "html", "markdown", "markdown_inline", "regex", "bash", "rust", "toml"},
+            context_commentstring = {
+                enable = true,
+                enable_autocmd = false
+            }
             -- autotag = {
             --     enable = true
-            -- },
-            -- context_commentstring = {
-            --     enable = true,
-            --     enable_autocmd = false
             -- },
             -- textobjects = {
             --     select = {
