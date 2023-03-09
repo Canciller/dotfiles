@@ -1,8 +1,8 @@
 -- nvim config
 
-require('options')
-require('keymaps')
-require('autocmds')
+require('core/options')
+require('core/keymaps')
+require('core/autocmds')
 
 -- lazy.nvim config
 
