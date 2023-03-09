@@ -39,6 +39,9 @@ o.autowrite = true -- write open buffers on :make
 
 o.foldlevel = 0 -- allow folding the whole way down
 o.foldlevelstart = 99 -- open files with all folds open
+o.foldmethod = 'expr'
+o.foldexpr = 'nvim_treesitter#foldexpr()'
+o.foldenable = false
 
 o.ignorecase = true -- case insensitive search...
 o.smartcase = true -- unless I use caps

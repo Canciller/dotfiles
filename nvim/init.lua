@@ -23,7 +23,8 @@ vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
   require('plugins/colorschemes/tokyonight'),
-  require('plugins/file-explorers/neo-tree')
+  require('plugins/file-explorers/neo-tree'),
+  require('plugins/syntax/nvim-treesitter'),
 }
 
 require("lazy").setup(plugins)
