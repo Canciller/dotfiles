@@ -25,6 +25,7 @@ local plugins = {
   require('plugins/colorschemes/tokyonight'),
   require('plugins/file-explorers/neo-tree'),
   require('plugins/syntax/nvim-treesitter'),
+  require('plugins/statuslines/lualine'),
 }
 
 require("lazy").setup(plugins)
@@ -46,7 +47,7 @@ require("lazy").setup(plugins)
 -- require('plugins/telescope')
 -- -- require('plugins/vim-hardtime')
 -- require('plugins/nvim-cmp')
--- require('plugins/nvim-treesitter')
+-- require('plugins/nvim-treesitter') [PARTIAL]
 -- require('plugins/nvim-autopairs')
 -- require('plugins/gitsigns')
 -- require('plugins/git-blame')
@@ -63,5 +64,5 @@ require("lazy").setup(plugins)
 -- require('plugins/goto-preview')
 -- require('plugins/substitute')
 -- require('plugins/todo-comments')
--- require('plugins/luasnip')
+-- require('plugins/luasnip') [PARTIAL]
 -- require('plugins/diffview')
