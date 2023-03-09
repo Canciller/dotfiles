@@ -30,6 +30,7 @@ local plugins = {
   require('plugins/tablines/bufferline'),
   require('plugins/comments/comment'),
   require('plugins/comments/todo-comments'),
+  require('plugins/editing-support/substitute'),
 }
 
 require("lazy").setup(plugins)
