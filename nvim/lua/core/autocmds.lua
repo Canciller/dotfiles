@@ -22,10 +22,23 @@ autocmd('BufEnter', {
   command = 'set fo-=c fo-=r fo-=o'
 })
 
+-- Save folds on write and restore on open
+augroup('RememberFolds', { clear = true })
+autocmd('BufWinLeave', {
+  group = 'RememberFolds',
+  pattern = '*.*',
+  command = 'mkview'
+})
+autocmd('BufWinEnter', {
+  group = 'RememberFolds',
+  pattern = '*.*',
+  command = 'silent! loadview'
+})
+
 -- Typescript
-augroup('Typescript', { clear = true })
+augroup('TypescriptCompiler', { clear = true })
 autocmd('FileType', {
-  group = 'Typescript',
+  group = 'TypescriptCompiler',
   pattern = { 'typescript', 'typescriptreact' },
   command = "compiler tsc"
 })
@@ -39,16 +52,3 @@ autocmd(
     command = 'set filetype=typescriptreact'
   }
 )
-
--- Save folds on write and restore on open
-augroup('RememberFolds', { clear = true })
-autocmd('BufWinLeave', {
-  group = 'RememberFolds',
-  pattern = '*.*',
-  command = 'mkview'
-})
-autocmd('BufWinEnter', {
-  group = 'RememberFolds',
-  pattern = '*.*',
-  command = 'silent! loadview'
-})

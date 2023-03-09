@@ -3,6 +3,7 @@
 require('core/options')
 require('core/keymaps')
 require('core/autocmds')
+require('core/diagnostics')
 
 -- lazy.nvim config
 
@@ -34,6 +35,7 @@ local plugins = {
   require('plugins/git/git-blame'),
   require('plugins/git/gitsigns'),
   require('plugins/indentation/mini-indentscope'),
+  require('plugins/lsp/nvim-lspconfig'),
 }
 
 require("lazy").setup(plugins)
