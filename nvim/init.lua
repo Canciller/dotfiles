@@ -25,6 +25,7 @@ local plugins = {
   require('plugins/colorschemes/tokyonight'),
   require('plugins/file-explorers/neo-tree'),
   require('plugins/syntax/nvim-treesitter'),
+  require('plugins/syntax/nvim-surround'),
   require('plugins/statuslines/lualine'),
   require('plugins/tablines/bufferline'),
 }
@@ -57,7 +58,6 @@ require("lazy").setup(plugins)
 -- require('plugins/indent_blankline')
 -- require('plugins/Comment')
 -- require('plugins/nvim-tree')
--- require('plugins/nvim-surround')
 -- require('plugins/alpha-nvim')
 -- require('plugins/dressing')
 -- -- require('plugins/nvim-lightbulb')
