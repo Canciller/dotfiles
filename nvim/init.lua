@@ -31,6 +31,9 @@ local plugins = {
   require('plugins/comments/comment'),
   require('plugins/comments/todo-comments'),
   require('plugins/editing-support/substitute'),
+  require('plugins/git/git-blame'),
+  require('plugins/git/gitsigns'),
+  require('plugins/indentation/mini-indentscope'),
 }
 
 require("lazy").setup(plugins)

@@ -52,4 +52,7 @@ o.undofile = false -- keep track of my 'undo's between sessions
 
 o.swapfile = false -- no swap files
 
+o.list = true
+o.listchars:append "eol:↴"
+
 cmd('filetype on')
