@@ -26,6 +26,7 @@ local plugins = {
   require('plugins/file-explorers/neo-tree'),
   require('plugins/syntax/nvim-treesitter'),
   require('plugins/statuslines/lualine'),
+  require('plugins/tablines/bufferline'),
 }
 
 require("lazy").setup(plugins)
@@ -42,8 +43,7 @@ require("lazy").setup(plugins)
 -- require('plugins/noice')
 -- require('plugins/inc-rename')
 -- -- require('plugins/fidget')
--- require('plugins/lualine')
--- require('plugins/bufferline')
+-- require('plugins/lualine') [PARTIAL]
 -- require('plugins/telescope')
 -- -- require('plugins/vim-hardtime')
 -- require('plugins/nvim-cmp')
@@ -64,5 +64,5 @@ require("lazy").setup(plugins)
 -- require('plugins/goto-preview')
 -- require('plugins/substitute')
 -- require('plugins/todo-comments')
--- require('plugins/luasnip') [PARTIAL]
+-- require('plugins/luasnip')
 -- require('plugins/diffview')
