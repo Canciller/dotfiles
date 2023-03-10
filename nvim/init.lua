@@ -20,7 +20,6 @@ require('plugins')
 -- require('plugins/telescope')
 -- require('plugins/nvim-cmp')
 -- require('plugins/nvim-treesitter') [PARTIAL]
--- require('plugins/nvim-autopairs')
 -- require('plugins/prettier')
 -- require('plugins/colorizer')
 -- require('plugins/shade')

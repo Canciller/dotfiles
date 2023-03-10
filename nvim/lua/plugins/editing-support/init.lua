@@ -6,4 +6,7 @@ return {{
 }, {
     "gbprod/substitute.nvim",
     config = require('plugins/editing-support/substitute')
+}, {
+    "windwp/nvim-autopairs",
+    config = require('plugins/editing-support/nvim-autopairs')
 }}
