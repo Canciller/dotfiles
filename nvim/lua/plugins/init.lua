@@ -20,6 +20,7 @@ require("lazy").setup({
     { import = 'plugins/treesitter' },
     { import = 'plugins/statusline' },
     { import = 'plugins/tabline' },
+    { import = 'plugins/cursorline' },
     { import = 'plugins/comments' },
     { import = 'plugins/editing-support' },
     { import = 'plugins/git' },
