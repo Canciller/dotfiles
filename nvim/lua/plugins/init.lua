@@ -25,6 +25,7 @@ require("lazy").setup({
     { import = 'plugins/editing-support' },
     { import = 'plugins/git' },
     { import = 'plugins/indentation' },
+    { import = 'plugins/fuzzy-finder' },
     { import = 'plugins/lsp' },
     { import = 'plugins/extras/langs/typescript'}
   },
