@@ -3,7 +3,6 @@ return {
     event = "BufRead",
     dependencies = {{"nvim-tree/nvim-web-devicons"}},
     config = function()
-
         require("lspsaga").setup({
             server_filetype_map = {
                 typescript = 'typescript'

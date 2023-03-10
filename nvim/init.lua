@@ -36,6 +36,8 @@ local plugins = {
   require('plugins/git/gitsigns'),
   require('plugins/indentation/mini-indentscope'),
   require('plugins/lsp/nvim-lspconfig'),
+  require('plugins/lsp/typescript'),
+  require('plugins/lsp/null-ls')
 }
 
 require("lazy").setup(plugins)
