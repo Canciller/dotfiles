@@ -2,8 +2,8 @@ return {
     'echasnovski/mini.indentscope',
     version = '*',
     config = function()
-      require('mini.indentscope').setup{
-        symbol = '│'
-      }
+        require('mini.indentscope').setup {
+            symbol = '│'
+        }
     end
 }
