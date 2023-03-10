@@ -13,18 +13,21 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-local plugins = {
-  require 'plugins/colorscheme',
-  require 'plugins/file-explorer',
-  require 'plugins/treesitter',
-  require 'plugins/statusline',
-  require 'plugins/tabline',
-  require 'plugins/comments',
-  require 'plugins/editing-support',
-  require 'plugins/git',
-  require 'plugins/indentation',
-  require 'plugins/formatting',
-  require 'plugins/lsp',
-}
-
-require("lazy").setup(plugins)
+require("lazy").setup({
+  spec = {
+    { import = 'plugins/colorscheme' },
+    { import = 'plugins/file-explorer' },
+    { import = 'plugins/treesitter' },
+    { import = 'plugins/statusline' },
+    { import = 'plugins/tabline' },
+    { import = 'plugins/comments' },
+    { import = 'plugins/editing-support' },
+    { import = 'plugins/git' },
+    { import = 'plugins/indentation' },
+    -- { import = 'plugins/formatting' },
+    { import = 'plugins/lsp' },
+  },
+  defaults = {
+    version = false
+  }
+})

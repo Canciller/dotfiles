@@ -1,12 +1,4 @@
--- nvim
-
-require('core/options')
-require('core/keymaps')
-require('core/autocmds')
-require('core/diagnostics')
-
--- plugins
-
+require('config')
 require('plugins')
 
 -- require('packer_init')
