@@ -1,13 +1,33 @@
-return function()
-    require('nvim-treesitter.configs').setup {
+return {
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
+    version = false,
+    dependencies = {'JoosepAlviste/nvim-ts-context-commentstring'},
+    opts = {
         highlight = {
             enable = true
         },
         indent = {
             enable = true
         },
-        ensure_installed = {"vim", "comment", "help", "lua", "tsx", "typescript", "javascript", "json", "css", "html",
-                            "markdown", "markdown_inline", "regex", "bash", "rust", "toml"},
+        ensure_installed = {
+            "vim",
+            "comment", 
+            "help",
+            "lua",
+            "tsx",
+            "typescript",
+            "javascript",
+            "json",
+            "css",
+            "html",
+            "markdown",
+            "markdown_inline",
+            "regex",
+            "bash",
+            "rust",
+            "toml"
+        },
         context_commentstring = {
             enable = true,
             enable_autocmd = false
@@ -33,5 +53,8 @@ return function()
         --         }
         --     }
         -- }
-    }
-end
+    },
+    config = function(_, opts)
+      require("nvim-treesitter.configs").setup(opts)
+    end,
+}

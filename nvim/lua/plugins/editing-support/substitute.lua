@@ -1,5 +1,5 @@
-return function()
-    require("substitute").setup {}
+return function(_, opts)
+    require("substitute").setup(opts)
 
     vim.keymap.set("n", "s", "<cmd>lua require('substitute').operator()<cr>", {
         noremap = true

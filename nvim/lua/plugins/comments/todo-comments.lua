@@ -1,6 +1,6 @@
-return function()
+return function(_, opts)
     tc = require('todo-comments')
-    tc.setup {}
+    tc.setup(opts)
 
     vim.keymap.set("n", "]t", function()
         tc.jump_next()
