@@ -24,8 +24,8 @@ require("lazy").setup({
     { import = 'plugins/editing-support' },
     { import = 'plugins/git' },
     { import = 'plugins/indentation' },
-    -- { import = 'plugins/formatting' },
     { import = 'plugins/lsp' },
+    { import = 'plugins/extras/langs/typescript'}
   },
   defaults = {
     version = false
