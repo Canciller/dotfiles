@@ -16,6 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   spec = {
     { import = 'plugins/colorscheme' },
+    { import = 'plugins/ui' },
     { import = 'plugins/file-explorer' },
     { import = 'plugins/treesitter' },
     { import = 'plugins/statusline' },
@@ -27,9 +28,13 @@ require("lazy").setup({
     { import = 'plugins/indentation' },
     { import = 'plugins/fuzzy-finder' },
     { import = 'plugins/lsp' },
-    { import = 'plugins/extras/langs/typescript'}
+    { import = 'plugins/extras/langs/typescript'},
+    { import = 'plugins/extras/langs/lua'},
   },
   defaults = {
     version = false
+  },
+  dev = {
+    path = '~/Projects'
   }
 })

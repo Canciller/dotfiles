@@ -50,13 +50,14 @@ return {
             }
 
             vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-            vim.keymap.set('n', 'gd', '<cmd>Telescope lsp_definitions<cr>', opts)
             vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+            vim.keymap.set('n', 'gd', '<cmd>Telescope lsp_definitions<cr>', opts)
             vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<cr>', opts)
 
             vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
 
-            vim.keymap.set('n', '<f2>', vim.lsp.buf.rename, opts)
+            vim.keymap.set("n", "<f2>", vim.lsp.buf.rename, opts)
+
             vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
             vim.keymap.set('n', '<leader>cd', vim.diagnostic.open_float, buf)
 
