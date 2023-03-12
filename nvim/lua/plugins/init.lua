@@ -28,6 +28,7 @@ require("lazy").setup({
     { import = 'plugins/indentation' },
     { import = 'plugins/fuzzy-finder' },
     { import = 'plugins/lsp' },
+    { import = 'plugins/diagnostics' },
     { import = 'plugins/completition' },
     { import = 'plugins/extras/langs/typescript' },
     { import = 'plugins/extras/langs/lua' },
