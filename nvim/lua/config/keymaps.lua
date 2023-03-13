@@ -1,7 +1,7 @@
 local cmd = vim.cmd
 
 local function map(mode, lhs, rhs, opts)
-  local options = { noremap=true, silent=true }
+  local options = { noremap = true, silent = true }
   if opts then
     options = vim.tbl_extend('force', options, opts)
   end
@@ -10,10 +10,10 @@ end
 
 vim.g.mapleader = ','
 
-cmd(':command! WQ wq')
-cmd(':command! Wq wq')
-cmd(':command! W w')
-cmd(':command! Q q')
+cmd ':command! WQ wq'
+cmd ':command! Wq wq'
+cmd ':command! W w'
+cmd ':command! Q q'
 
 -- disable arrow keys
 map('', '<up>', '<nop>')
@@ -50,7 +50,7 @@ map('n', '<right>', ':vertical res +5<cr>')
 map('n', '<tab>', ':tabn<cr>')
 map('n', '<s-tab>', ':tabp<cr>')
 
- -- move to end/start of line
+-- move to end/start of line
 map('n', 'L', '$')
 map('n', 'H', '0')
 
@@ -75,4 +75,3 @@ map('n', '<leader>go', ':tabedit $CONFIG/nvim/lua/options.lua<cr>')
 -- record macro
 map('n', 'q', '<nop>')
 map('n', '<leader>q', 'q')
-

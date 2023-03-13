@@ -1,16 +1,16 @@
 return {
   {
     {
-      "nvim-treesitter/nvim-treesitter",
+      'nvim-treesitter/nvim-treesitter',
       opts = function(_, opts)
-        if type(opts.ensure_installed) == "table" then
-          vim.list_extend(opts.ensure_installed, { "lua" })
+        if type(opts.ensure_installed) == 'table' then
+          vim.list_extend(opts.ensure_installed, { 'lua' })
         end
       end,
     },
   },
   {
-    "neovim/nvim-lspconfig",
+    'neovim/nvim-lspconfig',
     opts = {
       servers = {
         lua_ls = {
@@ -26,7 +26,7 @@ return {
               },
               workspace = {
                 -- Make the server aware of Neovim runtime files
-                library = vim.api.nvim_get_runtime_file("", true),
+                library = vim.api.nvim_get_runtime_file('', true),
                 checkThirdParty = false,
               },
               -- Do not send telemetry data containing a randomized but unique identifier
@@ -35,7 +35,7 @@ return {
               },
             },
           },
-        }
+        },
       },
       setup = {
         lua_ls = function(_, opts)

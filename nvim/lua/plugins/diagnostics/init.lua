@@ -2,56 +2,50 @@ local autocmd = vim.api.nvim_create_autocmd
 
 return {
   {
-    "folke/trouble.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    'folke/trouble.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = {
       use_diagnostic_signs = true,
       signs = {
-        error = "E",
-        warning = "W",
-        hint = "H",
-        information = "I",
-        other = "O"
+        error = 'E',
+        warning = 'W',
+        hint = 'H',
+        information = 'I',
+        other = 'O',
       },
       action_keys = {
-        open_split = { "x" },  -- open buffer in new split
-        open_vsplit = { "v" }, -- open buffer in new vsplit
-        open_tab = { "t" },    -- open buffer in new tab
-      }
+        open_split = { 'x' }, -- open buffer in new split
+        open_vsplit = { 'v' }, -- open buffer in new vsplit
+        open_tab = { 't' }, -- open buffer in new tab
+      },
     },
     keys = {
-      { "<leader>xx", "<cmd>TroubleToggle<cr>",                       desc = "Trouble toggle" },
-      { "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>",  desc = "Document Diagnostics (Trouble)" },
-      { "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
-      { "<leader>xl", "<cmd>TroubleToggle loclist<cr>",               desc = "Location List (Trouble)" },
-      { "<leader>xq", "<cmd>TroubleToggle quickfix<cr>",              desc = "Quickfix List (Trouble)" },
+      { '<leader>xx', '<cmd>TroubleToggle<cr>', desc = 'Trouble toggle' },
+      { '<leader>xd', '<cmd>TroubleToggle document_diagnostics<cr>', desc = 'Document Diagnostics (Trouble)' },
+      { '<leader>xw', '<cmd>TroubleToggle workspace_diagnostics<cr>', desc = 'Workspace Diagnostics (Trouble)' },
+      { '<leader>xl', '<cmd>TroubleToggle loclist<cr>', desc = 'Location List (Trouble)' },
+      { '<leader>xq', '<cmd>TroubleToggle quickfix<cr>', desc = 'Quickfix List (Trouble)' },
       {
-        "[q",
+        '[q',
         function()
-          if require("trouble").is_open() then
-            require("trouble").previous({ skip_groups = true, jump = true })
+          if require('trouble').is_open() then
+            require('trouble').previous { skip_groups = true, jump = true }
           else
-            pcall(
-              vim.cmd,
-              'cprev'
-            )
+            pcall(vim.cmd, 'cprev')
           end
         end,
-        desc = "Previous trouble/quickfix item",
+        desc = 'Previous trouble/quickfix item',
       },
       {
-        "]q",
+        ']q',
         function()
-          if require("trouble").is_open() then
-            require("trouble").next({ skip_groups = true, jump = true })
+          if require('trouble').is_open() then
+            require('trouble').next { skip_groups = true, jump = true }
           else
-            pcall(
-              vim.cmd,
-              'cnext'
-            )
+            pcall(vim.cmd, 'cnext')
           end
         end,
-        desc = "Next trouble/quickfix item",
+        desc = 'Next trouble/quickfix item',
       },
     },
     init = function()
@@ -92,8 +86,8 @@ return {
       autocmd('QuickFixCmdPost', {
         nested = true,
         pattern = '[^l]*',
-        command = 'Trouble quickfix'
+        command = 'Trouble quickfix',
       })
-    end
-  }
+    end,
+  },
 }

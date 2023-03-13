@@ -2,7 +2,7 @@ return {
   {
     'nvim-treesitter/nvim-treesitter-context',
     opts = {
-      enable = true
+      enable = true,
     },
   },
   {
@@ -16,35 +16,35 @@ return {
     },
     opts = {
       highlight = {
-        enable = true
+        enable = true,
       },
       indent = {
-        enable = true
+        enable = true,
       },
       ensure_installed = {
-        "vim",
-        "comment",
-        "help",
-        "lua",
-        "tsx",
-        "typescript",
-        "javascript",
-        "json",
-        "css",
-        "html",
-        "markdown",
-        "markdown_inline",
-        "regex",
-        "bash",
-        "rust",
-        "toml"
+        'vim',
+        'comment',
+        'help',
+        'lua',
+        'tsx',
+        'typescript',
+        'javascript',
+        'json',
+        'css',
+        'html',
+        'markdown',
+        'markdown_inline',
+        'regex',
+        'bash',
+        'rust',
+        'toml',
       },
       context_commentstring = {
         enable = true,
-        enable_autocmd = false
+        enable_autocmd = false,
       },
       autotag = {
-        enable = true
+        enable = true,
       },
       rainbow = {
         enable = true,
@@ -69,6 +69,7 @@ return {
       -- }
     },
     config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
+      require('nvim-treesitter.configs').setup(opts)
     end,
-  } }
+  },
+}

@@ -1,24 +1,24 @@
 return {
   {
-    "stevearc/dressing.nvim",
+    'stevearc/dressing.nvim',
     lazy = true,
     init = function()
       vim.ui.select = function(...)
-        require("lazy").load({ plugins = { "dressing.nvim" } })
+        require('lazy').load { plugins = { 'dressing.nvim' } }
         return vim.ui.select(...)
       end
 
       vim.ui.input = function(...)
-        require("lazy").load({ plugins = { "dressing.nvim" } })
+        require('lazy').load { plugins = { 'dressing.nvim' } }
         return vim.ui.input(...)
       end
     end,
   },
   {
-    "smjonas/inc-rename.nvim",
+    'smjonas/inc-rename.nvim',
     enabled = true,
     opts = {
-      input_buffer_type = "dressing",
-    }
+      input_buffer_type = 'dressing',
+    },
   },
 }
