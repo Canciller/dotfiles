@@ -12,4 +12,11 @@ return {
     event = { 'BufReadPre', 'BufNewFile' },
     opts = {},
   },
+  {
+    'TimUntersberger/neogit',
+    dependencies = 'nvim-lua/plenary.nvim',
+    cmd = {
+      'Neogit'
+    }
+  },
 }
