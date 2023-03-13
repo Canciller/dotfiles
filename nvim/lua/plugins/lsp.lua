@@ -31,6 +31,14 @@ return {
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
       end
 
+      vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
+        border = opts.diagnostics.float.border,
+      })
+
+      vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+        border = opts.diagnostics.float.border,
+      })
+
       vim.diagnostic.config(opts.diagnostics)
 
       -- servers
@@ -42,26 +50,26 @@ return {
         local server_opts = vim.tbl_deep_extend('force', {
           capabilities = vim.deepcopy(capabilities),
           on_attach = function(client, bufnr)
-            local opts = {
+            local o = {
               noremap = true,
               silent = true,
               buffer = bufnr,
             }
 
-            vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-            vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-            vim.keymap.set('n', 'gd', '<cmd>Telescope lsp_definitions<cr>', opts)
-            vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<cr>', opts)
+            vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, o)
+            vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, o)
+            vim.keymap.set('n', 'gd', '<cmd>Telescope lsp_definitions<cr>', o)
+            vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<cr>', o)
 
-            vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+            vim.keymap.set('n', 'K', vim.lsp.buf.hover, o)
 
-            vim.keymap.set('n', '<f2>', vim.lsp.buf.rename, opts)
+            vim.keymap.set('n', '<f2>', vim.lsp.buf.rename, o)
 
-            vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
-            vim.keymap.set('n', '<leader>cd', vim.diagnostic.open_float, buf)
+            vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, o)
+            vim.keymap.set('n', '<leader>cd', vim.diagnostic.open_float, o)
 
-            vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-            vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+            vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, o)
+            vim.keymap.set('n', ']d', vim.diagnostic.goto_next, o)
 
             if client.supports_method 'textDocument/formatting' then
               vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }

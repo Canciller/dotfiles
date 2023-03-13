@@ -10,3 +10,7 @@
 	gpgSign = true
 [init]
 	defaultBranch = develop
+[color]
+	ui = true
+[color "status"]
+	changed = blue

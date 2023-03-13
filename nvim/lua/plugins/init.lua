@@ -30,7 +30,7 @@ require('lazy').setup {
     { import = 'plugins/fuzzy-finder' },
     { import = 'plugins/lsp' },
     { import = 'plugins/diagnostics' },
-    { import = 'plugins/completition' },
+    { import = 'plugins/completion' },
     { import = 'plugins/extras/langs/typescript' },
     { import = 'plugins/extras/langs/lua' },
   },
