@@ -22,6 +22,7 @@ require("lazy").setup({
     { import = 'plugins/statusline' },
     { import = 'plugins/tabline' },
     { import = 'plugins/cursorline' },
+    { import = 'plugins/winbar' },
     { import = 'plugins/comments' },
     { import = 'plugins/editing-support' },
     { import = 'plugins/git' },

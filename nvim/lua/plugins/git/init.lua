@@ -1,4 +1,4 @@
-return {{
+return { {
     'f-person/git-blame.nvim',
     config = function()
         vim.g.gitblame_set_extmark_options = {
@@ -7,5 +7,7 @@ return {{
     end
 }, {
     'lewis6991/gitsigns.nvim',
-    opts = {}
-}}
+    event = { "BufReadPre", "BufNewFile" },
+    opts = {
+    }
+} }
