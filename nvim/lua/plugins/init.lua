@@ -33,6 +33,7 @@ require('lazy').setup {
     { import = 'plugins/completion' },
     { import = 'plugins/extras/langs/typescript' },
     { import = 'plugins/extras/langs/lua' },
+    { import = 'plugins/extras/langs/markdown' },
   },
   defaults = {
     version = false,
