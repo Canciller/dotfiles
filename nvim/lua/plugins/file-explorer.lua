@@ -30,6 +30,7 @@ return {
         follow_current_file = true,
         filtered_items = {
           hide_dotfiles = false,
+          hide_gitignored = false,
         },
       },
       window = {
@@ -58,7 +59,7 @@ return {
             renamed = '', -- this can only be used in the git_status source
             -- Status type
             untracked = 'U',
-            ignored = '',
+            ignored = '',
             unstaged = 'M',
             staged = 'A',
             conflict = '',

@@ -109,4 +109,9 @@ return {
       }
     end,
   },
+  {
+    'j-hui/fidget.nvim',
+    event = { 'BufReadPre', 'BufNewFile' },
+    opts = {}
+  }
 }
