@@ -9,6 +9,15 @@ return {
       show_buffer_close_icons = false,
       show_close_icon = false,
       color_icons = true,
+      diagnostics = 'nvim_lsp',
+      offsets = {
+        {
+          filetype = "neo-tree",
+          text = "",
+          text_align = "center",
+          separator = true
+        }
+      }
     },
     highlights = {
       buffer_selected = {

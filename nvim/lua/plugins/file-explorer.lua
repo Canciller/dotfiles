@@ -68,7 +68,17 @@ return {
       },
     },
     init = function()
-      vim.cmd [[nnoremap \ :Neotree toggle<cr>]]
+      vim.cmd [[nnoremap <silent> \ :Neotree<cr>]]
     end,
+  },
+  {
+    's1n7ax/nvim-window-picker',
+    lazy = false,
+    opts = {
+      show_prompt = false,
+      fg_color = '#ededed',
+      other_win_hl_color = '#e35e4f',
+      use_winbar = 'always',
+    },
   },
 }

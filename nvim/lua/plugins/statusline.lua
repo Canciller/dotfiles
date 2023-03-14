@@ -14,7 +14,9 @@ return {
         right = '',
       },
       disabled_filetypes = {
-        statusline = {},
+        statusline = {
+          'neo-tree',
+        },
         winbar = {},
       },
       ignore_focus = {},
