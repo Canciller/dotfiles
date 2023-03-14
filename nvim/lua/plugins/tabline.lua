@@ -12,12 +12,12 @@ return {
       diagnostics = 'nvim_lsp',
       offsets = {
         {
-          filetype = "neo-tree",
-          text = "",
-          text_align = "center",
-          separator = true
-        }
-      }
+          filetype = 'neo-tree',
+          text = '',
+          text_align = 'center',
+          separator = true,
+        },
+      },
     },
     highlights = {
       buffer_selected = {

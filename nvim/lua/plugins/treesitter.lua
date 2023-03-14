@@ -49,24 +49,6 @@ return {
       rainbow = {
         enable = true,
       },
-      -- textobjects = {
-      --     select = {
-      --         enable = true,
-      --         lookahead = true,
-      --         keymaps = {
-      --             ["af"] = "@function.outer",
-      --             ["if"] = "@function.inner",
-      --             ["ia"] = "@parameter.inner",
-      --             ["aa"] = "@parameter.outer",
-      --             ["ak"] = "@comment.outer"
-      --         },
-      --         selection_modes = {
-      --             ['@function.outer'] = 'V', -- linewise
-      --             ['@function.inner'] = 'V', -- linewise
-      --             ['@comment.outer'] = 'V' -- linewise
-      --         }
-      --     }
-      -- }
     },
     config = function(_, opts)
       require('nvim-treesitter.configs').setup(opts)

@@ -42,4 +42,7 @@ require('lazy').setup {
   dev = {
     path = '~/Projects',
   },
+  change_detection = {
+    notify = false,
+  },
 }

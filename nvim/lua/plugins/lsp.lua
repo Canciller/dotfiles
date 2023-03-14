@@ -1,5 +1,3 @@
-local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
-
 return {
   {
     'neovim/nvim-lspconfig',
@@ -72,12 +70,19 @@ return {
             vim.keymap.set('n', ']d', vim.diagnostic.goto_next, o)
 
             if client.supports_method 'textDocument/formatting' then
+              local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
+
               vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
               vim.api.nvim_create_autocmd('BufWritePre', {
                 group = augroup,
                 buffer = bufnr,
                 callback = function()
-                  vim.lsp.buf.format { bufnr = bufnr }
+                  vim.lsp.buf.format {
+                    filter = function(c)
+                      return c.name == 'null-ls'
+                    end,
+                    bufnr = bufnr,
+                  }
                 end,
               })
             end
@@ -100,11 +105,9 @@ return {
       return {
         root_dir = require('null-ls.utils').root_pattern('.null-ls-root', '.neoconf.json', 'Makefile', '.git'),
         sources = {
-          nls.builtins.formatting.fish_indent,
-          nls.builtins.diagnostics.fish,
-          nls.builtins.formatting.stylua,
           nls.builtins.formatting.shfmt,
-          nls.builtins.diagnostics.flake8,
+          nls.builtins.code_actions.gitsigns,
+          nls.builtins.diagnostics.todo_comments,
         },
       }
     end,
@@ -112,6 +115,6 @@ return {
   {
     'j-hui/fidget.nvim',
     event = { 'BufReadPre', 'BufNewFile' },
-    opts = {}
-  }
+    opts = {},
+  },
 }
