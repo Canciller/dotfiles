@@ -20,15 +20,6 @@ return {
               completeFunctionCalls = true,
             },
           },
-          capabilities = {
-            textDocument = {
-              completion = {
-                completionItem = {
-                  snippetSupport = false,
-                },
-              },
-            },
-          },
         },
       },
       setup = {
