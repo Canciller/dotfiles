@@ -56,6 +56,7 @@ plugins=(
   # systemd
   sudo
   git
+  git-commit
   # pip
   # python
   npm
@@ -187,6 +188,24 @@ eval "$(atuin init zsh)"
 
 # rover
 source "$HOME/.rover/env"
+
+# ==============================================================================
+# TIPS
+# ==============================================================================
+
+# Cheat sheet of the tools/aliases I tend to forget. Run `tips` to see it again.
+function tips {
+	local b=$'\e[1m' d=$'\e[2m' r=$'\e[0m'
+
+	printf '%s\n' \
+	  "${b}atuin${r}   ${d}Ctrl-R${r} search history   ${d}Up${r} previous command" \
+	  "${b}fzf${r}     ${d}Ctrl-T${r} pick file       ${d}Alt-C${r} cd into dir" \
+	  "${b}zoxide${r}  ${d}z <dir>${r} jump            ${d}zi${r} pick interactively" \
+	  "${b}docker${r}  ${d}dps${r} ps  ${d}dpsa${r} ps -a  ${d}dcup${r} up  ${d}dcdn${r} down  ${d}dclf${r} logs -f" \
+	  "${b}git${r}     ${d}git feat \"msg\"${r}  ${d}git fix -s scope \"msg\"${r}  ${d}git wip${r}  ${d}(also chore docs refactor test style perf build ci rev)${r}"
+}
+
+[[ -o interactive ]] && tips
 
 # ==============================================================================
 # ALIASES
