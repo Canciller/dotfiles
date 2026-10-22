@@ -8,6 +8,8 @@ BACKUP="$HOME/.dotfiles-backup/$(date +%Y%m%d-%H%M%S)"
 LINKS=(
   "zsh/zshrc:$HOME/.zshrc"
   "git/gitconfig:$HOME/.gitconfig"
+  "kitty/kitty.conf:$HOME/.config/kitty/kitty.conf"
+  "kitty/current-theme.conf:$HOME/.config/kitty/current-theme.conf"
 )
 
 for entry in "${LINKS[@]}"; do
