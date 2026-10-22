@@ -4,13 +4,21 @@
 [user]
 	email = lopez.ojeda.gabriel.emilio@gmail.com
 	name = canciller
+
 [commit]
 	gpgsign = true
+
 [tag]
 	gpgSign = true
+
 [init]
 	defaultBranch = develop
+
 [color]
 	ui = true
+
 [color "status"]
 	changed = blue
+
+[core]
+	ignorecase = false
