@@ -202,7 +202,21 @@ function tips {
 	  "${b}fzf${r}     ${d}Ctrl-T${r} pick file       ${d}Alt-C${r} cd into dir" \
 	  "${b}zoxide${r}  ${d}z <dir>${r} jump            ${d}zi${r} pick interactively" \
 	  "${b}docker${r}  ${d}dps${r} ps  ${d}dpsa${r} ps -a  ${d}dcup${r} up  ${d}dcdn${r} down  ${d}dclf${r} logs -f" \
-	  "${b}git${r}     ${d}git feat \"msg\"${r}  ${d}git fix -s scope \"msg\"${r}  ${d}git wip${r}  ${d}(also chore docs refactor test style perf build ci rev)${r}"
+	  "${b}git${r}     ${d}git feat \"msg\"${r}  ${d}git fix -s scope \"msg\"${r}  ${d}git wip${r}  ${d}(also chore docs refactor test style perf build ci rev)${r}" \
+	  "${b}aerospace${r} ${d}wmkeys${r} show all keybinds"
+}
+
+# AeroSpace keybinds (mod = alt). Mirrors ~/.config/aerospace/aerospace.toml
+function wmkeys {
+	local b=$'\e[1m' d=$'\e[2m' r=$'\e[0m'
+
+	printf '%s\n' \
+	  "${b}focus/move${r}  ${d}alt-h/j/k/l${r} focus   ${d}alt-shift-h/j/k/l${r} move window" \
+	  "${b}workspaces${r}  ${d}alt-1..9${r} go to   ${d}alt-shift-1..9${r} send window   ${d}alt-tab${r} previous" \
+	  "${b}windows${r}     ${d}alt-enter${r} kitty   ${d}alt-shift-q${r} close   ${d}alt-f${r} fullscreen   ${d}alt-shift-space${r} floating" \
+	  "${b}layout${r}      ${d}alt-e${r} toggle h/v split   ${d}alt-s${r} v-accordion   ${d}alt-w${r} h-accordion" \
+	  "${b}resize${r}      ${d}alt-r${r} then ${d}h/j/k/l${r}, ${d}enter/esc${r} to leave" \
+	  "${b}config${r}      ${d}alt-shift-c${r} reload"
 }
 
 [[ -o interactive ]] && tips
