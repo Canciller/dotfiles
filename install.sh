@@ -10,6 +10,7 @@ LINKS=(
   "git/gitconfig:$HOME/.gitconfig"
   "kitty/kitty.conf:$HOME/.config/kitty/kitty.conf"
   "kitty/current-theme.conf:$HOME/.config/kitty/current-theme.conf"
+  "aerospace/aerospace.toml:$HOME/.config/aerospace/aerospace.toml"
 )
 
 for entry in "${LINKS[@]}"; do
